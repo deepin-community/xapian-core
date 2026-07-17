@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 dnl NB When updating the version for a release, update LIBRARY_VERSION_INFO
 dnl below too.
-AC_INIT([xapian-core], [1.4.25], [https://xapian.org/bugs])
+AC_INIT([xapian-core], [1.4.29], [https://xapian.org/bugs])
 dnl See HACKING document for details of the reasons for required versions.
 AC_PREREQ([2.64])
 dnl Extract from the libtool info manual:
@@ -56,8 +56,16 @@ dnl 42:3:12 1.4.22 No API changes
 dnl 42:4:12 1.4.23 No API changes
 dnl 42:5:12 1.4.24 No API changes
 dnl 42:6:12 1.4.25 No API changes
-LIBRARY_VERSION_INFO=42:6:12
+dnl 43:0:13 1.4.26 set_expansion_scheme("prob")
+dnl 43:1:13 1.4.27 No API changes
+dnl 43:0:14 1.4.28 dutch_porter alias in Xapian::Stem; WRONG SOVERSION
+dnl 44:1:14 1.4.29 Fix incorrect SOVERSION in 1.4.28
+LIBRARY_VERSION_INFO=44:1:14
 AC_SUBST([LIBRARY_VERSION_INFO])
+
+if expr `echo "$LIBRARY_VERSION_INFO"|sed 's/:.*:/ - /'` != 30 ; then
+  AC_MSG_ERROR([Unexpected SOVERSION change])
+fi
 
 LIBRARY_VERSION_SUFFIX=
 AC_SUBST([LIBRARY_VERSION_SUFFIX])
@@ -174,9 +182,9 @@ AC_PROG_CXX
 
 AC_CANONICAL_HOST
 
-# Checked: dragonfly6.4 freebsd8.0 openbsd4.6 solaris2.9 solaris2.10
+# Checked: dragonfly6.4 freebsd8.0 netbsd9.3 openbsd4.6 solaris2.9 solaris2.10
 case $host_os in
-  linux* | k*bsd*-gnu | dragonfly* | freebsd* | openbsd* | solaris*)
+  linux* | k*bsd*-gnu | dragonfly* | freebsd* | netbsd* | openbsd* | solaris*)
     dnl Vanilla libtool sets this to "unknown" which it then handles as "yes".
     link_all_deplibs_CXX=no
     ;;
@@ -194,8 +202,8 @@ esac
 case $host in
   *-*-cygwin* | *-*-mingw* | *-*-pw32* | *-*-os2* | *-*-darwin* | *-cegcc*)
     dnl On these platforms, libtool emits a warning if -no-install is passed,
-    dnl and uses -no-fast-install instead - the least ugly way to avoid that
-    dnl warnings seems to be to duplicate the above list of platforms from
+    dnl and uses -no-fast-install instead - the least ugly way to avoid this
+    dnl warning seems to be to duplicate the above list of platforms from
     dnl libtool and use -no-fast-install on them directly.
     NO_INSTALL=-no-fast-install ;;
   *)
@@ -271,11 +279,20 @@ if test -z "$CC_FOR_BUILD" ; then
 fi
 AC_ARG_VAR([CC_FOR_BUILD], [C compiler command for native compilation (needed to compile build tools during cross-builds)])
 
+dnl Enable large file support if possible.  There's a bug in this macro in
+dnl autoconf 2.72 where it always tests with the C compiler.  We could just
+dnl let it, but Xapian is only C++ so the C compiler could be a totally
+dnl different compiler with different large-file settings, so we temporarily
+dnl set CC to the C++ compiler in order to actually test the C++ compiler.
+AC_LANG([C])
+save_CC=$CC
+CC=$CXX
+AC_SYS_LARGEFILE
+CC=$save_CC
+
 dnl Run tests using the C++ compiler.
 AC_LANG([C++])
 
-dnl Enable large file support if possible.
-AC_SYS_LARGEFILE
 dnl With xlC on AIX, -D_LARGE_FILES changes the ABI of std::string, so it
 dnl also needs to be used when compiling user code.
 abi_affecting_cxxflags=
@@ -308,8 +325,10 @@ xo_fn_unknown_option_check() {
   dnl
   dnl Check compiler stderr for known strings:
   dnl * MSVC: Command line warning D9002 : ignoring unknown option '...'
+  dnl * MSVC: LINK : warning LNK4044: unrecognized option '...'; ignored
   dnl * icc strings cribbed from automake's depend.m4
   $GREP 'ignoring unknown option' conftest.err >/dev/null 2>&1 ||
+      $GREP 'unrecognized option' conftest.err >/dev/null 2>&1 ||
       $GREP 'ignoring option' conftest.err >/dev/null 2>&1 ||
       $GREP 'not supported' conftest.err >/dev/null 2>&1 ||
       return 1
@@ -350,26 +369,6 @@ dnl Test if linking works with $1 added to LDFLAGS; if it does, add $1 to
 dnl variable $2.  If the test passes, also do $3; if it fails, also do $4.
 AC_DEFUN([XAPIAN_TEST_LDFLAGS],
   [XAPIAN_TEST_FLAGS_([LDFLAGS], [AC_LINK_IFELSE], [$1], [$2], [$3], [$4])])
-
-ldflags=
-if test yesyes = "$GXX$enable_shared" ; then
-  case $host_os in
-    cygwin* | mingw* | msys*)
-      XAPIAN_TEST_LDFLAGS(
-	[-Wl,--enable-runtime-pseudo-reloc],
-	[ldflags],
-	[],
-	[
-	dnl Can't use AC_DISABLE_SHARED after AC_PROG_LIBTOOL, but
-	dnl this test needs to be after AC_PROG_LIBTOOL, so we can't
-	dnl just disable the shared build automatically...
-	AC_MSG_ERROR([ld version too old to support a shared build - configure with --disable-shared, or install binutils 2.13.90-20030111-1 or later])
-	])
-    ;;
-  esac
-fi
-dnl Only works for ldflags which can be specified anywhere on the link line.
-AC_SUBST([ldflags])
 
 dnl Preserve the default CXXFLAGS.
 save_CXXFLAGS=$CXXFLAGS
@@ -834,6 +833,25 @@ case $host_os in
 esac
 XAPIAN_BACKEND_ENABLE([remote], [$default_enable_backend_remote], [yes (except for MSDOS)])
 
+save_LIBS=$LIBS
+LIBS=
+dnl We use zlib in stemtest for reading compressed word lists, and for
+dnl compressing tags in chert and glass.
+
+dnl Check for zlib.h.
+AC_CHECK_HEADERS([zlib.h], [], [
+  AC_MSG_ERROR([zlib.h not found - required for chert and glass (you may need to install the zlib1g-dev or zlib-devel package)])
+  ], [ ])
+
+dnl Check for zlibVersion - normally it's in -lz but the mingw build needs -lzlib or -lzdll.
+AC_SEARCH_LIBS([zlibVersion], [z zlib zdll], [], [
+  AC_MSG_ERROR([zlibVersion() not found in -lz, -lzlib, or -lzdll - required for glass (you may need to install the zlib1g-dev or zlib-devel package)])
+  ])
+
+ZLIB_LIBS=$LIBS
+AC_SUBST([ZLIB_LIBS])
+LIBS=$save_LIBS
+
 dnl Save and empty LIBS while we probe for libraries to link libxapian against
 dnl so we can just use AC_SEARCH_LIBS then copy LIBS to XAPIAN_LIBS and restore
 dnl the value saved here.
@@ -879,22 +897,8 @@ AC_SEARCH_LIBS([timer_create], [rt],
 win32_need_lws2_32=0
 case $enable_backend_chert$enable_backend_glass in
 *yes*)
-  dnl We use zlib for compressing tags in chert/glass.  We could
-  dnl automatically disable support if zlib isn't found, but overall that
-  dnl probably does more harm than good - it's most likely that someone just
-  dnl forgot to install the -dev package for zlib.
-  dnl
-  dnl Similarly for uuid support.
-
-  dnl Check for zlib.h.
-  AC_CHECK_HEADERS([zlib.h], [], [
-    AC_MSG_ERROR([zlib.h not found - required for chert and glass (you may need to install the zlib1g-dev or zlib-devel package)])
-    ], [ ])
-
-  dnl Check for zlibVersion - normally it's in -lz but the mingw build needs -lzlib or -lzdll.
-  AC_SEARCH_LIBS([zlibVersion], [z zlib zdll], [], [
-    AC_MSG_ERROR([zlibVersion() not found in -lz, -lzlib, or -lzdll - required for chert and glass (you may need to install the zlib1g-dev or zlib-devel package)])
-    ])
+  dnl Link libxapian against zlib.
+  LIBS="$LIBS${LIBS:+ }$ZLIB_LIBS"
 
   dnl Find a way to generate UUIDs.
 
@@ -1222,7 +1226,8 @@ dash_d_visibility=
 if test yes = "$GXX"; then
   dnl Intel's C++ compiler and clang both lie and define __GNUC__, so check which
   dnl we actually have, as neither is really 100% compatible.
-  case `echo __INTEL_COMPILER __clang__|$CXX -E - 2>&AS_MESSAGE_LOG_FD|grep -v '^#'` in
+  echo __INTEL_COMPILER __clang__ > conftest.cc
+  case `$CXX -E conftest.cc 2>&AS_MESSAGE_LOG_FD|grep -v '^#'` in
     *__INTEL_COMPILER*__clang__*)
       dnl GCC (since neither substituted):
 
@@ -1291,6 +1296,7 @@ if test yes = "$GXX"; then
       WERROR=-Werror
       ;;
   esac
+  rm -f conftest.cc
 
   if test no != "$enable_visibility"; then
     dnl GCC doesn't support symbol visibility on all platforms (e.g. it isn't
@@ -1349,8 +1355,14 @@ else
   esac
 fi
 
+AC_MSG_CHECKING([for option to turn warnings into errors])
 if test x$enable_werror != xyes; then
   WERROR=
+  AC_MSG_RESULT([not requested])
+elif test -z "$WERROR" ; then
+  AC_MSG_RESULT([unknown for $CXX])
+else
+  AC_MSG_RESULT([$WERROR])
 fi
 
 XAPIAN_TEST_LDFLAGS([-Wl,-Bsymbolic-functions], [XAPIAN_LDFLAGS])
@@ -1431,21 +1443,31 @@ AH_BOTTOM(
 # pragma warning(disable:4800)
 
 /* POSIX get to deprecate POSIX things, not Microsoft. */
-# define _CRT_NONSTDC_NO_WARNINGS
-# define _CRT_SECURE_NO_WARNINGS
+# ifndef _CRT_NONSTDC_NO_WARNINGS
+#  define _CRT_NONSTDC_NO_WARNINGS
+# endif
+# ifndef _CRT_SECURE_NO_WARNINGS
+#  define _CRT_SECURE_NO_WARNINGS
+# endif
 
 /* WSAAddressToStringA() is deprecated and we should apparently use
  * WSAAddressToStringW(), but we don't want wide character output so
  * that would mean we'd have to convert the result back to ASCII
  * which is a really stupid idea.
  */
-# define _WINSOCK_DEPRECATED_NO_WARNINGS
+# ifndef _WINSOCK_DEPRECATED_NO_WARNINGS
+#  define _WINSOCK_DEPRECATED_NO_WARNINGS
+# endif
 
 /* Tell MSVC we want M_PI, etc defined. */
-# define _USE_MATH_DEFINES
+# ifndef _USE_MATH_DEFINES
+#  define _USE_MATH_DEFINES
+# endif
 
 /* Tell MSVC we don't want max() and min() macros defined. */
-# define NOMINMAX
+# ifndef NOMINMAX
+#  define NOMINMAX
+# endif
 #endif
 
 /* Make the POSIX-like functions support large files.  MSVC needs this;

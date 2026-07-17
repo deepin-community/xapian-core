@@ -1042,19 +1042,15 @@ int Xapian::InternalStemFrench::r_verb_suffix() {
                 }
                 break;
             case 3:
-                {   int ret = slice_del();
-                    if (ret < 0) return ret;
-                }
                 {   int m2 = l - c; (void)m2;
-                    ket = c;
                     if (c <= lb || p[c - 1] != 'e') { c = l - m2; goto lab0; }
                     c--;
                     bra = c;
-                    {   int ret = slice_del();
-                        if (ret < 0) return ret;
-                    }
                 lab0:
                     ;
+                }
+                {   int ret = slice_del();
+                    if (ret < 0) return ret;
                 }
                 break;
         }

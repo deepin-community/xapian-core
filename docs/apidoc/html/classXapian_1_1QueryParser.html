@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">xapian-core
-   &#160;<span id="projectnumber">1.4.25</span>
+   &#160;<span id="projectnumber">1.4.29</span>
    </div>
   </td>
  </tr>
@@ -377,7 +377,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get_descriptio
 <p>This is an older version of this method - use the version with the <code>grouping</code> parameter in preference to this one.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">field</td><td>The user visible field name </td></tr>
+    <tr><td class="paramname">field</td><td>The user visible field name, which may not be empty for a boolean filter. Currently this needs to consist of characters for which <a class="el" href="namespaceXapian_1_1Unicode.html#a63b7b1eb0427b79aa5d21baad3a882f5" title="Test if a given Unicode character is &quot;word character&quot;.">Xapian::Unicode::is_wordchar()</a> is true (approximately alphanumerics plus connector punctuation such as <code>_</code>). Since 1.4.26 it can optionally end in a <code>:</code> for consistency with how range prefixes are specified. </td></tr>
     <tr><td class="paramname">prefix</td><td>The term prefix to map this to </td></tr>
     <tr><td class="paramname">exclusive</td><td>Controls how multiple filters are combined. If true then <em>prefix</em> is used as the <code>grouping</code> value, so terms with the same prefix are combined with OP_OR, then the resulting queries are combined with OP_AND. If false, then a unique grouping is created for each filter (this is sometimes useful when each document can have multiple terms with this prefix). </td></tr>
   </table>
@@ -431,7 +431,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get_descriptio
 <p>In 1.0.3 and earlier, subsequent calls to this method with the same value of <em>field</em> had no effect.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">field</td><td>The user visible field name </td></tr>
+    <tr><td class="paramname">field</td><td>The user visible field name, which may not be empty for a boolean filter. Currently this needs to consist of characters for which <a class="el" href="namespaceXapian_1_1Unicode.html#a63b7b1eb0427b79aa5d21baad3a882f5" title="Test if a given Unicode character is &quot;word character&quot;.">Xapian::Unicode::is_wordchar()</a> is true (approximately alphanumerics plus connector punctuation such as <code>_</code>). Since 1.4.26 it can optionally end in a <code>:</code> for consistency with how range prefixes are specified. </td></tr>
     <tr><td class="paramname">prefix</td><td>The term prefix to map this to </td></tr>
     <tr><td class="paramname">grouping</td><td>Controls how multiple filters are combined - filters with the same grouping value are combined with OP_OR, then the resulting queries are combined with OP_AND. If NULL, then <em>field</em> is used for grouping. If an empty string, then a unique grouping is created for each filter (this is sometimes useful when each document can have multiple terms with this prefix). [default: NULL] </td></tr>
   </table>
@@ -523,8 +523,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get_descriptio
 <p>In 1.0.3 and earlier, subsequent calls to this method with the same value of <em>field</em> had no effect.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">field</td><td>The user visible field name </td></tr>
-    <tr><td class="paramname">prefix</td><td>The term prefix to map this to </td></tr>
+    <tr><td class="paramname">field</td><td>The user visible field name. Currently this needs to consist of characters for which <a class="el" href="namespaceXapian_1_1Unicode.html#a63b7b1eb0427b79aa5d21baad3a882f5" title="Test if a given Unicode character is &quot;word character&quot;.">Xapian::Unicode::is_wordchar()</a> is true (approximately alphanumerics plus connector punctuation such as <code>_</code>). Since 1.4.26 it can optionally end in a <code>:</code> for consistency with how range prefixes are specified. </td></tr>
+    <tr><td class="paramname">prefix</td><td>The term prefix to map this to. </td></tr>
   </table>
   </dd>
 </dl>

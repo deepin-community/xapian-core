@@ -6,7 +6,7 @@
 
 Summary: The Xapian Search Engine Library
 Name: xapian-core
-Version: 1.4.25
+Version: 1.4.29
 Release: 1
 License: GPL
 Vendor: xapian.org

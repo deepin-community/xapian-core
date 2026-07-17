@@ -10,6 +10,7 @@ extern void test_queryintro1();
 extern void test_phrasealldocs1();
 extern void test_wildcard1();
 extern void test_wildcard2();
+extern void test_wildcard4();
 extern void test_dualprefixwildcard1();
 extern void test_loosephrase1();
 extern void test_loosenear1();

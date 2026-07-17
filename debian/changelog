@@ -1,14 +1,42 @@
-xapian-core (1.4.25-1deepin1) unstable; urgency=medium
+xapian-core (1.4.29-3) unstable; urgency=medium
 
-  * update version rebuild.
+  * debian/rules: Drop dependency on debian/control from
+    override_dh_auto_configure as this is not necessary but can result in
+    debian/control getting updated during the build.
 
- -- liujianqiang <liujianqiang@unintech.com>  Mon, 26 May 2025 16:56:25 +0800
+ -- Olly Betts <olly@survex.com>  Fri, 02 May 2025 11:29:34 +1200
 
-xapian-core (1.4.25-1deepin0) unstable; urgency=medium
+xapian-core (1.4.29-2) unstable; urgency=medium
 
-  * No source change upload against GCC 12.
+  * No changes, just making a source upload because I managed to
+    `dput xapian-core_1.4.29-1_amd64.changes` rather than the
+    _source.changes.
 
- -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:58:36 +0800
+ -- Olly Betts <olly@survex.com>  Sun, 20 Apr 2025 08:39:34 +1200
+
+xapian-core (1.4.29-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fixed incorrect library versioning in 1.4.28. (Closes: #1103529)
+
+ -- Olly Betts <olly@survex.com>  Sat, 19 Apr 2025 11:26:18 +1200
+
+xapian-core (1.4.28-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control.in: Mark conformance with policy 4.7.2.
+
+ -- Olly Betts <olly@survex.com>  Fri, 18 Apr 2025 11:30:35 +1200
+
+xapian-core (1.4.25-2) unstable; urgency=medium
+
+  * Enable LFS via dpkg to workaround buggy autoconf LFS probing with a
+    C++ compiler.  (Closes: #1086249)
+  * Enable 64-bit time_t explicitly via dpkg so it's on for i386 as well.
+    The ABI is not affected by sizeof(time_t) but time_t is used inside the
+    library so it seems cleaner to align this across architectures.
+
+ -- Olly Betts <olly@survex.com>  Wed, 27 Nov 2024 08:19:45 +1300
 
 xapian-core (1.4.25-1) unstable; urgency=medium
 

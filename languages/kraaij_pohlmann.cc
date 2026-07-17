@@ -1088,8 +1088,7 @@ int Xapian::InternalStemKraaij_pohlmann::r_Step_4() {
         c = l - m1;
         ket = c;
         if (c - 1 <= lb || p[c - 1] >> 5 != 3 || !((1310848 >> (p[c - 1] & 0x1f)) & 1)) return 0;
-        among_var = find_among_b(s_pool, a_4, 3, 0, 0);
-        if (!(among_var)) return 0;
+        if (!(find_among_b(s_pool, a_4, 3, 0, 0))) return 0;
         bra = c;
         {   int ret = r_R1();
             if (ret <= 0) return ret;
@@ -1350,69 +1349,65 @@ int Xapian::InternalStemKraaij_pohlmann::r_Lose_infix() {
 }
 
 int Xapian::InternalStemKraaij_pohlmann::r_measure() {
+    I_p1 = l;
+    I_p2 = l;
     {   int c1 = c;
-        c = l;
-        I_p1 = c;
-        I_p2 = c;
-        c = c1;
-    }
-    {   int c2 = c;
         while(1) {
-            if (out_grouping_U(g_v, 97, 121, 0)) goto lab2;
+            if (out_grouping_U(g_v, 97, 121, 0)) goto lab1;
             continue;
-        lab2:
+        lab1:
             break;
         }
         {   int i = 1;
             while(1) {
-                int c3 = c;
-                {   int c4 = c;
-                    if (!(eq_s(2, s_68))) goto lab5;
-                    goto lab4;
-                lab5:
-                    c = c4;
-                    if (in_grouping_U(g_v, 97, 121, 0)) goto lab3;
+                int c2 = c;
+                {   int c3 = c;
+                    if (!(eq_s(2, s_68))) goto lab4;
+                    goto lab3;
+                lab4:
+                    c = c3;
+                    if (in_grouping_U(g_v, 97, 121, 0)) goto lab2;
                 }
-            lab4:
-                i--;
-                continue;
             lab3:
-                c = c3;
+                i--;
+                continue;
+            lab2:
+                c = c2;
                 break;
             }
-            if (i > 0) goto lab1;
+            if (i > 0) goto lab0;
         }
-        if (out_grouping_U(g_v, 97, 121, 0)) goto lab1;
+        if (out_grouping_U(g_v, 97, 121, 0)) goto lab0;
         I_p1 = c;
         while(1) {
-            if (out_grouping_U(g_v, 97, 121, 0)) goto lab6;
+            if (out_grouping_U(g_v, 97, 121, 0)) goto lab5;
             continue;
-        lab6:
+        lab5:
             break;
         }
         {   int i = 1;
             while(1) {
-                int c5 = c;
-                {   int c6 = c;
-                    if (!(eq_s(2, s_69))) goto lab9;
-                    goto lab8;
-                lab9:
-                    c = c6;
-                    if (in_grouping_U(g_v, 97, 121, 0)) goto lab7;
+                int c4 = c;
+                {   int c5 = c;
+                    if (!(eq_s(2, s_69))) goto lab8;
+                    goto lab7;
+                lab8:
+                    c = c5;
+                    if (in_grouping_U(g_v, 97, 121, 0)) goto lab6;
                 }
-            lab8:
+            lab7:
                 i--;
                 continue;
-            lab7:
-                c = c5;
+            lab6:
+                c = c4;
                 break;
             }
-            if (i > 0) goto lab1;
+            if (i > 0) goto lab0;
         }
-        if (out_grouping_U(g_v, 97, 121, 0)) goto lab1;
+        if (out_grouping_U(g_v, 97, 121, 0)) goto lab0;
         I_p2 = c;
-    lab1:
-        c = c2;
+    lab0:
+        c = c1;
     }
     return 1;
 }

@@ -1,7 +1,7 @@
 /** @file
  * @brief tests of Xapian::Weight subclasses
  */
-/* Copyright (C) 2004,2012,2013,2016,2017,2019 Olly Betts
+/* Copyright (C) 2004-2024 Olly Betts
  * Copyright (C) 2013 Aarsh Shah
  * Copyright (C) 2016 Vivek Pal
  *
@@ -24,6 +24,7 @@
 
 #include "api_weight.h"
 #include <cmath>
+#include <memory>
 
 #include <xapian.h>
 
@@ -32,58 +33,192 @@
 
 using namespace std;
 
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(tradweight3, !backend) {
-    Xapian::TradWeight wt(42);
+template<class W>
+static inline void
+test_weight_class_no_params(const char* name)
+{
+    tout << name << '\n';
+    W obj;
+    // Check name() returns the class name.
+    TEST_EQUAL(obj.name(), name);
+    // If there are no parameters, there's nothing to serialise.
+    string obj_serialised = obj.serialise();
+    TEST_EQUAL(obj_serialised.size(), 0);
+    // Check serialising and unserialising gives object with same serialisation.
+    unique_ptr<Xapian::Weight> wt(W().unserialise(obj_serialised));
+    TEST_EQUAL(obj_serialised, wt->serialise());
+    // Check that unserialise() throws suitable error for bad serialisation.
+    // The easy case to test is extra junk after the serialised weight.
     try {
-	Xapian::TradWeight t;
-	Xapian::TradWeight * t2 = t.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = t2->name().empty();
-	delete t2;
-	if (empty)
-	    FAIL_TEST("Serialised TradWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised TradWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	// Regression test for error in exception message fixed in 1.2.11 and
-	// 1.3.1.
-	TEST(e.get_msg().find("BM25") == string::npos);
-	TEST(e.get_msg().find("Trad") != string::npos);
+	unique_ptr<Xapian::Weight> bad(W().unserialise(obj_serialised + "X"));
+	FAIL_TEST(name << " did not throw for unserialise with junk appended");
+    } catch (const Xapian::SerialisationError& e) {
+	// Check the exception message contains the weighting scheme name
+	// (regression test for TradWeight's exception saying "BM25").
+	string target = name + CONST_STRLEN("Xapian::");
+	TEST(e.get_msg().find(target) != string::npos);
     }
 }
 
-// Test Exception for junk after serialised weight.
-DEFINE_TESTCASE(unigramlmweight3, !backend) {
-    Xapian::LMWeight wt(79898.0, Xapian::Weight::JELINEK_MERCER_SMOOTHING, 0.5, 1.0);
+#define TEST_WEIGHT_CLASS_NO_PARAMS(W) test_weight_class_no_params<W>(#W)
+
+template<class W>
+static inline void
+test_weight_class(const char* name, const W& obj_default, const W& obj_other)
+{
+    tout << name << '\n';
+    W obj;
+    // Check name() returns the class name.
+    TEST_EQUAL(obj.name(), name);
+    TEST_EQUAL(obj_default.name(), name);
+    TEST_EQUAL(obj_other.name(), name);
+    // Check serialisation matches that of object constructed with explicit
+    // parameter values of what the defaults are meant to be.
+    string obj_serialised = obj.serialise();
+    TEST_EQUAL(obj_serialised, obj_default.serialise());
+    // Check serialisation is different to object with different parameters.
+    string obj_other_serialised = obj_other.serialise();
+    TEST_NOT_EQUAL(obj_serialised, obj_other_serialised);
+    // Check serialising and unserialising gives object with same serialisation.
+    unique_ptr<Xapian::Weight> wt(W().unserialise(obj_serialised));
+    TEST_EQUAL(obj_serialised, wt->serialise());
+    // Check serialising and unserialising of object with different parameters.
+    unique_ptr<Xapian::Weight> wt2(W().unserialise(obj_other_serialised));
+    TEST_EQUAL(obj_other_serialised, wt2->serialise());
+    // Check that unserialise() throws suitable error for bad serialisation.
+    // The easy case to test is extra junk after the serialised weight.
     try {
-	Xapian::LMWeight t;
-	Xapian::LMWeight * t2 = t.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = t2->name().empty();
-	delete t2;
-	if (empty)
-	    FAIL_TEST("Serialised LMWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised LMWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("LM") != string::npos);
+	unique_ptr<Xapian::Weight> bad(W().unserialise(obj_serialised + "X"));
+	FAIL_TEST(name << " did not throw for unserialise with junk appended");
+    } catch (const Xapian::SerialisationError& e) {
+	// Check the exception message contains the weighting scheme name
+	// (regression test for TradWeight's exception saying "BM25").
+	string target = name + CONST_STRLEN("Xapian::");
+	TEST(e.get_msg().find(target) != string::npos);
     }
 }
 
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(bm25weight3, !backend) {
-    Xapian::BM25Weight wt(2.0, 0.5, 1.3, 0.6, 0.01);
-    try {
-	Xapian::BM25Weight b;
-	Xapian::BM25Weight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised BM25Weight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised BM25Weight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("BM25") != string::npos);
-    }
+// W Should be the class name.
+//
+// DEFAULT should be a parenthesised parameter list to explicitly construct
+// an object of class W with the documented default parameters.
+//
+// OTHER should be a parenthesised parameter list to construct an object with
+// non-default parameters.
+#define TEST_WEIGHT_CLASS(W, DEFAULT, OTHER) \
+    test_weight_class<W>(#W, W DEFAULT, W OTHER)
+
+/// Test serialisation and introspection of built-in weighting schemes.
+DEFINE_TESTCASE(weightserialisation1, !backend) {
+    // Parameter-free weighting schemes.
+    TEST_WEIGHT_CLASS_NO_PARAMS(Xapian::BoolWeight);
+    TEST_WEIGHT_CLASS_NO_PARAMS(Xapian::CoordWeight);
+    TEST_WEIGHT_CLASS_NO_PARAMS(Xapian::DLHWeight);
+    TEST_WEIGHT_CLASS_NO_PARAMS(Xapian::DPHWeight);
+
+    // Parameterised weighting schemes.
+    TEST_WEIGHT_CLASS(Xapian::TradWeight, (1.0), (2.0));
+    TEST_WEIGHT_CLASS(Xapian::BM25Weight,
+		      (1, 0, 1, 0.5, 0.5),
+		      (1, 0.5, 1, 0.5, 0.5));
+    TEST_WEIGHT_CLASS(Xapian::BM25PlusWeight,
+		      (1, 0, 1, 0.5, 0.5, 1.0),
+		      (1, 0, 1, 0.5, 0.5, 2.0));
+    TEST_WEIGHT_CLASS(Xapian::TfIdfWeight, ("ntn"), ("bpn"));
+    TEST_WEIGHT_CLASS(Xapian::InL2Weight, (1.0), (2.0));
+    TEST_WEIGHT_CLASS(Xapian::IfB2Weight, (1.0), (2.0));
+    TEST_WEIGHT_CLASS(Xapian::IneB2Weight, (1.0), (2.0));
+    TEST_WEIGHT_CLASS(Xapian::BB2Weight, (1.0), (2.0));
+    TEST_WEIGHT_CLASS(Xapian::PL2Weight, (1.0), (2.0));
+    TEST_WEIGHT_CLASS(Xapian::PL2PlusWeight,
+		      (1.0, 0.8),
+		      (2.0, 0.9));
+    TEST_WEIGHT_CLASS(Xapian::LMWeight,
+		      (0.0, Xapian::Weight::TWO_STAGE_SMOOTHING, 0.7, 2000.0),
+		      (0.0, Xapian::Weight::JELINEK_MERCER_SMOOTHING, 0.7));
+}
+
+/// Basic test of using weighting schemes.
+DEFINE_TESTCASE(weight1, backend) {
+    Xapian::Database db(get_database("etext"));
+    Xapian::Enquire enquire(db);
+    Xapian::Enquire enquire_scaled(db);
+    auto term = "robinson";
+    Xapian::Query q{term};
+    enquire.set_query(q);
+    enquire_scaled.set_query(q * 15.0);
+    auto expected_matches = db.get_termfreq(term);
+    auto helper = [&](const Xapian::Weight& weight,
+		      const string& name,
+		      const string& params) {
+	tout << name << '(' << params << ")\n";
+	enquire.set_weighting_scheme(weight);
+	enquire_scaled.set_weighting_scheme(weight);
+	Xapian::MSet mset = enquire.get_mset(0, expected_matches + 1);
+	TEST_EQUAL(mset.size(), expected_matches);
+	if (name == "Xapian::BoolWeight") {
+	    /* All weights should be zero. */
+	    TEST_EQUAL(mset[0].get_weight(), 0.0);
+	    TEST_EQUAL(mset.back().get_weight(), 0.0);
+	} else if (name == "Xapian::CoordWeight") {
+	    /* All weights should be 1 for a single term query. */
+	    TEST_EQUAL(mset[0].get_weight(), 1.0);
+	    TEST_EQUAL(mset.back().get_weight(), 1.0);
+	} else if (!params.empty()) {
+	    /* All weights should be equal with these particular parameters. */
+	    TEST_NOT_EQUAL(mset[0].get_weight(), 0.0);
+	    TEST_EQUAL(mset[0].get_weight(), mset.back().get_weight());
+	} else {
+	    TEST_NOT_EQUAL(mset[0].get_weight(), 0.0);
+	    TEST_NOT_EQUAL(mset[0].get_weight(), mset.back().get_weight());
+	}
+	Xapian::MSet mset_scaled = enquire_scaled.get_mset(0, expected_matches);
+	TEST_EQUAL(mset_scaled.size(), expected_matches);
+	for (Xapian::doccount i = 0; i < expected_matches; ++i) {
+	    TEST_EQUAL_DOUBLE(mset_scaled[i].get_weight(),
+			      mset[i].get_weight() * 15.0);
+	}
+    };
+
+    // MSVC gives nothing for #__VA_ARGS__ when there are no varargs.
+#define TEST_WEIGHTING_SCHEME(W, ...) \
+	helper(W(__VA_ARGS__), #W, "" #__VA_ARGS__)
+
+    TEST_WEIGHTING_SCHEME(Xapian::BoolWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::CoordWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::DLHWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::DPHWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::TradWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::BM25Weight);
+    TEST_WEIGHTING_SCHEME(Xapian::BM25PlusWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::TfIdfWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::InL2Weight);
+    TEST_WEIGHTING_SCHEME(Xapian::IfB2Weight);
+    TEST_WEIGHTING_SCHEME(Xapian::IneB2Weight);
+    TEST_WEIGHTING_SCHEME(Xapian::BB2Weight);
+    TEST_WEIGHTING_SCHEME(Xapian::PL2Weight);
+    TEST_WEIGHTING_SCHEME(Xapian::PL2PlusWeight);
+    TEST_WEIGHTING_SCHEME(Xapian::LMWeight);
+    // Regression test for bug fixed in 1.2.4.
+    TEST_WEIGHTING_SCHEME(Xapian::BM25Weight, 0, 0, 0, 0, 1);
+    /* As mentioned in the documentation, when parameter k is 0, wdf and
+     * document length don't affect the weights.  Regression test for bug fixed
+     * in 1.2.4.
+     */
+    TEST_WEIGHTING_SCHEME(Xapian::TradWeight, 0);
+#undef TEST_WEIGHTING_SCHEME
+}
+
+/** Regression test for bug fixed in 1.0.5.
+ *
+ * This test would fail under valgrind because it used an uninitialised value.
+ */
+DEFINE_TESTCASE(bm25weight1, backend) {
+    Xapian::Enquire enquire(get_database("apitest_simpledata"));
+    enquire.set_weighting_scheme(Xapian::BM25Weight(1, 25, 1, 0.01, 0.5));
+    enquire.set_query(Xapian::Query("word"));
+
+    Xapian::MSet mset = enquire.get_mset(0, 25);
 }
 
 // Test parameter combinations which should be unaffected by doclength.
@@ -126,23 +261,6 @@ DEFINE_TESTCASE(bm25weight5, backend) {
     TEST_REL(mset[1].get_weight(),>,mset[2].get_weight());
     TEST_REL(mset[2].get_weight(),>,mset[3].get_weight());
     TEST_REL(mset[3].get_weight(),>,mset[4].get_weight());
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(bm25plusweight1, !backend) {
-    Xapian::BM25PlusWeight wt(2.0, 0.1, 1.3, 0.6, 0.01, 0.5);
-    try {
-	Xapian::BM25PlusWeight b;
-	Xapian::BM25PlusWeight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised BM25PlusWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised BM25PlusWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("BM25Plus") != string::npos);
-    }
 }
 
 // Test parameter combinations which should be unaffected by doclength.
@@ -188,22 +306,6 @@ DEFINE_TESTCASE(bm25plusweight3, backend) {
     TEST_EQUAL_DOUBLE(mset[4].get_weight(), 0.7210119356168847);
 }
 
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(inl2weight1, !backend) {
-    Xapian::InL2Weight wt(2.0);
-    try {
-	Xapian::InL2Weight b;
-	Xapian::InL2Weight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised inl2weight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised inl2weight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("InL2") != string::npos);
-    }
-}
 
 // Test for invalid values of c.
 DEFINE_TESTCASE(inl2weight2, !backend) {
@@ -213,10 +315,6 @@ DEFINE_TESTCASE(inl2weight2, !backend) {
 
     TEST_EXCEPTION(Xapian::InvalidArgumentError,
 	Xapian::InL2Weight wt2(0.0));
-
-    /* Parameter c should be set to 1.0 by constructor if none is given. */
-    Xapian::InL2Weight weight2;
-    TEST_EQUAL(weight2.serialise(), Xapian::InL2Weight(1.0).serialise());
 }
 
 // Feature tests for Inl2Weight
@@ -236,33 +334,6 @@ DEFINE_TESTCASE(inl2weight3, backend) {
     /* The value has been calculated in the python interpreter by looking at the
      * database statistics. */
     TEST_EQUAL_DOUBLE(mset1[0].get_weight(), 1.559711143842063);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::InL2Weight(2.0));
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 1);
-    TEST_NOT_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
-    TEST_EQUAL_DOUBLE(15.0 * mset1[0].get_weight(), mset2[0].get_weight());
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(ifb2weight1, !backend) {
-    Xapian::IfB2Weight wt(2.0);
-    try {
-	Xapian::IfB2Weight b;
-	Xapian::IfB2Weight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised IfB2Weight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised IfB2Weight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("IfB2") != string::npos);
-    }
 }
 
 // Test for invalid values of c.
@@ -273,10 +344,6 @@ DEFINE_TESTCASE(ifb2weight2, !backend) {
 
     TEST_EXCEPTION(Xapian::InvalidArgumentError,
 	Xapian::IfB2Weight wt2(0.0));
-
-    /* Parameter c should be set to 1.0 by constructor if none is given. */
-    Xapian::IfB2Weight weight2;
-    TEST_EQUAL(weight2.serialise(), Xapian::IfB2Weight(1.0).serialise());
 }
 
 // Feature test
@@ -295,33 +362,6 @@ DEFINE_TESTCASE(ifb2weight3, backend) {
     /* The value of the weight has been manually calculated using the statistics
      * of the test database. */
     TEST_EQUAL_DOUBLE(mset1[0].get_weight(), 3.119422287684126);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::IfB2Weight(2.0));
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 1);
-    TEST_NOT_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
-    TEST_EQUAL_DOUBLE(15.0 * mset1[0].get_weight(), mset2[0].get_weight());
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(ineb2weight1, !backend) {
-    Xapian::IneB2Weight wt(2.0);
-    try {
-	Xapian::IneB2Weight b;
-	Xapian::IneB2Weight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised ineb2weight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised ineb2weight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("IneB2") != string::npos);
-    }
 }
 
 // Test for invalid values of c.
@@ -332,10 +372,6 @@ DEFINE_TESTCASE(ineb2weight2, !backend) {
 
     TEST_EXCEPTION(Xapian::InvalidArgumentError,
 	Xapian::IneB2Weight wt2(0.0));
-
-    /* Parameter c should be set to 1.0 by constructor if none is given. */
-    Xapian::IneB2Weight weight2;
-    TEST_EQUAL(weight2.serialise(), Xapian::IneB2Weight(1.0).serialise());
 }
 
 // Feature test.
@@ -354,36 +390,6 @@ DEFINE_TESTCASE(ineb2weight3, backend) {
     /* The weight value has been manually calculated by using the statistics
      * of the test database. */
     TEST_EQUAL_DOUBLE(mset1[4].get_weight(), 0.61709730297692400036);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::IneB2Weight(2.0));
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 5);
-
-    TEST_NOT_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
-    for (int i = 0; i < 5; ++i) {
-	TEST_EQUAL_DOUBLE(15.0 * mset1[i].get_weight(), mset2[i].get_weight());
-    }
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(bb2weight1, !backend) {
-    Xapian::BB2Weight wt(2.0);
-    try {
-	Xapian::BB2Weight b;
-	Xapian::BB2Weight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised BB2Weight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised BB2Weight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("BB2") != string::npos);
-    }
 }
 
 // Test for invalid values of c.
@@ -394,10 +400,6 @@ DEFINE_TESTCASE(bb2weight2, !backend) {
 
     TEST_EXCEPTION(Xapian::InvalidArgumentError,
 	Xapian::BB2Weight wt2(0.0));
-
-    /* Parameter c should be set to 1.0 by constructor if none is given. */
-    Xapian::BB2Weight weight2;
-    TEST_EQUAL(weight2.serialise(), Xapian::BB2Weight(1.0).serialise());
 }
 
 // Feature test
@@ -416,19 +418,6 @@ DEFINE_TESTCASE(bb2weight3, backend) {
      * first in the mset. */
     // Value calculated manually by using the statistics of the test database.
     TEST_EQUAL_DOUBLE(mset1[0].get_weight(), 1.6823696969784483);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::BB2Weight(2.0));
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 5);
-
-    TEST_NOT_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
-    for (int i = 0; i < 5; ++i) {
-	TEST_EQUAL_DOUBLE(15.0 * mset1[i].get_weight(), mset2[i].get_weight());
-    }
 
     // Test with OP_SCALE_WEIGHT and a small factor (regression test, as we
     // were applying the factor to the upper bound twice).
@@ -477,36 +466,6 @@ DEFINE_TESTCASE(dlhweight1, backend) {
     TEST_EQUAL_DOUBLE(mset1[1].get_weight(), 0.97621929514640352757);
     // The following weight would be negative but gets clamped to 0.
     TEST_EQUAL_DOUBLE(mset1[2].get_weight(), 0.0);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::DLHWeight());
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 3);
-
-    TEST_NOT_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
-    for (Xapian::doccount i = 0; i < mset2.size(); ++i) {
-	TEST_EQUAL_DOUBLE(15.0 * mset1[i].get_weight(), mset2[i].get_weight());
-    }
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(dlhweight2, !backend) {
-    Xapian::DLHWeight wt;
-    try {
-	Xapian::DLHWeight t;
-	Xapian::DLHWeight * t2 = t.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = t2->name().empty();
-	delete t2;
-	if (empty)
-	    FAIL_TEST("Serialised DLHWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised DLHWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("DLH") != string::npos);
-    }
 }
 
 static void
@@ -533,32 +492,11 @@ DEFINE_TESTCASE(dlhweight3, backend) {
     TEST_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
 }
 
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(pl2weight1, !backend) {
-    Xapian::PL2Weight wt(2.0);
-    try {
-	Xapian::PL2Weight b;
-	Xapian::PL2Weight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised PL2Weight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised PL2Weight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("PL2") != string::npos);
-    }
-}
-
 // Test for invalid values of c.
 DEFINE_TESTCASE(pl2weight2, !backend) {
     // InvalidArgumentError should be thrown if parameter c is invalid.
     TEST_EXCEPTION(Xapian::InvalidArgumentError,
 	Xapian::PL2Weight wt(-2.0));
-
-    /* Parameter c should be set to 1.0 by constructor if none is given. */
-    Xapian::PL2Weight weight2;
-    TEST_EQUAL(weight2.serialise(), Xapian::PL2Weight(1.0).serialise());
 }
 
 // Feature Test.
@@ -576,35 +514,6 @@ DEFINE_TESTCASE(pl2weight3, backend) {
     // from the test database.
     TEST_EQUAL_DOUBLE(mset[2].get_weight(),
 		      mset[3].get_weight() + 0.0086861771701328694);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::PL2Weight(2.0));
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 5);
-    TEST_NOT_EQUAL_DOUBLE(mset[0].get_weight(), 0.0);
-    for (int i = 0; i < 5; ++i) {
-	TEST_EQUAL_DOUBLE(15.0 * mset[i].get_weight(), mset2[i].get_weight());
-    }
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(pl2plusweight1, !backend) {
-    Xapian::PL2PlusWeight wt(2.0, 0.9);
-    try {
-	Xapian::PL2PlusWeight b;
-	Xapian::PL2PlusWeight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised PL2PlusWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised PL2PlusWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("PL2Plus") != string::npos);
-    }
 }
 
 // Test for invalid values of parameters, c and delta.
@@ -618,31 +527,20 @@ DEFINE_TESTCASE(pl2plusweight2, !backend) {
 	Xapian::PL2PlusWeight wt(1.0, -1.9));
 }
 
-// Test for default values of parameters, c and delta.
-DEFINE_TESTCASE(pl2plusweight3, !backend) {
-    Xapian::PL2PlusWeight weight2;
-
-    /* Parameter c should be set to 1.0 by constructor if none is given. */
-    TEST_EQUAL(weight2.serialise(), Xapian::PL2PlusWeight(1.0, 0.8).serialise());
-
-    /* Parameter delta should be set to 0.8 by constructor if none is given. */
-    TEST_EQUAL(weight2.serialise(), Xapian::PL2PlusWeight(1.0, 0.8).serialise());
-}
-
 // Feature Test 1 for PL2PlusWeight.
 DEFINE_TESTCASE(pl2plusweight4, backend) {
     Xapian::Database db = get_database("apitest_simpledata");
     Xapian::Enquire enquire(db);
-    enquire.set_query(Xapian::Query("paragraph"));
+    enquire.set_query(Xapian::Query("to"));
     Xapian::MSet mset;
 
     enquire.set_weighting_scheme(Xapian::PL2PlusWeight(2.0, 0.8));
     mset = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset.size(), 5);
-    // Expected weight difference calculated in extended precision using stats
-    // from the test database.
-    TEST_EQUAL_DOUBLE(mset[2].get_weight(),
-		      mset[3].get_weight() + 0.0086861771701328694);
+    TEST_EQUAL(mset.size(), 3);
+    // Expected weight difference calculated in Python using stats from the
+    // test database.
+    TEST_EQUAL_DOUBLE(mset[1].get_weight(),
+		      mset[2].get_weight() + 0.016760925252262027);
 }
 
 // Feature Test 2 for PL2PlusWeight
@@ -660,18 +558,6 @@ DEFINE_TESTCASE(pl2plusweight5, backend) {
     // Expect Document 2 has higher weight than document 4 because
     // "word" appears more no. of times in document 2 than document 4.
     mset_expect_order(mset, 2, 4);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::PL2PlusWeight(1.0, 0.8));
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), mset.size());
-    TEST_NOT_EQUAL_DOUBLE(mset[0].get_weight(), 0.0);
-    for (Xapian::doccount i = 0; i < mset.size(); ++i) {
-	TEST_EQUAL_DOUBLE(15.0 * mset[i].get_weight(), mset2[i].get_weight());
-    }
 }
 
 // Feature test
@@ -689,35 +575,6 @@ DEFINE_TESTCASE(dphweight1, backend) {
     /* The weight has been calculated manually by using the statistics of the
      * test database. */
     TEST_EQUAL_DOUBLE(mset1[2].get_weight() - mset1[4].get_weight(), 0.542623617687990167);
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::DPHWeight());
-
-    Xapian::MSet mset2;
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 5);
-    TEST_NOT_EQUAL_DOUBLE(mset1[0].get_weight(), 0.0);
-    for (int i = 0; i < 5; ++i) {
-	TEST_EQUAL_DOUBLE(15.0 * mset1[i].get_weight(), mset2[i].get_weight());
-    }
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(dphweight2, !backend) {
-    Xapian::DPHWeight wt;
-    try {
-	Xapian::DPHWeight t;
-	Xapian::DPHWeight * t2 = t.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = t2->name().empty();
-	delete t2;
-	if (empty)
-	    FAIL_TEST("Serialised DPHWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised DPHWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("DPH") != string::npos);
-    }
 }
 
 // Test wdf == doclen.
@@ -744,28 +601,6 @@ DEFINE_TESTCASE(tfidfweight1, !backend) {
 
     TEST_EXCEPTION(Xapian::InvalidArgumentError,
 	Xapian::TfIdfWeight b("LOL"));
-
-    /* Normalization string should be set to "ntn" by constructor if none is
-      given. */
-    Xapian::TfIdfWeight weight2;
-    TEST_EQUAL(weight2.serialise(), Xapian::TfIdfWeight("ntn").serialise());
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(tfidfweight2, !backend) {
-    Xapian::TfIdfWeight wt("ntn");
-    try {
-	Xapian::TfIdfWeight b;
-	Xapian::TfIdfWeight * b2 = b.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = b2->name().empty();
-	delete b2;
-	if (empty)
-	    FAIL_TEST("Serialised TfIdfWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised TfIdfWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("TfIdf") != string::npos);
-    }
 }
 
 // Feature tests for various normalization functions.
@@ -789,19 +624,11 @@ DEFINE_TESTCASE(tfidfweight3, backend) {
     enquire.set_weighting_scheme(Xapian::TfIdfWeight("ntn"));
     Xapian::MSet mset2 = enquire.get_mset(0, 10);
     TEST_EQUAL(mset2.size(), 2);
+    // doc 2 should have higher weight than 4 as only tf(wdf) will dominate.
+    mset_expect_order(mset2, 2, 4);
     // wqf is 2, so weights should be doubled.
     TEST_EQUAL_DOUBLE(mset[0].get_weight() * 2, mset2[0].get_weight());
     TEST_EQUAL_DOUBLE(mset[1].get_weight() * 2, mset2[1].get_weight());
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    enquire.set_weighting_scheme(Xapian::TfIdfWeight("ntn"));
-    mset2 = enquire.get_mset(0, 10);
-    TEST_EQUAL(mset2.size(), 2);
-    // doc 2 should have higher weight than 4 as only tf(wdf) will dominate.
-    mset_expect_order(mset2, 2, 4);
-    TEST_NOT_EQUAL_DOUBLE(mset[0].get_weight(), 0.0);
-    TEST_EQUAL_DOUBLE(15 * mset[0].get_weight(), mset2[0].get_weight());
 
     // check for "nfn" when termfreq != N
     enquire.set_query(query);
@@ -892,7 +719,7 @@ class CheckInitWeight : public Xapian::Weight {
     CheckInitWeight(unsigned &z, unsigned &n)
 	: factor(-1.0), zero_inits(z), non_zero_inits(n) { }
 
-    void init(double factor_) {
+    void init(double factor_) override {
 	factor = factor_;
 	if (factor == 0.0)
 	    ++zero_inits;
@@ -900,22 +727,23 @@ class CheckInitWeight : public Xapian::Weight {
 	    ++non_zero_inits;
     }
 
-    Weight * clone() const {
+    Weight* clone() const override {
 	return new CheckInitWeight(zero_inits, non_zero_inits);
     }
 
     double get_sumpart(Xapian::termcount, Xapian::termcount,
-		       Xapian::termcount) const {
+		       Xapian::termcount) const override {
 	return 1.0;
     }
 
-    double get_maxpart() const { return 1.0; }
+    double get_maxpart() const override { return 1.0; }
 
-    double get_sumextra(Xapian::termcount doclen, Xapian::termcount) const {
+    double get_sumextra(Xapian::termcount doclen,
+			Xapian::termcount) const override {
 	return 1.0 / doclen;
     }
 
-    double get_maxextra() const { return 1.0; }
+    double get_maxextra() const override { return 1.0; }
 };
 
 /// Regression test - check init() is called for the term-indep Weight obj.
@@ -986,11 +814,11 @@ class CheckStatsWeight : public Xapian::Weight {
 		     Xapian::termcount & sum_squares_)
 	: CheckStatsWeight(db_, term_, string(), sum_, sum_squares_) { }
 
-    void init(double factor_) {
+    void init(double factor_) override {
 	factor = factor_;
     }
 
-    Weight * clone() const {
+    Weight* clone() const override {
 	auto res = new CheckStatsWeight(db, term1, term2, sum, sum_squares);
 	if (term2 == "=") {
 	    // The object passed to Enquire::set_weighting_scheme() is cloned
@@ -1005,8 +833,9 @@ class CheckStatsWeight : public Xapian::Weight {
 	return res;
     }
 
-    double get_sumpart(Xapian::termcount wdf, Xapian::termcount doclen,
-		       Xapian::termcount uniqueterms) const {
+    double get_sumpart(Xapian::termcount wdf,
+		       Xapian::termcount doclen,
+		       Xapian::termcount uniqueterms) const override {
 	Xapian::doccount num_docs = db.get_doccount();
 	TEST_EQUAL(get_collection_size(), num_docs);
 	TEST_EQUAL(get_rset_size(), 0);
@@ -1075,7 +904,7 @@ class CheckStatsWeight : public Xapian::Weight {
 	return 1.0;
     }
 
-    double get_maxpart() const {
+    double get_maxpart() const override {
 	if (len_upper == 0) {
 	    len_lower = get_doclength_lower_bound();
 	    len_upper = get_doclength_upper_bound();
@@ -1084,11 +913,12 @@ class CheckStatsWeight : public Xapian::Weight {
 	return 1.0;
     }
 
-    double get_sumextra(Xapian::termcount doclen, Xapian::termcount) const {
+    double get_sumextra(Xapian::termcount doclen,
+			Xapian::termcount) const override {
 	return 1.0 / doclen;
     }
 
-    double get_maxextra() const { return 1.0; }
+    double get_maxextra() const override { return 1.0; }
 };
 
 /// Check the weight subclass gets the correct stats.
@@ -1192,15 +1022,18 @@ DEFINE_TESTCASE(checkstatsweight2, backend && !remote) {
 	// The OP_SYNONYM's wdf should be equal to the sum of the wdfs of
 	// the individual terms.
 	TEST_EQUAL(sum, expected_sum);
-	TEST_REL(sum_squares, >=, expected_sum_squares);
+	TEST_EQUAL(sum_squares, expected_sum_squares);
     }
 }
 
 /// Check the weight subclass gets the correct stats with OP_WILDCARD.
 // Regression test for bug fixed in 1.4.1.
-// Don't run with multi-database, as the termfreq checks don't work
-// there - FIXME: Investigate this - it smells like a bug.
-DEFINE_TESTCASE(checkstatsweight3, backend && !remote && !multi) {
+DEFINE_TESTCASE(checkstatsweight3, backend && !remote) {
+    // The most correct thing to do would be to collate termfreqs across shards
+    // for this, but if that's too hard to do efficiently we could at least
+    // scale up the termfreqs proportional to the size of the shard.
+    XFAIL_FOR_BACKEND("multi", "OP_WILDCARD+OP_SYNONYM use shard termfreqs");
+
     struct PlCmp {
 	bool operator()(const Xapian::PostingIterator& a,
 			const Xapian::PostingIterator& b) {
@@ -1219,6 +1052,7 @@ DEFINE_TESTCASE(checkstatsweight3, backend && !remote && !multi) {
     };
     for (auto pattern : testcases) {
 	Xapian::Query q(Xapian::Query::OP_WILDCARD, pattern);
+	tout.str(string{});
 	tout << q.get_description() << '\n';
 	enquire.set_query(q);
 	Xapian::termcount sum = 0;
@@ -1365,23 +1199,6 @@ DEFINE_TESTCASE(unigramlmweight5, backend) {
     }
 }
 
-// Test Exception for junk after serialised weight (with Dir+ enabled).
-DEFINE_TESTCASE(unigramlmweight6, !backend) {
-    Xapian::LMWeight wt(0, Xapian::Weight::DIRICHLET_SMOOTHING, 0.5, 1.0);
-    try {
-	Xapian::LMWeight d;
-	Xapian::LMWeight * d2 = d.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = d2->name().empty();
-	delete d2;
-	if (empty)
-	    FAIL_TEST("Serialised LMWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised LMWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("LM") != string::npos);
-    }
-}
-
 // Feature test for Dir+ function.
 DEFINE_TESTCASE(unigramlmweight7, backend) {
     Xapian::Database db = get_database("apitest_simpledata");
@@ -1436,24 +1253,6 @@ DEFINE_TESTCASE(unigramlmweight8, backend) {
     }
 }
 
-// Feature test for BoolWeight.
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(boolweight1, !backend) {
-    Xapian::BoolWeight wt;
-    try {
-	Xapian::BoolWeight t;
-	Xapian::BoolWeight * t2 = t.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = t2->name().empty();
-	delete t2;
-	if (empty)
-	    FAIL_TEST("Serialised BoolWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised BoolWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("Bool") != string::npos);
-    }
-}
-
 // Feature test for CoordWeight.
 DEFINE_TESTCASE(coordweight1, backend) {
     Xapian::Enquire enquire(get_database("apitest_simpledata"));
@@ -1475,30 +1274,5 @@ DEFINE_TESTCASE(coordweight1, backend) {
 	    ++t;
 	}
 	TEST_EQUAL(i.get_weight(), matching_terms);
-    }
-
-    // Test with OP_SCALE_WEIGHT.
-    enquire.set_query(Xapian::Query(Xapian::Query::OP_SCALE_WEIGHT, query, 15.0));
-    Xapian::MSet mymset2 = enquire.get_mset(0, 100);
-    TEST_EQUAL(mymset1.size(), mymset2.size());
-    for (Xapian::doccount i = 0; i != mymset1.size(); ++i) {
-	TEST_EQUAL(15.0 * mymset1[i].get_weight(), mymset2[i].get_weight());
-    }
-}
-
-// Test exception for junk after serialised weight.
-DEFINE_TESTCASE(coordweight2, !backend) {
-    Xapian::CoordWeight wt;
-    try {
-	Xapian::CoordWeight t;
-	Xapian::CoordWeight * t2 = t.unserialise(wt.serialise() + "X");
-	// Make sure we actually use the weight.
-	bool empty = t2->name().empty();
-	delete t2;
-	if (empty)
-	    FAIL_TEST("Serialised CoordWeight with junk appended unserialised to empty name!");
-	FAIL_TEST("Serialised CoordWeight with junk appended unserialised OK");
-    } catch (const Xapian::SerialisationError &e) {
-	TEST(e.get_msg().find("Coord") != string::npos);
     }
 }

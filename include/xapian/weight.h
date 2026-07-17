@@ -54,18 +54,29 @@ class XAPIAN_VISIBILITY_DEFAULT Weight {
 	WDF = 128,
 	/// Length of the current document (sum wdf).
 	DOC_LENGTH = 256,
-	/// Lower bound on (non-zero) document lengths.
+	/** Lower bound on (non-zero) document lengths.
+	 *  This bound is for the current shard and is suitable for using to
+	 *  calculate upper bounds to return from get_maxpart() and
+	 *  get_maxextra().
+	 */
 	DOC_LENGTH_MIN = 512,
-	/// Upper bound on document lengths.
+	/** Upper bound on document lengths.
+	 *  This bound is for the current shard and is suitable for using to
+	 *  calculate upper bounds to return from get_maxpart() and
+	 *  get_maxextra().
+	 */
 	DOC_LENGTH_MAX = 1024,
-	/// Upper bound on wdf.
+	/** Upper bound on wdf.
+	 *  This bound is for the current shard and is suitable for using to
+	 *  calculate upper bounds to return from get_maxpart() and
+	 *  get_maxextra().
+	 */
 	WDF_MAX = 2048,
 	/// Sum of wdf over the whole collection for the current term.
 	COLLECTION_FREQ = 4096,
 	/// Number of unique terms in the current document.
 	UNIQUE_TERMS = 8192,
 	/** Sum of lengths of all documents in the collection.
-	 *
 	 *  This gives the total number of term occurrences.
 	 */
 	TOTAL_LENGTH = COLLECTION_SIZE | AVERAGE_LENGTH
@@ -126,13 +137,13 @@ class XAPIAN_VISIBILITY_DEFAULT Weight {
     /// The within-query-frequency of this term.
     Xapian::termcount wqf_;
 
-    /// A lower bound on the minimum length of any document in the database.
+    /// A lower bound on the minimum length of any document in the shard.
     Xapian::termcount doclength_lower_bound_;
 
-    /// An upper bound on the maximum length of any document in the database.
+    /// An upper bound on the maximum length of any document in the shard.
     Xapian::termcount doclength_upper_bound_;
 
-    /// An upper bound on the wdf of this term.
+    /// An upper bound on the wdf of this term in the shard.
     Xapian::termcount wdf_upper_bound_;
 
   public:
@@ -383,7 +394,7 @@ class XAPIAN_VISIBILITY_DEFAULT Weight {
     /// The within-query-frequency of this term.
     Xapian::termcount get_wqf() const { return wqf_; }
 
-    /** An upper bound on the maximum length of any document in the database.
+    /** An upper bound on the maximum length of any document in the shard.
      *
      *  This should only be used by get_maxpart() and get_maxextra().
      */
@@ -391,7 +402,7 @@ class XAPIAN_VISIBILITY_DEFAULT Weight {
 	return doclength_upper_bound_;
     }
 
-    /** A lower bound on the minimum length of any document in the database.
+    /** A lower bound on the minimum length of any document in the shard.
      *
      *  This bound does not include any zero-length documents.
      *
@@ -401,7 +412,7 @@ class XAPIAN_VISIBILITY_DEFAULT Weight {
 	return doclength_lower_bound_;
     }
 
-    /** An upper bound on the wdf of this term.
+    /** An upper bound on the wdf of this term in the shard.
      *
      *  This should only be used by get_maxpart() and get_maxextra().
      */
@@ -1391,12 +1402,13 @@ class XAPIAN_VISIBILITY_DEFAULT DPHWeight : public Weight {
 
 /** Xapian::Weight subclass implementing the Language Model formula.
  *
- * This class implements the "Language Model" Weighting scheme, as
- * described by the early papers on LM by Bruce Croft.
+ * We do not recommend using this class.  It was meant to implement the
+ * "Language Model" Weighting scheme, but we discovered the implementation was
+ * incorrect and fixing it requires ABI-incompatible changes.
  *
- * LM works by comparing the query to a Language Model of the document.
- * The language model itself is parameter-free, though LMWeight takes
- * parameters which specify the smoothing used.
+ * For 1.4.x we've left it in place so as not to break existing code.  It will
+ * be removed in the next release series and replaced with new separate classes
+ * implementing Language Model weighting with each smoothing.
  */
 class XAPIAN_VISIBILITY_DEFAULT LMWeight : public Weight {
     /** The type of smoothing to use. */
@@ -1498,7 +1510,7 @@ class XAPIAN_VISIBILITY_DEFAULT LMWeight : public Weight {
 
 /** Xapian::Weight subclass implementing Coordinate Matching.
  *
- *  Each matching term score one point.  See Managing Gigabytes, Second Edition
+ *  Each matching term scores one point.  See Managing Gigabytes, Second Edition
  *  p181.
  */
 class XAPIAN_VISIBILITY_DEFAULT CoordWeight : public Weight {

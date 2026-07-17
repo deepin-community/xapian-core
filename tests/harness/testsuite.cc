@@ -3,7 +3,7 @@
  */
 /* Copyright 1999,2000,2001 BrightStation PLC
  * Copyright 2002 Ananova Ltd
- * Copyright 2002,2003,2004,2005,2006,2007,2008,2009,2010,2012,2013,2015,2016,2017 Olly Betts
+ * Copyright 2002-2024 Olly Betts
  * Copyright 2007 Richard Boulton
  *
  * This program is free software; you can redistribute it and/or
@@ -70,6 +70,7 @@
 #include "errno_to_string.h"
 #include "filetests.h"
 #include "noreturn.h"
+#include "str.h"
 #include "stringutils.h"
 
 using namespace std;
@@ -197,6 +198,9 @@ static void handle_sig(int signum_, siginfo_t *si, void *)
 # ifdef SIGBUS
     if (signum_ != SIGBUS) sigaction(SIGBUS, &sa, NULL);
 # endif
+# ifdef SIGPIPE
+    if (signum_ != SIGPIPE) sigaction(SIGPIPE, &sa, NULL);
+# endif
 # ifdef SIGSTKFLT
     if (signum_ != SIGSTKFLT) sigaction(SIGSTKFLT, &sa, NULL);
 # endif
@@ -217,6 +221,9 @@ static void handle_sig(int signum_)
     signal(SIGILL, SIG_DFL);
 #ifdef SIGBUS
     signal(SIGBUS, SIG_DFL);
+#endif
+#ifdef SIGPIPE
+    signal(SIGPIPE, SIG_DFL);
 #endif
 #ifdef SIGSTKFLT
     signal(SIGSTKFLT, SIG_DFL);
@@ -251,6 +258,9 @@ class SignalRedirector {
 # ifdef SIGBUS
 	sigaction(SIGBUS, &sa, NULL);
 # endif
+# ifdef SIGPIPE
+	sigaction(SIGPIPE, &sa, NULL);
+# endif
 # ifdef SIGSTKFLT
 	sigaction(SIGSTKFLT, &sa, NULL);
 # endif
@@ -260,6 +270,9 @@ class SignalRedirector {
 	signal(SIGILL, handle_sig);
 # ifdef SIGBUS
 	signal(SIGBUS, handle_sig);
+# endif
+# ifdef SIGPIPE
+	signal(SIGPIPE, handle_sig);
 # endif
 # ifdef SIGSTKFLT
 	signal(SIGSTKFLT, handle_sig);
@@ -279,6 +292,9 @@ class SignalRedirector {
 # ifdef SIGBUS
 	    sigaction(SIGBUS, &sa, NULL);
 # endif
+# ifdef SIGPIPE
+	    sigaction(SIGPIPE, &sa, NULL);
+# endif
 # ifdef SIGSTKFLT
 	    sigaction(SIGSTKFLT, &sa, NULL);
 # endif
@@ -288,6 +304,9 @@ class SignalRedirector {
 	    signal(SIGILL, SIG_DFL);
 # ifdef SIGBUS
 	    signal(SIGBUS, SIG_DFL);
+# endif
+# ifdef SIGPIPE
+	    signal(SIGPIPE, SIG_DFL);
 # endif
 # ifdef SIGSTKFLT
 	    signal(SIGSTKFLT, SIG_DFL);
@@ -452,7 +471,7 @@ test_driver::runtest(const test_desc *test)
 			// real...
 			if (runcount == 0) {
 			    out << col_yellow << " PROBABLY LEAKED MEMORY - RETRYING TEST" << col_reset;
-			    ++runcount;
+			    runcount = runcount + 1;
 			    // Ensure that any cached memory from fd tracking
 			    // is allocated before we rerun the test.
 			    (void)fdtracker.check();
@@ -476,7 +495,7 @@ test_driver::runtest(const test_desc *test)
 			// false positives.
 			if (runcount == 0) {
 			    out << col_yellow << " POSSIBLE UNRELEASED MEMORY - RETRYING TEST" << col_reset;
-			    ++runcount;
+			    runcount = runcount + 1;
 			    // Ensure that any cached memory from fd tracking
 			    // is allocated before we rerun the test.
 			    (void)fdtracker.check();
@@ -490,7 +509,7 @@ test_driver::runtest(const test_desc *test)
 		if (!fdtracker.check()) {
 		    if (runcount == 0) {
 			out << col_yellow << " POSSIBLE FDLEAK:" << fdtracker.get_message() << col_reset;
-			++runcount;
+			runcount = runcount + 1;
 			continue;
 		    }
 		    out << col_red << " FDLEAK:" << fdtracker.get_message() << col_reset;
@@ -634,6 +653,12 @@ test_driver::runtest(const test_desc *test)
 #ifdef SIGBUS
 	    case SIGBUS: signame = "SIGBUS"; break;
 #endif
+#ifdef SIGPIPE
+	    case SIGPIPE:
+		signame = "SIGPIPE";
+		show_addr = false;
+		break;
+#endif
 #ifdef SIGSTKFLT
 	    case SIGSTKFLT:
 		signame = "SIGSTKFLT";
@@ -643,9 +668,7 @@ test_driver::runtest(const test_desc *test)
 	}
 	out << " " << col_red << signame;
 	if (show_addr) {
-	    char buf[40];
-	    sprintf(buf, " at %p", sigaddr);
-	    out << buf;
+	    out << " at " << sigaddr;
 	}
 	out << col_reset;
 	write_and_clear_tout();
@@ -810,11 +833,9 @@ test_driver::parse_command_line(int argc, char **argv)
     if (RUNNING_ON_VALGRIND) {
 	if (getenv("XAPIAN_TESTSUITE_VALGRIND") != NULL) {
 	    // Open the valgrind log file, and unlink it.
-	    char fname[64];
-	    sprintf(fname, ".valgrind.log.%lu",
-		    static_cast<unsigned long>(getpid()));
-	    vg_log_fd = open(fname, O_RDONLY|O_NONBLOCK|O_CLOEXEC);
-	    if (vg_log_fd != -1) unlink(fname);
+	    string fname = ".valgrind.log." + str(getpid());
+	    vg_log_fd = open(fname.c_str(), O_RDONLY|O_NONBLOCK|O_CLOEXEC);
+	    if (vg_log_fd != -1) unlink(fname.c_str());
 	}
     }
 #endif

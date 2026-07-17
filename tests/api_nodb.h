@@ -8,7 +8,6 @@ extern void test_querylen2();
 extern void test_dontflattensubqueries1();
 extern void test_emptyquerypart1();
 extern void test_stemlangs1();
-extern void test_weight1();
 extern void test_nosuchdb1();
 extern void test_addvalue1();
 extern void test_poscollapse2();

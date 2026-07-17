@@ -24,7 +24,6 @@
 	    { "dontflattensubqueries1", test_dontflattensubqueries1 },
 	    { "emptyquerypart1", test_emptyquerypart1 },
 	    { "stemlangs1", test_stemlangs1 },
-	    { "weight1", test_weight1 },
 	    { "nosuchdb1", test_nosuchdb1 },
 	    { "addvalue1", test_addvalue1 },
 	    { "poscollapse2", test_poscollapse2 },
@@ -130,30 +129,14 @@
 	    { "unicodepredicates1", test_unicodepredicates1 },
 	    { "valuestats5", test_valuestats5 },
 	    { "fixedweightsource2", test_fixedweightsource2 },
-	    { "tradweight3", test_tradweight3 },
-	    { "unigramlmweight3", test_unigramlmweight3 },
-	    { "bm25weight3", test_bm25weight3 },
-	    { "bm25plusweight1", test_bm25plusweight1 },
-	    { "inl2weight1", test_inl2weight1 },
+	    { "weightserialisation1", test_weightserialisation1 },
 	    { "inl2weight2", test_inl2weight2 },
-	    { "ifb2weight1", test_ifb2weight1 },
 	    { "ifb2weight2", test_ifb2weight2 },
-	    { "ineb2weight1", test_ineb2weight1 },
 	    { "ineb2weight2", test_ineb2weight2 },
-	    { "bb2weight1", test_bb2weight1 },
 	    { "bb2weight2", test_bb2weight2 },
-	    { "dlhweight2", test_dlhweight2 },
-	    { "pl2weight1", test_pl2weight1 },
 	    { "pl2weight2", test_pl2weight2 },
-	    { "pl2plusweight1", test_pl2plusweight1 },
 	    { "pl2plusweight2", test_pl2plusweight2 },
-	    { "pl2plusweight3", test_pl2plusweight3 },
-	    { "dphweight2", test_dphweight2 },
 	    { "tfidfweight1", test_tfidfweight1 },
-	    { "tfidfweight2", test_tfidfweight2 },
-	    { "unigramlmweight6", test_unigramlmweight6 },
-	    { "boolweight1", test_boolweight1 },
-	    { "coordweight2", test_coordweight2 },
 	    { 0, 0 }
 	};
 	result = max(result, test_driver::run(tests));
@@ -231,9 +214,6 @@
 	    { "alldocspl1", test_alldocspl1 },
 	    { "scaleweight1", test_scaleweight1 },
 	    { "scaleweight2", test_scaleweight2 },
-	    { "bm25weight1", test_bm25weight1 },
-	    { "tradweight1", test_tradweight1 },
-	    { "tradweight4", test_tradweight4 },
 	    { "dbstats1", test_dbstats1 },
 	    { "dbstats2", test_dbstats2 },
 	    { "alldocspl3", test_alldocspl3 },
@@ -244,9 +224,6 @@
 	    { "ordecay2", test_ordecay2 },
 	    { "orcheck1", test_orcheck1 },
 	    { "msetfirst2", test_msetfirst2 },
-	    { "bm25weight2", test_bm25weight2 },
-	    { "unigramlmweight2", test_unigramlmweight2 },
-	    { "tradweight2", test_tradweight2 },
 	    { "emptydb1", test_emptydb1 },
 	    { "multiargop1", test_multiargop1 },
 	    { "msetweights1", test_msetweights1 },
@@ -331,6 +308,7 @@
 	    { "phrasealldocs1", test_phrasealldocs1 },
 	    { "wildcard1", test_wildcard1 },
 	    { "wildcard2", test_wildcard2 },
+	    { "wildcard4", test_wildcard4 },
 	    { "dualprefixwildcard1", test_dualprefixwildcard1 },
 	    { "loosephrase1", test_loosephrase1 },
 	    { "loosenear1", test_loosenear1 },
@@ -374,6 +352,8 @@
 	    { "valuestream3", test_valuestream3 },
 	    { "valuemapsource1", test_valuemapsource1 },
 	    { "decvalwtsource3", test_decvalwtsource3 },
+	    { "weight1", test_weight1 },
+	    { "bm25weight1", test_bm25weight1 },
 	    { "bm25weight4", test_bm25weight4 },
 	    { "bm25weight5", test_bm25weight5 },
 	    { "bm25plusweight2", test_bm25plusweight2 },
@@ -447,6 +427,7 @@
 	    { "sortfunctorempty1", test_sortfunctorempty1 },
 	    { "checkstatsweight1", test_checkstatsweight1 },
 	    { "checkstatsweight2", test_checkstatsweight2 },
+	    { "checkstatsweight3", test_checkstatsweight3 },
 	    { 0, 0 }
 	};
 	result = max(result, test_driver::run(tests));
@@ -465,7 +446,6 @@
 	    { "externalsource3", test_externalsource3 },
 	    { "changemaxweightsource1", test_changemaxweightsource1 },
 	    { "emptyvalwtsource1", test_emptyvalwtsource1 },
-	    { "checkstatsweight3", test_checkstatsweight3 },
 	    { "checkstatsweight4", test_checkstatsweight4 },
 	    { 0, 0 }
 	};
@@ -645,7 +625,6 @@
 	    { "stubdb2", test_stubdb2 },
 	    { "stubdb3", test_stubdb3 },
 	    { "stubdb5", test_stubdb5 },
-	    { "stubdb9", test_stubdb9 },
 	    { 0, 0 }
 	};
 	result = max(result, test_driver::run(tests));

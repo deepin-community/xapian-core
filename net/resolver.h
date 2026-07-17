@@ -21,6 +21,7 @@
 #ifndef XAPIAN_INCLUDED_RESOLVER_H
 #define XAPIAN_INCLUDED_RESOLVER_H
 
+#include <cerrno>
 #include <cstring>
 #include "safenetdb.h"
 #include "safesyssocket.h"
@@ -52,11 +53,11 @@ class Resolver {
 	    return const_iterator(old_p);
 	}
 
-	bool operator==(const const_iterator& o) {
+	bool operator==(const const_iterator& o) const {
 	    return p == o.p;
 	}
 
-	bool operator!=(const const_iterator& o) {
+	bool operator!=(const const_iterator& o) const {
 	    return !(*this == o);
 	}
     };
@@ -96,6 +97,8 @@ class Resolver {
 	if (host != "::1" && host != "127.0.0.1" && host != "localhost") {
 	    flags |= AI_ADDRCONFIG;
 	}
+	// Not defined on older macOS (such as 10.5 which Apple no longer
+	// support but newer versions no longer support PowerPC Macs).
 #ifdef AI_NUMERICSERV
 	flags |= AI_NUMERICSERV;
 #endif
