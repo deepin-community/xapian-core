@@ -259,34 +259,25 @@ int Xapian::InternalStemIrish::r_mark_regions() {
             c += ret;
         }
         I_pV = c;
-    lab0:
-        c = c1;
-    }
-    {   int c2 = c;
-        {   
-            int ret = out_grouping_U(g_v, 97, 250, 1);
-            if (ret < 0) goto lab1;
-            c += ret;
-        }
         {   
             int ret = in_grouping_U(g_v, 97, 250, 1);
-            if (ret < 0) goto lab1;
+            if (ret < 0) goto lab0;
             c += ret;
         }
         I_p1 = c;
         {   
             int ret = out_grouping_U(g_v, 97, 250, 1);
-            if (ret < 0) goto lab1;
+            if (ret < 0) goto lab0;
             c += ret;
         }
         {   
             int ret = in_grouping_U(g_v, 97, 250, 1);
-            if (ret < 0) goto lab1;
+            if (ret < 0) goto lab0;
             c += ret;
         }
         I_p2 = c;
-    lab1:
-        c = c2;
+    lab0:
+        c = c1;
     }
     return 1;
 }

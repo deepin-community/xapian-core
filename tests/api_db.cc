@@ -335,26 +335,6 @@ DEFINE_TESTCASE(stubdb8, inmemory) {
     }
 }
 
-/// Test error running Database::check() on a remote stub database.
-DEFINE_TESTCASE(stubdb9, path) {
-    mkdir(".stub", 0755);
-    const char * dbpath = ".stub/stubdb9";
-    ofstream out(dbpath);
-    TEST(out.is_open());
-    out << "remote :" << BackendManager::get_xapian_progsrv_command()
-	<< ' ' << get_database_path("apitest_simpledata") << '\n';
-    out.close();
-
-    try {
-	Xapian::Database::check(dbpath);
-	FAIL_TEST("Managed to check remote stub");
-    } catch (const Xapian::UnimplementedError& e) {
-	// Check the message is appropriate.
-	TEST_STRINGS_EQUAL(e.get_msg(),
-			   "Remote database checking not implemented");
-    }
-}
-
 #if 0 // the "force error" mechanism is no longer in place...
 class MyErrorHandler : public Xapian::ErrorHandler {
     public:
@@ -500,7 +480,7 @@ class GrepMatchDecider : public Xapian::MatchDecider {
     explicit GrepMatchDecider(const string& needle_)
 	: needle(needle_) {}
 
-    bool operator()(const Xapian::Document &doc) const {
+    bool operator()(const Xapian::Document& doc) const override {
 	// Note that this is not recommended usage of get_data()
 	return doc.get_data().find(needle) != string::npos;
     }
@@ -1900,24 +1880,31 @@ class MyWeight : public Xapian::Weight {
     double scale_factor;
 
   public:
-    MyWeight * clone() const {
+    MyWeight* clone() const override {
 	return new MyWeight;
     }
-    void init(double factor) {
+    void init(double factor) override {
 	scale_factor = factor;
     }
     MyWeight() { }
     ~MyWeight() { }
-    std::string name() const { return "MyWeight"; }
-    string serialise() const { return string(); }
-    MyWeight * unserialise(const string &) const { return new MyWeight; }
-    double get_sumpart(Xapian::termcount, Xapian::termcount, Xapian::termcount) const {
+    std::string name() const override { return "MyWeight"; }
+    string serialise() const override { return string(); }
+    MyWeight* unserialise(const string&) const override {
+	return new MyWeight;
+    }
+    double get_sumpart(Xapian::termcount,
+		       Xapian::termcount,
+		       Xapian::termcount) const override {
 	return scale_factor;
     }
-    double get_maxpart() const { return scale_factor; }
+    double get_maxpart() const override { return scale_factor; }
 
-    double get_sumextra(Xapian::termcount, Xapian::termcount) const { return 0; }
-    double get_maxextra() const { return 0; }
+    double get_sumextra(Xapian::termcount,
+			Xapian::termcount) const override {
+	return 0;
+    }
+    double get_maxextra() const override { return 0; }
 };
 
 // tests user weighting scheme.

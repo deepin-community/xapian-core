@@ -44,8 +44,6 @@
 # include "parseint.h"
 #endif
 
-using namespace std;
-
 static int
 get_maxfd() {
 #ifdef F_MAXFD
@@ -164,7 +162,7 @@ Xapian::Internal::closefrom(int fd)
     if (dir >= 0) {
 	gdea_type base = 0;
 	struct attrlist alist;
-	memset(&alist, 0, sizeof(alist));
+	std::memset(&alist, 0, sizeof(alist));
 	alist.bitmapcount = ATTR_BIT_MAP_COUNT;
 	alist.commonattr = ATTR_CMN_NAME;
 	while (true) {
@@ -220,7 +218,12 @@ Xapian::Internal::closefrom(int fd)
     // getdirentries() then this code can be used.  AIX is an example of
     // a platform of the former, but apparently has F_CLOSEM.
     char path[6 + sizeof(pid_t) * 3 + 4];
+# ifdef SNPRINTF
+    snprintf(path, sizeof(path), "/proc/%ld/fd", long(getpid()));
+    path[sizeof(path) - 1] = '\0';
+# else
     sprintf(path, "/proc/%ld/fd", long(getpid()));
+# endif
 #endif
     if (maxfd < 0)
 	maxfd = get_maxfd();

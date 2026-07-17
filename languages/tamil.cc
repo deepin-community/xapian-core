@@ -7,351 +7,518 @@
 
 static const symbol s_pool[] = {
 #define s_0_0 0
+0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x81,
+#define s_0_1 6
+0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x82,
+#define s_0_2 12
+0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8A,
+#define s_0_3 18
+0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8B,
+#define s_1_0 24
 0xE0, 0xAE, 0x95,
-#define s_0_1 3
+#define s_1_1 27
 0xE0, 0xAE, 0x99,
-#define s_0_2 6
+#define s_1_2 30
 0xE0, 0xAE, 0x9A,
-#define s_0_3 9
+#define s_1_3 33
 0xE0, 0xAE, 0x9E,
-#define s_0_4 12
+#define s_1_4 36
 0xE0, 0xAE, 0xA4,
-#define s_0_5 15
+#define s_1_5 39
 0xE0, 0xAE, 0xA8,
-#define s_0_6 18
+#define s_1_6 42
 0xE0, 0xAE, 0xAA,
-#define s_0_7 21
+#define s_1_7 45
 0xE0, 0xAE, 0xAE,
-#define s_0_8 24
+#define s_1_8 48
 0xE0, 0xAE, 0xAF,
-#define s_0_9 27
+#define s_1_9 51
 0xE0, 0xAE, 0xB5,
-#define s_1_0 30
+#define s_2_0 54
+0xE0, 0xAF, 0x80,
+#define s_2_1 57
+0xE0, 0xAF, 0x88,
+#define s_2_2 60
+0xE0, 0xAE, 0xBF,
+#define s_3_0 63
+0xE0, 0xAF, 0x80,
+#define s_3_1 66
+0xE0, 0xAF, 0x81,
+#define s_3_2 69
+0xE0, 0xAF, 0x82,
+#define s_3_3 72
+0xE0, 0xAF, 0x86,
+#define s_3_4 75
+0xE0, 0xAF, 0x87,
+#define s_3_5 78
+0xE0, 0xAF, 0x88,
+#define s_3_6 81
+0xE0, 0xAE, 0xBE,
+#define s_3_7 84
+0xE0, 0xAE, 0xBF,
+#define s_4_1 87
+0xE0, 0xAF, 0x88,
+#define s_4_2 90
+0xE0, 0xAF, 0x8D,
+#define s_5_0 93
+0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x81,
+#define s_5_1 s_5_2
+#define s_5_2 99
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D,
+#define s_5_3 114
+0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D,
+#define s_5_4 126
+0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D,
+#define s_5_5 138
+0xE0, 0xAE, 0x99, 0xE0, 0xAF, 0x8D,
+#define s_5_6 144
+0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D,
+#define s_5_7 156
+0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x8D,
+#define s_5_8 168
 0xE0, 0xAE, 0xA8, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x8D,
-#define s_1_1 s_1_0
-#define s_1_2 s_1_0
-#define s_2_0 42
-0xE0, 0xAF, 0x80,
-#define s_2_1 45
-0xE0, 0xAF, 0x88,
-#define s_2_2 48
-0xE0, 0xAE, 0xBF,
-#define s_3_0 51
-0xE0, 0xAE, 0x95,
-#define s_3_1 54
-0xE0, 0xAE, 0x9A,
-#define s_3_2 57
-0xE0, 0xAE, 0x9F,
-#define s_3_3 60
-0xE0, 0xAE, 0xA4,
-#define s_3_4 63
-0xE0, 0xAE, 0xAA,
-#define s_3_5 66
-0xE0, 0xAE, 0xB1,
-#define s_4_0 69
-0xE0, 0xAE, 0x95,
-#define s_4_1 72
-0xE0, 0xAE, 0x9A,
-#define s_4_2 75
-0xE0, 0xAE, 0x9F,
-#define s_4_3 78
-0xE0, 0xAE, 0xA4,
-#define s_4_4 81
-0xE0, 0xAE, 0xAA,
-#define s_4_5 84
-0xE0, 0xAE, 0xB1,
-#define s_5_0 87
-0xE0, 0xAE, 0x95,
-#define s_5_1 90
-0xE0, 0xAE, 0x9A,
-#define s_5_2 93
-0xE0, 0xAE, 0x9F,
-#define s_5_3 96
-0xE0, 0xAE, 0xA4,
-#define s_5_4 99
-0xE0, 0xAE, 0xAA,
-#define s_5_5 102
-0xE0, 0xAE, 0xB1,
-#define s_6_0 105
-0xE0, 0xAE, 0xAF,
-#define s_6_1 108
-0xE0, 0xAE, 0xB0,
-#define s_6_2 111
-0xE0, 0xAE, 0xB2,
-#define s_6_3 114
-0xE0, 0xAE, 0xB3,
-#define s_6_4 117
-0xE0, 0xAE, 0xB4,
-#define s_6_5 120
-0xE0, 0xAE, 0xB5,
-#define s_7_0 123
-0xE0, 0xAE, 0x99,
-#define s_7_1 126
-0xE0, 0xAE, 0x9E,
-#define s_7_2 129
-0xE0, 0xAE, 0xA3,
-#define s_7_3 132
-0xE0, 0xAE, 0xA8,
-#define s_7_4 135
-0xE0, 0xAE, 0xA9,
-#define s_7_5 138
-0xE0, 0xAE, 0xAE,
-#define s_8_0 141
+#define s_5_9 s_5_8
+#define s_5_10 180
+0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xAA, 0xE0, 0xAF, 0x8D,
+#define s_5_11 192
+0xE0, 0xAE, 0xAF, 0xE0, 0xAF, 0x8D,
+#define s_5_12 198
+0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D,
+#define s_5_13 210
 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8D,
-#define s_8_1 147
-0xE0, 0xAE, 0xAF,
-#define s_8_2 s_8_0
-#define s_9_0 150
-0xE0, 0xAF, 0x80,
-#define s_9_1 153
-0xE0, 0xAF, 0x81,
-#define s_9_2 156
-0xE0, 0xAF, 0x82,
-#define s_9_3 159
-0xE0, 0xAF, 0x86,
-#define s_9_4 162
-0xE0, 0xAF, 0x87,
-#define s_9_5 165
-0xE0, 0xAF, 0x88,
-#define s_9_6 168
-0xE0, 0xAE, 0xBE,
-#define s_9_7 171
-0xE0, 0xAE, 0xBF,
-#define s_10_0 174
-0xE0, 0xAF, 0x80,
-#define s_10_1 177
-0xE0, 0xAF, 0x81,
-#define s_10_2 180
-0xE0, 0xAF, 0x82,
-#define s_10_3 183
-0xE0, 0xAF, 0x86,
-#define s_10_4 186
-0xE0, 0xAF, 0x87,
-#define s_10_5 189
-0xE0, 0xAF, 0x88,
-#define s_10_6 192
-0xE0, 0xAE, 0xBE,
-#define s_10_7 195
-0xE0, 0xAE, 0xBF,
-#define s_11_0 198
-0xE0, 0xAE, 0x85,
-#define s_11_1 201
-0xE0, 0xAE, 0x87,
-#define s_11_2 204
-0xE0, 0xAE, 0x89,
-#define s_12_0 207
+#define s_5_14 s_5_8
+#define s_5_15 s_5_11
+#define s_5_16 s_5_13
+#define s_6_0 216
 0xE0, 0xAE, 0x95,
-#define s_12_1 210
-0xE0, 0xAE, 0x99,
-#define s_12_2 213
+#define s_6_1 219
 0xE0, 0xAE, 0x9A,
-#define s_12_3 216
+#define s_6_2 222
+0xE0, 0xAE, 0x9F,
+#define s_6_3 225
+0xE0, 0xAE, 0xA4,
+#define s_6_4 228
+0xE0, 0xAE, 0xAA,
+#define s_6_5 231
+0xE0, 0xAE, 0xB1,
+#define s_7_0 234
+0xE0, 0xAE, 0x95,
+#define s_7_1 237
+0xE0, 0xAE, 0x9A,
+#define s_7_2 240
+0xE0, 0xAE, 0x9F,
+#define s_7_3 243
+0xE0, 0xAE, 0xA4,
+#define s_7_4 246
+0xE0, 0xAE, 0xAA,
+#define s_7_5 249
+0xE0, 0xAE, 0xB1,
+#define s_8_0 252
 0xE0, 0xAE, 0x9E,
-#define s_12_4 219
-0xE0, 0xAE, 0xA4,
-#define s_12_5 222
+#define s_8_1 255
+0xE0, 0xAE, 0xA3,
+#define s_8_2 258
 0xE0, 0xAE, 0xA8,
-#define s_12_6 225
-0xE0, 0xAE, 0xAA,
-#define s_12_7 228
+#define s_8_3 261
+0xE0, 0xAE, 0xA9,
+#define s_8_4 264
 0xE0, 0xAE, 0xAE,
-#define s_12_8 231
+#define s_8_5 267
 0xE0, 0xAE, 0xAF,
-#define s_12_9 234
+#define s_8_6 270
+0xE0, 0xAE, 0xB0,
+#define s_8_7 273
+0xE0, 0xAE, 0xB2,
+#define s_8_8 276
+0xE0, 0xAE, 0xB3,
+#define s_8_9 279
+0xE0, 0xAE, 0xB4,
+#define s_8_10 282
 0xE0, 0xAE, 0xB5,
-#define s_13_0 237
-0xE0, 0xAE, 0x95,
-#define s_13_1 240
-0xE0, 0xAE, 0x9A,
-#define s_13_2 243
-0xE0, 0xAE, 0x9F,
-#define s_13_3 246
-0xE0, 0xAE, 0xA4,
-#define s_13_4 249
-0xE0, 0xAE, 0xAA,
-#define s_13_5 252
-0xE0, 0xAE, 0xB1,
-#define s_14_0 255
-0xE0, 0xAF, 0x87,
-#define s_14_1 258
-0xE0, 0xAF, 0x8B,
-#define s_14_2 261
-0xE0, 0xAE, 0xBE,
-#define s_15_0 264
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xBF,
-#define s_15_1 270
-0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF,
-#define s_16_0 276
+#define s_9_0 285
 0xE0, 0xAF, 0x80,
-#define s_16_1 279
+#define s_9_1 288
 0xE0, 0xAF, 0x81,
-#define s_16_2 282
+#define s_9_2 291
 0xE0, 0xAF, 0x82,
-#define s_16_3 285
+#define s_9_3 294
 0xE0, 0xAF, 0x86,
-#define s_16_4 288
+#define s_9_4 297
 0xE0, 0xAF, 0x87,
-#define s_16_5 291
+#define s_9_5 300
 0xE0, 0xAF, 0x88,
-#define s_16_6 294
+#define s_9_6 303
+0xE0, 0xAF, 0x8D,
+#define s_9_7 306
 0xE0, 0xAE, 0xBE,
-#define s_16_7 297
+#define s_9_8 309
 0xE0, 0xAE, 0xBF,
-#define s_17_0 300
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
-#define s_17_1 315
-0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
-#define s_17_2 333
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
-#define s_17_3 342
-0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
-#define s_17_4 354
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81,
-#define s_17_5 372
-0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB2, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
-#define s_17_6 s_17_0
-#define s_17_7 393
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xA3,
-#define s_17_8 (s_17_9 + 9)
-#define s_17_9 408
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA4, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xA9,
-#define s_17_10 426
-0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xB0, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xAF,
-#define s_17_11 s_17_9
-#define s_17_12 441
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAE, 0xBF,
-#define s_18_0 456
-0xE0, 0xAE, 0x95,
-#define s_18_1 459
-0xE0, 0xAE, 0x9A,
-#define s_18_2 462
-0xE0, 0xAE, 0x9F,
-#define s_18_3 465
-0xE0, 0xAE, 0xA4,
-#define s_18_4 468
-0xE0, 0xAE, 0xAA,
-#define s_18_5 471
-0xE0, 0xAE, 0xB1,
-#define s_19_0 474
-0xE0, 0xAE, 0x95,
-#define s_19_1 477
-0xE0, 0xAE, 0x9A,
-#define s_19_2 480
-0xE0, 0xAE, 0x9F,
-#define s_19_3 483
-0xE0, 0xAE, 0xA4,
-#define s_19_4 486
-0xE0, 0xAE, 0xAA,
-#define s_19_5 489
-0xE0, 0xAE, 0xB1,
-#define s_20_0 492
-0xE0, 0xAF, 0x80,
-#define s_20_1 495
-0xE0, 0xAF, 0x81,
-#define s_20_2 498
-0xE0, 0xAF, 0x82,
-#define s_20_3 501
-0xE0, 0xAF, 0x86,
-#define s_20_4 504
-0xE0, 0xAF, 0x87,
-#define s_20_5 507
-0xE0, 0xAF, 0x88,
-#define s_20_6 510
-0xE0, 0xAE, 0xBE,
-#define s_20_7 513
-0xE0, 0xAE, 0xBF,
-#define s_21_0 516
-0xE0, 0xAF, 0x80,
-#define s_21_1 519
-0xE0, 0xAF, 0x81,
-#define s_21_2 522
-0xE0, 0xAF, 0x82,
-#define s_21_3 525
-0xE0, 0xAF, 0x86,
-#define s_21_4 528
-0xE0, 0xAF, 0x87,
-#define s_21_5 531
-0xE0, 0xAF, 0x88,
-#define s_21_6 534
-0xE0, 0xAE, 0xBE,
-#define s_21_7 537
-0xE0, 0xAE, 0xBF,
-#define s_22_0 540
-0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
-#define s_22_1 549
-0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8A, 0xE0, 0xAE, 0xA3, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
-#define s_23_0 573
+#define s_10_0 312
 0xE0, 0xAE, 0x85,
-#define s_23_1 576
-0xE0, 0xAE, 0x86,
-#define s_23_2 579
+#define s_10_1 315
 0xE0, 0xAE, 0x87,
-#define s_23_3 582
-0xE0, 0xAE, 0x88,
-#define s_23_4 585
+#define s_10_2 318
 0xE0, 0xAE, 0x89,
-#define s_23_5 588
-0xE0, 0xAE, 0x8A,
-#define s_23_6 591
-0xE0, 0xAE, 0x8E,
-#define s_23_7 594
-0xE0, 0xAE, 0x8F,
-#define s_23_8 597
-0xE0, 0xAE, 0x90,
-#define s_23_9 600
-0xE0, 0xAE, 0x92,
-#define s_23_10 603
-0xE0, 0xAE, 0x93,
-#define s_23_11 606
-0xE0, 0xAE, 0x94,
-#define s_24_0 609
-0xE0, 0xAF, 0x80,
-#define s_24_1 612
-0xE0, 0xAF, 0x81,
-#define s_24_2 615
-0xE0, 0xAF, 0x82,
-#define s_24_3 618
-0xE0, 0xAF, 0x86,
-#define s_24_4 621
+#define s_11_0 321
+0xE0, 0xAE, 0x95,
+#define s_11_1 324
+0xE0, 0xAE, 0x99,
+#define s_11_2 327
+0xE0, 0xAE, 0x9A,
+#define s_11_3 330
+0xE0, 0xAE, 0x9E,
+#define s_11_4 333
+0xE0, 0xAE, 0xA4,
+#define s_11_5 336
+0xE0, 0xAE, 0xA8,
+#define s_11_6 339
+0xE0, 0xAE, 0xAA,
+#define s_11_7 342
+0xE0, 0xAE, 0xAE,
+#define s_11_8 345
+0xE0, 0xAE, 0xAF,
+#define s_11_9 348
+0xE0, 0xAE, 0xB5,
+#define s_12_0 351
+0xE0, 0xAE, 0x95,
+#define s_12_1 354
+0xE0, 0xAE, 0x9A,
+#define s_12_2 357
+0xE0, 0xAE, 0x9F,
+#define s_12_3 360
+0xE0, 0xAE, 0xA4,
+#define s_12_4 363
+0xE0, 0xAE, 0xAA,
+#define s_12_5 366
+0xE0, 0xAE, 0xB1,
+#define s_13_0 (s_13_1 + 9)
+#define s_13_1 369
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x99, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_13_2 387
+0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_13_3 402
+0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_14_0 417
 0xE0, 0xAF, 0x87,
-#define s_24_5 624
-0xE0, 0xAF, 0x88,
-#define s_24_6 627
+#define s_14_1 420
+0xE0, 0xAF, 0x8B,
+#define s_14_2 423
 0xE0, 0xAE, 0xBE,
-#define s_24_7 630
+#define s_15_0 426
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xBF,
+#define s_15_1 432
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF,
+#define s_16_0 438
+0xE0, 0xAF, 0x80,
+#define s_16_1 441
+0xE0, 0xAF, 0x81,
+#define s_16_2 444
+0xE0, 0xAF, 0x82,
+#define s_16_3 447
+0xE0, 0xAF, 0x86,
+#define s_16_4 450
+0xE0, 0xAF, 0x87,
+#define s_16_5 453
+0xE0, 0xAF, 0x88,
+#define s_16_6 456
+0xE0, 0xAE, 0xBE,
+#define s_16_7 459
 0xE0, 0xAE, 0xBF,
-#define s_25_0 633
+#define s_17_0 462
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_17_1 477
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_17_2 495
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_17_3 504
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_17_4 516
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81,
+#define s_17_5 534
+0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81,
+#define s_17_6 s_17_17
+#define s_17_7 549
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x88,
+#define s_17_8 564
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_17_9 576
+0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_17_10 591
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_17_11 603
+0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB2, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_17_12 s_17_0
+#define s_17_13 624
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xA3,
+#define s_17_14 s_17_5
+#define s_17_15 (s_17_16 + 9)
+#define s_17_16 639
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA4, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xA9,
+#define s_17_17 657
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x88, 0xE0, 0xAE, 0xAF,
+#define s_17_18 669
+0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xAF,
+#define s_17_19 681
+0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xB0, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xAF,
+#define s_17_20 (s_17_7 + 3)
+#define s_17_21 696
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB3,
+#define s_17_22 s_17_18
+#define s_17_23 s_17_16
+#define s_17_24 708
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAE, 0xBF,
+#define s_17_25 723
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAE, 0xBF,
+#define s_18_0 738
+0xE0, 0xAF, 0x80,
+#define s_18_1 741
+0xE0, 0xAF, 0x81,
+#define s_18_2 744
+0xE0, 0xAF, 0x82,
+#define s_18_3 747
+0xE0, 0xAF, 0x86,
+#define s_18_4 750
+0xE0, 0xAF, 0x87,
+#define s_18_5 753
+0xE0, 0xAF, 0x88,
+#define s_18_6 756
+0xE0, 0xAE, 0xBE,
+#define s_18_7 759
+0xE0, 0xAE, 0xBF,
+#define s_19_0 762
+0xE0, 0xAF, 0x80,
+#define s_19_1 765
+0xE0, 0xAF, 0x81,
+#define s_19_2 768
+0xE0, 0xAF, 0x82,
+#define s_19_3 771
+0xE0, 0xAF, 0x86,
+#define s_19_4 774
+0xE0, 0xAF, 0x87,
+#define s_19_5 777
+0xE0, 0xAF, 0x88,
+#define s_19_6 780
+0xE0, 0xAE, 0xBE,
+#define s_19_7 783
+0xE0, 0xAE, 0xBF,
+#define s_20_0 (s_20_20 + 3)
+#define s_20_1 786
+0xE0, 0xAF, 0x8A, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_20_2 795
+0xE0, 0xAF, 0x8B, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_20_3 (s_20_4 + 15)
+#define s_20_4 804
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xA8, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81,
+#define s_20_5 825
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81,
+#define s_20_6 840
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x88,
+#define s_20_7 849
+0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x88,
+#define s_20_8 855
+0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xA3, 0xE0, 0xAF, 0x8D,
+#define s_20_9 864
+0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_20_10 s_20_5
+#define s_20_11 876
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_20_12 888
+0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D,
+#define s_20_13 900
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D,
+#define s_20_14 (s_20_15 + 6)
+#define s_20_15 909
+0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D,
+#define s_20_16 921
+0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAE, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D,
+#define s_20_17 933
+0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D,
+#define s_20_18 942
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D,
+#define s_20_19 951
+0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_20_20 960
+0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x80, 0xE0, 0xAE, 0xB4, 0xE0, 0xAF, 0x8D,
+#define s_20_21 972
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F,
+#define s_21_0 981
+0xE0, 0xAE, 0x95,
+#define s_21_1 984
+0xE0, 0xAE, 0x9A,
+#define s_21_2 987
+0xE0, 0xAE, 0x9F,
+#define s_21_3 990
+0xE0, 0xAE, 0xA4,
+#define s_21_4 993
+0xE0, 0xAE, 0xAA,
+#define s_21_5 996
+0xE0, 0xAE, 0xB1,
+#define s_22_0 999
+0xE0, 0xAE, 0x95,
+#define s_22_1 1002
+0xE0, 0xAE, 0x9A,
+#define s_22_2 1005
+0xE0, 0xAE, 0x9F,
+#define s_22_3 1008
+0xE0, 0xAE, 0xA4,
+#define s_22_4 1011
+0xE0, 0xAE, 0xAA,
+#define s_22_5 1014
+0xE0, 0xAE, 0xB1,
+#define s_23_0 1017
+0xE0, 0xAE, 0x85,
+#define s_23_1 1020
+0xE0, 0xAE, 0x86,
+#define s_23_2 1023
+0xE0, 0xAE, 0x87,
+#define s_23_3 1026
+0xE0, 0xAE, 0x88,
+#define s_23_4 1029
+0xE0, 0xAE, 0x89,
+#define s_23_5 1032
+0xE0, 0xAE, 0x8A,
+#define s_23_6 1035
+0xE0, 0xAE, 0x8E,
+#define s_23_7 1038
+0xE0, 0xAE, 0x8F,
+#define s_23_8 1041
+0xE0, 0xAE, 0x90,
+#define s_23_9 1044
+0xE0, 0xAE, 0x92,
+#define s_23_10 1047
+0xE0, 0xAE, 0x93,
+#define s_23_11 1050
+0xE0, 0xAE, 0x94,
+#define s_24_0 1053
+0xE0, 0xAF, 0x80,
+#define s_24_1 1056
+0xE0, 0xAF, 0x81,
+#define s_24_2 1059
+0xE0, 0xAF, 0x82,
+#define s_24_3 1062
+0xE0, 0xAF, 0x86,
+#define s_24_4 1065
+0xE0, 0xAF, 0x87,
+#define s_24_5 1068
+0xE0, 0xAF, 0x88,
+#define s_24_6 1071
+0xE0, 0xAE, 0xBE,
+#define s_24_7 1074
+0xE0, 0xAE, 0xBF,
+#define s_25_0 s_25_14
+#define s_25_1 1077
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81,
+#define s_25_2 s_25_16
+#define s_25_3 1086
+0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81,
+#define s_25_4 1101
+0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x88,
+#define s_25_5 1107
+0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x88,
+#define s_25_6 1113
+0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_7 1125
+0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_8 1134
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_9 1143
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_10 1152
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_11 (s_25_12 + 3)
+#define s_25_12 1161
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_13 1173
+0xE0, 0xAE, 0xAE, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D,
+#define s_25_14 1185
+0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_15 1197
+0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_16 1209
+0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_17 1221
+0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_18 1233
+0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_19 1242
+0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_20 1251
+0xE0, 0xAF, 0x8B, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_21 1260
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_22 1269
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_23 1278
+0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D,
+#define s_25_24 1287
+0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAF, 0xE0, 0xAF, 0x8D,
+#define s_25_25 1296
+0xE0, 0xAF, 0x80, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_26 1305
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_27 1314
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_28 1323
+0xE0, 0xAF, 0x80, 0xE0, 0xAE, 0xAF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_29 1335
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_30 (s_25_31 + 3)
+#define s_25_31 1344
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_32 1356
+0xE0, 0xAE, 0xAE, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_33 1368
+0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8A, 0xE0, 0xAE, 0xA3, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_34 1392
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D,
+#define s_25_35 1404
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_25_36 1413
+0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_25_37 1422
+0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_25_38 (s_25_39 + 3)
+#define s_25_39 1431
+0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D,
+#define s_25_40 s_25_0
+#define s_25_41 s_25_2
+#define s_25_42 s_25_4
+#define s_25_43 s_25_1
+#define s_25_44 (s_25_24 + 3)
+#define s_25_45 s_25_11
+#define s_26_0 1443
 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D,
-#define s_25_1 651
+#define s_26_1 1461
 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xA8, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D,
-#define s_25_2 672
+#define s_26_2 1482
 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D,
-#define s_25_3 s_25_0
-#define s_25_4 s_25_1
-#define s_25_5 s_25_2
+#define s_26_3 s_26_0
+#define s_26_4 s_26_1
+#define s_26_5 s_26_2
 };
 
 
-static const struct among a_0[10] =
+static const struct among a_0[4] =
 {
-/*  0 */ { 3, s_0_0, -1, -1},
-/*  1 */ { 3, s_0_1, -1, -1},
-/*  2 */ { 3, s_0_2, -1, -1},
-/*  3 */ { 3, s_0_3, -1, -1},
-/*  4 */ { 3, s_0_4, -1, -1},
-/*  5 */ { 3, s_0_5, -1, -1},
-/*  6 */ { 3, s_0_6, -1, -1},
-/*  7 */ { 3, s_0_7, -1, -1},
-/*  8 */ { 3, s_0_8, -1, -1},
-/*  9 */ { 3, s_0_9, -1, -1}
+/*  0 */ { 6, s_0_0, -1, 3},
+/*  1 */ { 6, s_0_1, -1, 4},
+/*  2 */ { 6, s_0_2, -1, 2},
+/*  3 */ { 6, s_0_3, -1, 1}
 };
 
 
-static const struct among a_1[3] =
+static const struct among a_1[10] =
 {
-/*  0 */ { 12, s_1_0, -1, -1},
-/*  1 */ { 6, s_1_1, -1, -1},
-/*  2 */ { 9, s_1_2, -1, -1}
+/*  0 */ { 3, s_1_0, -1, -1},
+/*  1 */ { 3, s_1_1, -1, -1},
+/*  2 */ { 3, s_1_2, -1, -1},
+/*  3 */ { 3, s_1_3, -1, -1},
+/*  4 */ { 3, s_1_4, -1, -1},
+/*  5 */ { 3, s_1_5, -1, -1},
+/*  6 */ { 3, s_1_6, -1, -1},
+/*  7 */ { 3, s_1_7, -1, -1},
+/*  8 */ { 3, s_1_8, -1, -1},
+/*  9 */ { 3, s_1_9, -1, -1}
 };
 
 
@@ -363,36 +530,46 @@ static const struct among a_2[3] =
 };
 
 
-static const struct among a_3[6] =
+static const struct among a_3[8] =
 {
 /*  0 */ { 3, s_3_0, -1, -1},
 /*  1 */ { 3, s_3_1, -1, -1},
 /*  2 */ { 3, s_3_2, -1, -1},
 /*  3 */ { 3, s_3_3, -1, -1},
 /*  4 */ { 3, s_3_4, -1, -1},
-/*  5 */ { 3, s_3_5, -1, -1}
+/*  5 */ { 3, s_3_5, -1, -1},
+/*  6 */ { 3, s_3_6, -1, -1},
+/*  7 */ { 3, s_3_7, -1, -1}
 };
 
 
-static const struct among a_4[6] =
+static const struct among a_4[3] =
 {
-/*  0 */ { 3, s_4_0, -1, -1},
-/*  1 */ { 3, s_4_1, -1, -1},
-/*  2 */ { 3, s_4_2, -1, -1},
-/*  3 */ { 3, s_4_3, -1, -1},
-/*  4 */ { 3, s_4_4, -1, -1},
-/*  5 */ { 3, s_4_5, -1, -1}
+/*  0 */ { 0, 0, -1, 2},
+/*  1 */ { 3, s_4_1, 0, 1},
+/*  2 */ { 3, s_4_2, 0, 1}
 };
 
 
-static const struct among a_5[6] =
+static const struct among a_5[17] =
 {
-/*  0 */ { 3, s_5_0, -1, -1},
-/*  1 */ { 3, s_5_1, -1, -1},
-/*  2 */ { 3, s_5_2, -1, -1},
-/*  3 */ { 3, s_5_3, -1, -1},
-/*  4 */ { 3, s_5_4, -1, -1},
-/*  5 */ { 3, s_5_5, -1, -1}
+/*  0 */ { 6, s_5_0, -1, 8},
+/*  1 */ { 9, s_5_1, -1, 7},
+/*  2 */ { 15, s_5_2, -1, 7},
+/*  3 */ { 12, s_5_3, -1, 3},
+/*  4 */ { 12, s_5_4, -1, 4},
+/*  5 */ { 6, s_5_5, -1, 9},
+/*  6 */ { 12, s_5_6, -1, 5},
+/*  7 */ { 12, s_5_7, -1, 6},
+/*  8 */ { 12, s_5_8, -1, 1},
+/*  9 */ { 6, s_5_9, -1, 1},
+/* 10 */ { 12, s_5_10, -1, 3},
+/* 11 */ { 6, s_5_11, -1, 2},
+/* 12 */ { 12, s_5_12, -1, 4},
+/* 13 */ { 6, s_5_13, -1, 1},
+/* 14 */ { 9, s_5_14, -1, 1},
+/* 15 */ { 3, s_5_15, -1, 1},
+/* 16 */ { 3, s_5_16, -1, 1}
 };
 
 
@@ -418,15 +595,23 @@ static const struct among a_7[6] =
 };
 
 
-static const struct among a_8[3] =
+static const struct among a_8[11] =
 {
-/*  0 */ { 6, s_8_0, -1, -1},
+/*  0 */ { 3, s_8_0, -1, -1},
 /*  1 */ { 3, s_8_1, -1, -1},
-/*  2 */ { 3, s_8_2, -1, -1}
+/*  2 */ { 3, s_8_2, -1, -1},
+/*  3 */ { 3, s_8_3, -1, -1},
+/*  4 */ { 3, s_8_4, -1, -1},
+/*  5 */ { 3, s_8_5, -1, -1},
+/*  6 */ { 3, s_8_6, -1, -1},
+/*  7 */ { 3, s_8_7, -1, -1},
+/*  8 */ { 3, s_8_8, -1, -1},
+/*  9 */ { 3, s_8_9, -1, -1},
+/* 10 */ { 3, s_8_10, -1, -1}
 };
 
 
-static const struct among a_9[8] =
+static const struct among a_9[9] =
 {
 /*  0 */ { 3, s_9_0, -1, -1},
 /*  1 */ { 3, s_9_1, -1, -1},
@@ -435,54 +620,51 @@ static const struct among a_9[8] =
 /*  4 */ { 3, s_9_4, -1, -1},
 /*  5 */ { 3, s_9_5, -1, -1},
 /*  6 */ { 3, s_9_6, -1, -1},
-/*  7 */ { 3, s_9_7, -1, -1}
+/*  7 */ { 3, s_9_7, -1, -1},
+/*  8 */ { 3, s_9_8, -1, -1}
 };
 
 
-static const struct among a_10[8] =
+static const struct among a_10[3] =
 {
 /*  0 */ { 3, s_10_0, -1, -1},
 /*  1 */ { 3, s_10_1, -1, -1},
-/*  2 */ { 3, s_10_2, -1, -1},
-/*  3 */ { 3, s_10_3, -1, -1},
-/*  4 */ { 3, s_10_4, -1, -1},
-/*  5 */ { 3, s_10_5, -1, -1},
-/*  6 */ { 3, s_10_6, -1, -1},
-/*  7 */ { 3, s_10_7, -1, -1}
+/*  2 */ { 3, s_10_2, -1, -1}
 };
 
 
-static const struct among a_11[3] =
+static const struct among a_11[10] =
 {
 /*  0 */ { 3, s_11_0, -1, -1},
 /*  1 */ { 3, s_11_1, -1, -1},
-/*  2 */ { 3, s_11_2, -1, -1}
+/*  2 */ { 3, s_11_2, -1, -1},
+/*  3 */ { 3, s_11_3, -1, -1},
+/*  4 */ { 3, s_11_4, -1, -1},
+/*  5 */ { 3, s_11_5, -1, -1},
+/*  6 */ { 3, s_11_6, -1, -1},
+/*  7 */ { 3, s_11_7, -1, -1},
+/*  8 */ { 3, s_11_8, -1, -1},
+/*  9 */ { 3, s_11_9, -1, -1}
 };
 
 
-static const struct among a_12[10] =
+static const struct among a_12[6] =
 {
 /*  0 */ { 3, s_12_0, -1, -1},
 /*  1 */ { 3, s_12_1, -1, -1},
 /*  2 */ { 3, s_12_2, -1, -1},
 /*  3 */ { 3, s_12_3, -1, -1},
 /*  4 */ { 3, s_12_4, -1, -1},
-/*  5 */ { 3, s_12_5, -1, -1},
-/*  6 */ { 3, s_12_6, -1, -1},
-/*  7 */ { 3, s_12_7, -1, -1},
-/*  8 */ { 3, s_12_8, -1, -1},
-/*  9 */ { 3, s_12_9, -1, -1}
+/*  5 */ { 3, s_12_5, -1, -1}
 };
 
 
-static const struct among a_13[6] =
+static const struct among a_13[4] =
 {
-/*  0 */ { 3, s_13_0, -1, -1},
-/*  1 */ { 3, s_13_1, -1, -1},
-/*  2 */ { 3, s_13_2, -1, -1},
-/*  3 */ { 3, s_13_3, -1, -1},
-/*  4 */ { 3, s_13_4, -1, -1},
-/*  5 */ { 3, s_13_5, -1, -1}
+/*  0 */ { 9, s_13_0, -1, 4},
+/*  1 */ { 18, s_13_1, 0, 1},
+/*  2 */ { 15, s_13_2, 0, 3},
+/*  3 */ { 15, s_13_3, 0, 2}
 };
 
 
@@ -514,76 +696,109 @@ static const struct among a_16[8] =
 };
 
 
-static const struct among a_17[13] =
+static const struct among a_17[26] =
 {
-/*  0 */ { 15, s_17_0, -1, -1},
-/*  1 */ { 18, s_17_1, -1, -1},
-/*  2 */ { 9, s_17_2, -1, -1},
-/*  3 */ { 12, s_17_3, -1, -1},
-/*  4 */ { 18, s_17_4, -1, -1},
-/*  5 */ { 21, s_17_5, -1, -1},
-/*  6 */ { 12, s_17_6, -1, -1},
-/*  7 */ { 15, s_17_7, -1, -1},
-/*  8 */ { 9, s_17_8, -1, -1},
-/*  9 */ { 18, s_17_9, 8, -1},
-/* 10 */ { 15, s_17_10, -1, -1},
-/* 11 */ { 9, s_17_11, -1, -1},
-/* 12 */ { 15, s_17_12, -1, -1}
+/*  0 */ { 15, s_17_0, -1, 3},
+/*  1 */ { 18, s_17_1, -1, 3},
+/*  2 */ { 9, s_17_2, -1, 3},
+/*  3 */ { 12, s_17_3, -1, 3},
+/*  4 */ { 18, s_17_4, -1, 3},
+/*  5 */ { 15, s_17_5, -1, 1},
+/*  6 */ { 9, s_17_6, -1, 1},
+/*  7 */ { 15, s_17_7, -1, 1},
+/*  8 */ { 12, s_17_8, -1, 1},
+/*  9 */ { 15, s_17_9, -1, 1},
+/* 10 */ { 12, s_17_10, -1, 1},
+/* 11 */ { 21, s_17_11, -1, 3},
+/* 12 */ { 12, s_17_12, -1, 3},
+/* 13 */ { 15, s_17_13, -1, 3},
+/* 14 */ { 6, s_17_14, -1, 1},
+/* 15 */ { 9, s_17_15, -1, 3},
+/* 16 */ { 18, s_17_16, 15, 3},
+/* 17 */ { 12, s_17_17, -1, 1},
+/* 18 */ { 12, s_17_18, -1, 1},
+/* 19 */ { 15, s_17_19, -1, 3},
+/* 20 */ { 9, s_17_20, -1, 2},
+/* 21 */ { 12, s_17_21, -1, 1},
+/* 22 */ { 9, s_17_22, -1, 1},
+/* 23 */ { 9, s_17_23, -1, 3},
+/* 24 */ { 15, s_17_24, -1, 1},
+/* 25 */ { 15, s_17_25, -1, 3}
 };
 
 
-static const struct among a_18[6] =
+static const struct among a_18[8] =
 {
 /*  0 */ { 3, s_18_0, -1, -1},
 /*  1 */ { 3, s_18_1, -1, -1},
 /*  2 */ { 3, s_18_2, -1, -1},
 /*  3 */ { 3, s_18_3, -1, -1},
 /*  4 */ { 3, s_18_4, -1, -1},
-/*  5 */ { 3, s_18_5, -1, -1}
+/*  5 */ { 3, s_18_5, -1, -1},
+/*  6 */ { 3, s_18_6, -1, -1},
+/*  7 */ { 3, s_18_7, -1, -1}
 };
 
 
-static const struct among a_19[6] =
+static const struct among a_19[8] =
 {
 /*  0 */ { 3, s_19_0, -1, -1},
 /*  1 */ { 3, s_19_1, -1, -1},
 /*  2 */ { 3, s_19_2, -1, -1},
 /*  3 */ { 3, s_19_3, -1, -1},
 /*  4 */ { 3, s_19_4, -1, -1},
-/*  5 */ { 3, s_19_5, -1, -1}
+/*  5 */ { 3, s_19_5, -1, -1},
+/*  6 */ { 3, s_19_6, -1, -1},
+/*  7 */ { 3, s_19_7, -1, -1}
 };
 
 
-static const struct among a_20[8] =
+static const struct among a_20[22] =
 {
-/*  0 */ { 3, s_20_0, -1, -1},
-/*  1 */ { 3, s_20_1, -1, -1},
-/*  2 */ { 3, s_20_2, -1, -1},
-/*  3 */ { 3, s_20_3, -1, -1},
-/*  4 */ { 3, s_20_4, -1, -1},
-/*  5 */ { 3, s_20_5, -1, -1},
-/*  6 */ { 3, s_20_6, -1, -1},
-/*  7 */ { 3, s_20_7, -1, -1}
+/*  0 */ { 3, s_20_0, -1, 7},
+/*  1 */ { 9, s_20_1, -1, 2},
+/*  2 */ { 9, s_20_2, -1, 2},
+/*  3 */ { 6, s_20_3, -1, 6},
+/*  4 */ { 21, s_20_4, 3, 2},
+/*  5 */ { 15, s_20_5, -1, 2},
+/*  6 */ { 9, s_20_6, -1, 2},
+/*  7 */ { 6, s_20_7, -1, 1},
+/*  8 */ { 9, s_20_8, -1, 1},
+/*  9 */ { 12, s_20_9, -1, 1},
+/* 10 */ { 9, s_20_10, -1, 3},
+/* 11 */ { 12, s_20_11, -1, 4},
+/* 12 */ { 12, s_20_12, -1, 1},
+/* 13 */ { 9, s_20_13, -1, 2},
+/* 14 */ { 6, s_20_14, -1, 5},
+/* 15 */ { 12, s_20_15, 14, 1},
+/* 16 */ { 12, s_20_16, 14, 2},
+/* 17 */ { 9, s_20_17, 14, 2},
+/* 18 */ { 9, s_20_18, 14, 2},
+/* 19 */ { 9, s_20_19, -1, 2},
+/* 20 */ { 12, s_20_20, -1, 1},
+/* 21 */ { 9, s_20_21, -1, 2}
 };
 
 
-static const struct among a_21[8] =
+static const struct among a_21[6] =
 {
 /*  0 */ { 3, s_21_0, -1, -1},
 /*  1 */ { 3, s_21_1, -1, -1},
 /*  2 */ { 3, s_21_2, -1, -1},
 /*  3 */ { 3, s_21_3, -1, -1},
 /*  4 */ { 3, s_21_4, -1, -1},
-/*  5 */ { 3, s_21_5, -1, -1},
-/*  6 */ { 3, s_21_6, -1, -1},
-/*  7 */ { 3, s_21_7, -1, -1}
+/*  5 */ { 3, s_21_5, -1, -1}
 };
 
 
-static const struct among a_22[2] =
+static const struct among a_22[6] =
 {
-/*  0 */ { 9, s_22_0, -1, -1},
-/*  1 */ { 24, s_22_1, -1, -1}
+/*  0 */ { 3, s_22_0, -1, -1},
+/*  1 */ { 3, s_22_1, -1, -1},
+/*  2 */ { 3, s_22_2, -1, -1},
+/*  3 */ { 3, s_22_3, -1, -1},
+/*  4 */ { 3, s_22_4, -1, -1},
+/*  5 */ { 3, s_22_5, -1, -1}
 };
 
 
@@ -617,172 +832,108 @@ static const struct among a_24[8] =
 };
 
 
-static const struct among a_25[6] =
+static const struct among a_25[46] =
 {
-/*  0 */ { 18, s_25_0, -1, -1},
-/*  1 */ { 21, s_25_1, -1, -1},
-/*  2 */ { 12, s_25_2, -1, -1},
-/*  3 */ { 15, s_25_3, -1, -1},
-/*  4 */ { 18, s_25_4, -1, -1},
-/*  5 */ { 9, s_25_5, -1, -1}
+/*  0 */ { 6, s_25_0, -1, 6},
+/*  1 */ { 9, s_25_1, -1, 1},
+/*  2 */ { 6, s_25_2, -1, 3},
+/*  3 */ { 15, s_25_3, -1, 1},
+/*  4 */ { 6, s_25_4, -1, 1},
+/*  5 */ { 6, s_25_5, -1, 1},
+/*  6 */ { 12, s_25_6, -1, 1},
+/*  7 */ { 9, s_25_7, -1, 5},
+/*  8 */ { 9, s_25_8, -1, 1},
+/*  9 */ { 9, s_25_9, -1, 1},
+/* 10 */ { 9, s_25_10, -1, 2},
+/* 11 */ { 9, s_25_11, -1, 4},
+/* 12 */ { 12, s_25_12, 11, 1},
+/* 13 */ { 12, s_25_13, -1, 1},
+/* 14 */ { 12, s_25_14, -1, 1},
+/* 15 */ { 12, s_25_15, -1, 5},
+/* 16 */ { 12, s_25_16, -1, 1},
+/* 17 */ { 12, s_25_17, -1, 1},
+/* 18 */ { 9, s_25_18, -1, 5},
+/* 19 */ { 9, s_25_19, -1, 5},
+/* 20 */ { 9, s_25_20, -1, 5},
+/* 21 */ { 9, s_25_21, -1, 1},
+/* 22 */ { 9, s_25_22, -1, 1},
+/* 23 */ { 9, s_25_23, -1, 5},
+/* 24 */ { 9, s_25_24, -1, 5},
+/* 25 */ { 9, s_25_25, -1, 5},
+/* 26 */ { 9, s_25_26, -1, 1},
+/* 27 */ { 9, s_25_27, -1, 1},
+/* 28 */ { 12, s_25_28, -1, 5},
+/* 29 */ { 9, s_25_29, -1, 1},
+/* 30 */ { 9, s_25_30, -1, 5},
+/* 31 */ { 12, s_25_31, 30, 1},
+/* 32 */ { 12, s_25_32, 30, 1},
+/* 33 */ { 24, s_25_33, -1, 1},
+/* 34 */ { 12, s_25_34, -1, 5},
+/* 35 */ { 9, s_25_35, -1, 1},
+/* 36 */ { 9, s_25_36, -1, 1},
+/* 37 */ { 9, s_25_37, -1, 1},
+/* 38 */ { 9, s_25_38, -1, 5},
+/* 39 */ { 12, s_25_39, 38, 1},
+/* 40 */ { 3, s_25_40, -1, 1},
+/* 41 */ { 3, s_25_41, -1, 1},
+/* 42 */ { 3, s_25_42, -1, 1},
+/* 43 */ { 3, s_25_43, -1, 1},
+/* 44 */ { 3, s_25_44, -1, 1},
+/* 45 */ { 3, s_25_45, -1, 5}
 };
 
-static const symbol s_0[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8B };
-static const symbol s_1[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8B };
-static const symbol s_2[] = { 0xE0, 0xAE, 0x93 };
-static const symbol s_3[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8A };
-static const symbol s_4[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x8A };
-static const symbol s_5[] = { 0xE0, 0xAE, 0x92 };
-static const symbol s_6[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x81 };
-static const symbol s_7[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x81 };
-static const symbol s_8[] = { 0xE0, 0xAE, 0x89 };
-static const symbol s_9[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x82 };
-static const symbol s_10[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x82 };
-static const symbol s_11[] = { 0xE0, 0xAE, 0x8A };
-static const symbol s_12[] = { 0xE0, 0xAE, 0x8E };
+
+static const struct among a_26[6] =
+{
+/*  0 */ { 18, s_26_0, -1, -1},
+/*  1 */ { 21, s_26_1, -1, -1},
+/*  2 */ { 12, s_26_2, -1, -1},
+/*  3 */ { 15, s_26_3, -1, -1},
+/*  4 */ { 18, s_26_4, -1, -1},
+/*  5 */ { 9, s_26_5, -1, -1}
+};
+
+static const symbol s_0[] = { 0xE0, 0xAE, 0x93 };
+static const symbol s_1[] = { 0xE0, 0xAE, 0x92 };
+static const symbol s_2[] = { 0xE0, 0xAE, 0x89 };
+static const symbol s_3[] = { 0xE0, 0xAE, 0x8A };
+static const symbol s_4[] = { 0xE0, 0xAE, 0x8E };
+static const symbol s_5[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_6[] = { 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
+static const symbol s_7[] = { 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
+static const symbol s_8[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81 };
+static const symbol s_9[] = { 0xE0, 0xAF, 0x88 };
+static const symbol s_10[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
+static const symbol s_11[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_12[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
 static const symbol s_13[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_14[] = { 0xE0, 0xAE, 0xAF, 0xE0, 0xAF, 0x8D };
-static const symbol s_15[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xAA, 0xE0, 0xAF, 0x8D };
-static const symbol s_16[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D };
-static const symbol s_17[] = { 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_18[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D };
+static const symbol s_14[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_15[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_16[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_17[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x99, 0xE0, 0xAF, 0x8D };
+static const symbol s_18[] = { 0xE0, 0xAF, 0x8D };
 static const symbol s_19[] = { 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_20[] = { 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D };
-static const symbol s_21[] = { 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_22[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D };
-static const symbol s_23[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81 };
-static const symbol s_24[] = { 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x8D };
-static const symbol s_25[] = { 0xE0, 0xAF, 0x88 };
-static const symbol s_26[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_27[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D };
-static const symbol s_28[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D };
+static const symbol s_20[] = { 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
+static const symbol s_21[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_22[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
+static const symbol s_23[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_24[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_25[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_26[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_27[] = { 0xE0, 0xAE, 0xAE };
+static const symbol s_28[] = { 0xE0, 0xAF, 0x8D };
 static const symbol s_29[] = { 0xE0, 0xAF, 0x8D };
 static const symbol s_30[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_31[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_32[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x8D };
+static const symbol s_31[] = { 0xE0, 0xAE, 0xBF };
+static const symbol s_32[] = { 0xE0, 0xAF, 0x88 };
 static const symbol s_33[] = { 0xE0, 0xAF, 0x8D };
 static const symbol s_34[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_35[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_35[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
 static const symbol s_36[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_37[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_38[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x81 };
-static const symbol s_39[] = { 0xE0, 0xAE, 0x99, 0xE0, 0xAF, 0x8D };
-static const symbol s_40[] = { 0xE0, 0xAF, 0x88 };
-static const symbol s_41[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_42[] = { 0xE0, 0xAE, 0x99, 0xE0, 0xAF, 0x8D };
-static const symbol s_43[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_44[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_45[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_46[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x99, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_47[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_48[] = { 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_49[] = { 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_50[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_51[] = { 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_52[] = { 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_53[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_54[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_55[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_56[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_57[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x88 };
-static const symbol s_58[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_59[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAE, 0xBF };
-static const symbol s_60[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xBF };
-static const symbol s_61[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xAF };
-static const symbol s_62[] = { 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81 };
-static const symbol s_63[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB3 };
-static const symbol s_64[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x88, 0xE0, 0xAE, 0xAF };
-static const symbol s_65[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x88 };
-static const symbol s_66[] = { 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_67[] = { 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB2 };
-static const symbol s_68[] = { 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9 };
-static const symbol s_69[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xBF };
-static const symbol s_70[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_71[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x88 };
-static const symbol s_72[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x88 };
-static const symbol s_73[] = { 0xE0, 0xAF, 0x88 };
-static const symbol s_74[] = { 0xE0, 0xAF, 0x88 };
-static const symbol s_75[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_76[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_77[] = { 0xE0, 0xAF, 0x8A, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81 };
-static const symbol s_78[] = { 0xE0, 0xAF, 0x8B, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81 };
-static const symbol s_79[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_80[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D };
-static const symbol s_81[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_82[] = { 0xE0, 0xAE, 0xAE };
-static const symbol s_83[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81 };
-static const symbol s_84[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xA8, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81 };
-static const symbol s_85[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F };
-static const symbol s_86[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0x9F, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_87[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_88[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x88 };
-static const symbol s_89[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAE, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_90[] = { 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_91[] = { 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_92[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_93[] = { 0xE0, 0xAE, 0x95, 0xE0, 0xAE, 0xA3, 0xE0, 0xAF, 0x8D };
-static const symbol s_94[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_95[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xB2, 0xE0, 0xAF, 0x8D };
-static const symbol s_96[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D };
-static const symbol s_97[] = { 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x80, 0xE0, 0xAE, 0xB4, 0xE0, 0xAF, 0x8D };
-static const symbol s_98[] = { 0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_99[] = { 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81 };
-static const symbol s_100[] = { 0xE0, 0xAF, 0x80 };
-static const symbol s_101[] = { 0xE0, 0xAE, 0xBF };
-static const symbol s_102[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_103[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_104[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_105[] = { 0xE0, 0xAE, 0xAE, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_106[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_107[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_108[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_109[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_110[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_111[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_112[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_113[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_114[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_115[] = { 0xE0, 0xAE, 0xA9 };
-static const symbol s_116[] = { 0xE0, 0xAE, 0xAA };
-static const symbol s_117[] = { 0xE0, 0xAE, 0x95 };
-static const symbol s_118[] = { 0xE0, 0xAE, 0xA4 };
-static const symbol s_119[] = { 0xE0, 0xAE, 0xAF };
-static const symbol s_120[] = { 0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_121[] = { 0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_122[] = { 0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_123[] = { 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81 };
-static const symbol s_124[] = { 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x8D, 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81 };
-static const symbol s_125[] = { 0xE0, 0xAE, 0xAA, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_126[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_127[] = { 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_128[] = { 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_129[] = { 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_130[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_131[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x88 };
-static const symbol s_132[] = { 0xE0, 0xAE, 0xB5, 0xE0, 0xAF, 0x88 };
-static const symbol s_133[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_134[] = { 0xE0, 0xAE, 0x9A };
-static const symbol s_135[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB3, 0xE0, 0xAF, 0x8D };
-static const symbol s_136[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_137[] = { 0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_138[] = { 0xE0, 0xAE, 0xBE };
-static const symbol s_139[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_140[] = { 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_141[] = { 0xE0, 0xAF, 0x87, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_142[] = { 0xE0, 0xAF, 0x8B, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_143[] = { 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_144[] = { 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_145[] = { 0xE0, 0xAE, 0x9F, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_146[] = { 0xE0, 0xAE, 0xB1, 0xE0, 0xAF, 0x81, 0xE0, 0xAE, 0xAE, 0xE0, 0xAF, 0x8D };
-static const symbol s_147[] = { 0xE0, 0xAE, 0xBE, 0xE0, 0xAE, 0xAF, 0xE0, 0xAF, 0x8D };
-static const symbol s_148[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x86, 0xE0, 0xAE, 0xA9, 0xE0, 0xAF, 0x8D };
-static const symbol s_149[] = { 0xE0, 0xAE, 0xA9, 0xE0, 0xAE, 0xBF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_150[] = { 0xE0, 0xAF, 0x80, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_151[] = { 0xE0, 0xAF, 0x80, 0xE0, 0xAE, 0xAF, 0xE0, 0xAE, 0xB0, 0xE0, 0xAF, 0x8D };
-static const symbol s_152[] = { 0xE0, 0xAF, 0x8D };
-static const symbol s_153[] = { 0xE0, 0xAE, 0x95, 0xE0, 0xAF, 0x81 };
-static const symbol s_154[] = { 0xE0, 0xAE, 0xA4, 0xE0, 0xAF, 0x81 };
-static const symbol s_155[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_37[] = { 0xE0, 0xAE, 0x9A };
+static const symbol s_38[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_39[] = { 0xE0, 0xAF, 0x8D };
+static const symbol s_40[] = { 0xE0, 0xAF, 0x8D };
 
 int Xapian::InternalStemTamil::r_has_min_length() {
     if (!(len_utf8(p) > 4)) return 0;
@@ -790,74 +941,34 @@ int Xapian::InternalStemTamil::r_has_min_length() {
 }
 
 int Xapian::InternalStemTamil::r_fix_va_start() {
-    {   int c1 = c;
-        {   int c2 = c;
-            {   int c3 = c;
-                if (!(eq_s(6, s_0))) { c = c3; goto lab2; }
-            lab2:
-                ;
+    int among_var;
+    bra = c;
+    if (c + 5 >= l || p[c + 5] >> 5 != 4 || !((3078 >> (p[c + 5] & 0x1f)) & 1)) return 0;
+    among_var = find_among(s_pool, a_0, 4, 0, 0);
+    if (!(among_var)) return 0;
+    ket = c;
+    switch (among_var) {
+        case 1:
+            {   int ret = slice_from_s(3, s_0);
+                if (ret < 0) return ret;
             }
-            c = c2;
-            bra = c;
-        }
-        if (!(eq_s(6, s_1))) goto lab1;
-        ket = c;
-        {   int ret = slice_from_s(3, s_2);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab1:
-        c = c1;
-        {   int c4 = c;
-            {   int c5 = c;
-                if (!(eq_s(6, s_3))) { c = c5; goto lab4; }
-            lab4:
-                ;
+            break;
+        case 2:
+            {   int ret = slice_from_s(3, s_1);
+                if (ret < 0) return ret;
             }
-            c = c4;
-            bra = c;
-        }
-        if (!(eq_s(6, s_4))) goto lab3;
-        ket = c;
-        {   int ret = slice_from_s(3, s_5);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab3:
-        c = c1;
-        {   int c6 = c;
-            {   int c7 = c;
-                if (!(eq_s(6, s_6))) { c = c7; goto lab6; }
-            lab6:
-                ;
+            break;
+        case 3:
+            {   int ret = slice_from_s(3, s_2);
+                if (ret < 0) return ret;
             }
-            c = c6;
-            bra = c;
-        }
-        if (!(eq_s(6, s_7))) goto lab5;
-        ket = c;
-        {   int ret = slice_from_s(3, s_8);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab5:
-        c = c1;
-        {   int c8 = c;
-            {   int c9 = c;
-                if (!(eq_s(6, s_9))) { c = c9; goto lab7; }
-            lab7:
-                ;
+            break;
+        case 4:
+            {   int ret = slice_from_s(3, s_3);
+                if (ret < 0) return ret;
             }
-            c = c8;
-            bra = c;
-        }
-        if (!(eq_s(6, s_10))) return 0;
-        ket = c;
-        {   int ret = slice_from_s(3, s_11);
-            if (ret < 0) return ret;
-        }
+            break;
     }
-lab0:
     return 1;
 }
 
@@ -881,9 +992,9 @@ int Xapian::InternalStemTamil::r_fix_endings() {
 
 int Xapian::InternalStemTamil::r_remove_question_prefixes() {
     bra = c;
-    if (!(eq_s(3, s_12))) return 0;
-    if (!(find_among(s_pool, a_0, 10, 0, 0))) return 0;
-    if (!(eq_s(3, s_13))) return 0;
+    if (!(eq_s(3, s_4))) return 0;
+    if (!(find_among(s_pool, a_1, 10, 0, 0))) return 0;
+    if (!(eq_s(3, s_5))) return 0;
     ket = c;
     {   int ret = slice_del();
         if (ret < 0) return ret;
@@ -898,233 +1009,131 @@ int Xapian::InternalStemTamil::r_remove_question_prefixes() {
 }
 
 int Xapian::InternalStemTamil::r_fix_ending() {
+    int among_var;
     if (!(len_utf8(p) > 3)) return 0;
     lb = c; c = l;
 
     {   int m1 = l - c; (void)m1;
         ket = c;
-        if (c - 5 <= lb || (p[c - 1] != 141 && p[c - 1] != 164)) goto lab1;
-        if (!(find_among_b(s_pool, a_1, 3, 0, 0))) goto lab1;
+        among_var = find_among_b(s_pool, a_5, 17, 0, 0);
+        if (!(among_var)) goto lab1;
         bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
+        switch (among_var) {
+            case 1:
+                {   int ret = slice_del();
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 2:
+                {   int m_test2 = l - c;
+                    if (!(find_among_b(s_pool, a_2, 3, 0, 0))) goto lab1;
+                    c = l - m_test2;
+                }
+                {   int ret = slice_del();
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 3:
+                {   int ret = slice_from_s(6, s_6);
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 4:
+                {   int ret = slice_from_s(6, s_7);
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 5:
+                {   int ret = slice_from_s(6, s_8);
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 6:
+                if (!(I_found_vetrumai_urupu)) goto lab1;
+                {   int m3 = l - c; (void)m3;
+                    if (!(eq_s_b(3, s_9))) goto lab2;
+                    goto lab1;
+                lab2:
+                    c = l - m3;
+                }
+                {   int ret = slice_from_s(6, s_10);
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 7:
+                {   int ret = slice_from_s(3, s_11);
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 8:
+                {   int m4 = l - c; (void)m4;
+                    if (!(find_among_b(s_pool, a_3, 8, 0, 0))) goto lab3;
+                    goto lab1;
+                lab3:
+                    c = l - m4;
+                }
+                {   int ret = slice_del();
+                    if (ret < 0) return ret;
+                }
+                break;
+            case 9:
+                if (c - 2 <= lb || (p[c - 1] != 136 && p[c - 1] != 141)) among_var = 2; else
+                among_var = find_among_b(s_pool, a_4, 3, 0, 0);
+                if (!(among_var)) goto lab1;
+                switch (among_var) {
+                    case 1:
+                        {   int ret = slice_del();
+                            if (ret < 0) return ret;
+                        }
+                        break;
+                    case 2:
+                        {   int ret = slice_from_s(6, s_12);
+                            if (ret < 0) return ret;
+                        }
+                        break;
+                }
+                break;
         }
         goto lab0;
     lab1:
         c = l - m1;
         ket = c;
-        if (!(eq_s_b(6, s_14))) goto lab2;
-        {   int m_test2 = l - c;
-            if (!(find_among_b(s_pool, a_2, 3, 0, 0))) goto lab2;
-            c = l - m_test2;
-        }
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab2:
-        c = l - m1;
-        ket = c;
-        {   int m3 = l - c; (void)m3;
-            if (!(eq_s_b(12, s_15))) goto lab5;
+        if (!(eq_s_b(3, s_13))) return 0;
+        {   int m5 = l - c; (void)m5;
+            if (!(find_among_b(s_pool, a_6, 6, 0, 0))) goto lab5;
+            {   int m6 = l - c; (void)m6;
+                if (!(eq_s_b(3, s_14))) { c = l - m6; goto lab6; }
+                if (!(find_among_b(s_pool, a_7, 6, 0, 0))) { c = l - m6; goto lab6; }
+            lab6:
+                ;
+            }
+            bra = c;
+            {   int ret = slice_del();
+                if (ret < 0) return ret;
+            }
             goto lab4;
         lab5:
-            c = l - m3;
-            if (!(eq_s_b(12, s_16))) goto lab3;
+            c = l - m5;
+            if (!(find_among_b(s_pool, a_8, 11, 0, 0))) goto lab7;
+            bra = c;
+            if (!(eq_s_b(3, s_15))) goto lab7;
+            {   int ret = slice_del();
+                if (ret < 0) return ret;
+            }
+            goto lab4;
+        lab7:
+            c = l - m5;
+            {   int m_test7 = l - c;
+                if (!(find_among_b(s_pool, a_9, 9, 0, 0))) return 0;
+                c = l - m_test7;
+            }
+            bra = c;
+            {   int ret = slice_del();
+                if (ret < 0) return ret;
+            }
         }
     lab4:
-        bra = c;
-        {   int ret = slice_from_s(6, s_17);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab3:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(12, s_18))) goto lab6;
-        bra = c;
-        {   int ret = slice_from_s(6, s_19);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab6:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(12, s_20))) goto lab7;
-        bra = c;
-        {   int ret = slice_from_s(6, s_21);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab7:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(12, s_22))) goto lab8;
-        bra = c;
-        {   int ret = slice_from_s(6, s_23);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab8:
-        c = l - m1;
-        if (!(I_found_vetrumai_urupu)) goto lab9;
-        ket = c;
-        if (!(eq_s_b(12, s_24))) goto lab9;
-        {   int m_test4 = l - c;
-            {   int m5 = l - c; (void)m5;
-                if (!(eq_s_b(3, s_25))) goto lab10;
-                goto lab9;
-            lab10:
-                c = l - m5;
-            }
-            c = l - m_test4;
-        }
-        bra = c;
-        {   int ret = slice_from_s(6, s_26);
-            if (ret < 0) return ret;
-        }
-        bra = c;
-        goto lab0;
-    lab9:
-        c = l - m1;
-        ket = c;
-        {   int m6 = l - c; (void)m6;
-            if (!(eq_s_b(9, s_27))) goto lab13;
-            goto lab12;
-        lab13:
-            c = l - m6;
-            if (!(eq_s_b(15, s_28))) goto lab11;
-        }
-    lab12:
-        bra = c;
-        {   int ret = slice_from_s(3, s_29);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab11:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(3, s_30))) goto lab14;
-        if (!(find_among_b(s_pool, a_3, 6, 0, 0))) goto lab14;
-        if (!(eq_s_b(3, s_31))) goto lab14;
-        if (!(find_among_b(s_pool, a_4, 6, 0, 0))) goto lab14;
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab14:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(9, s_32))) goto lab15;
-        bra = c;
-        {   int ret = slice_from_s(3, s_33);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab15:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(3, s_34))) goto lab16;
-        if (!(find_among_b(s_pool, a_5, 6, 0, 0))) goto lab16;
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab16:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(3, s_35))) goto lab17;
-        {   int m7 = l - c; (void)m7;
-            if (c - 2 <= lb || p[c - 1] >> 5 != 5 || !((4030464 >> (p[c - 1] & 0x1f)) & 1)) goto lab19;
-            if (!(find_among_b(s_pool, a_6, 6, 0, 0))) goto lab19;
-            goto lab18;
-        lab19:
-            c = l - m7;
-            if (!(find_among_b(s_pool, a_7, 6, 0, 0))) goto lab17;
-        }
-    lab18:
-        if (!(eq_s_b(3, s_36))) goto lab17;
-        bra = c;
-        {   int ret = slice_from_s(3, s_37);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab17:
-        c = l - m1;
-        ket = c;
-        if (!(find_among_b(s_pool, a_8, 3, 0, 0))) goto lab20;
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab20:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(6, s_38))) goto lab21;
-        {   int m_test8 = l - c;
-            {   int m9 = l - c; (void)m9;
-                if (!(find_among_b(s_pool, a_9, 8, 0, 0))) goto lab22;
-                goto lab21;
-            lab22:
-                c = l - m9;
-            }
-            c = l - m_test8;
-        }
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab21:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(6, s_39))) goto lab23;
-        {   int m_test10 = l - c;
-            {   int m11 = l - c; (void)m11;
-                if (!(eq_s_b(3, s_40))) goto lab24;
-                goto lab23;
-            lab24:
-                c = l - m11;
-            }
-            c = l - m_test10;
-        }
-        bra = c;
-        {   int ret = slice_from_s(6, s_41);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab23:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(6, s_42))) goto lab25;
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab25:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(3, s_43))) return 0;
-        {   int m_test12 = l - c;
-            {   int m13 = l - c; (void)m13;
-                if (!(find_among_b(s_pool, a_10, 8, 0, 0))) goto lab27;
-                goto lab26;
-            lab27:
-                c = l - m13;
-                if (!(eq_s_b(3, s_44))) return 0;
-            }
-        lab26:
-            c = l - m_test12;
-        }
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
+        ;
     }
 lab0:
     c = lb;
@@ -1132,17 +1141,15 @@ lab0:
 }
 
 int Xapian::InternalStemTamil::r_remove_pronoun_prefixes() {
-    I_found_a_match = 0;
     bra = c;
     if (c + 2 >= l || p[c + 2] >> 5 != 4 || !((672 >> (p[c + 2] & 0x1f)) & 1)) return 0;
-    if (!(find_among(s_pool, a_11, 3, 0, 0))) return 0;
-    if (!(find_among(s_pool, a_12, 10, 0, 0))) return 0;
-    if (!(eq_s(3, s_45))) return 0;
+    if (!(find_among(s_pool, a_10, 3, 0, 0))) return 0;
+    if (!(find_among(s_pool, a_11, 10, 0, 0))) return 0;
+    if (!(eq_s(3, s_16))) return 0;
     ket = c;
     {   int ret = slice_del();
         if (ret < 0) return ret;
     }
-    I_found_a_match = 1;
     {   int c1 = c;
         {   int ret = r_fix_va_start();
             if (ret < 0) return ret;
@@ -1153,55 +1160,46 @@ int Xapian::InternalStemTamil::r_remove_pronoun_prefixes() {
 }
 
 int Xapian::InternalStemTamil::r_remove_plural_suffix() {
-    I_found_a_match = 0;
+    int among_var;
     lb = c; c = l;
 
-    {   int m1 = l - c; (void)m1;
-        ket = c;
-        if (!(eq_s_b(18, s_46))) goto lab1;
-        {   int m_test2 = l - c;
-            {   int m3 = l - c; (void)m3;
-                if (!(find_among_b(s_pool, a_13, 6, 0, 0))) goto lab2;
-                goto lab1;
-            lab2:
-                c = l - m3;
+    ket = c;
+    if (c - 8 <= lb || p[c - 1] != 141) return 0;
+    among_var = find_among_b(s_pool, a_13, 4, 0, 0);
+    if (!(among_var)) return 0;
+    bra = c;
+    switch (among_var) {
+        case 1:
+            {   int m1 = l - c; (void)m1;
+                if (!(find_among_b(s_pool, a_12, 6, 0, 0))) goto lab1;
+                {   int ret = slice_from_s(9, s_17);
+                    if (ret < 0) return ret;
+                }
+                goto lab0;
+            lab1:
+                c = l - m1;
+                {   int ret = slice_from_s(3, s_18);
+                    if (ret < 0) return ret;
+                }
             }
-            c = l - m_test2;
-        }
-        bra = c;
-        {   int ret = slice_from_s(3, s_47);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab1:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(15, s_48))) goto lab3;
-        bra = c;
-        {   int ret = slice_from_s(6, s_49);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab3:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(15, s_50))) goto lab4;
-        bra = c;
-        {   int ret = slice_from_s(6, s_51);
-            if (ret < 0) return ret;
-        }
-        goto lab0;
-    lab4:
-        c = l - m1;
-        ket = c;
-        if (!(eq_s_b(9, s_52))) return 0;
-        bra = c;
-        {   int ret = slice_del();
-            if (ret < 0) return ret;
-        }
+        lab0:
+            break;
+        case 2:
+            {   int ret = slice_from_s(6, s_19);
+                if (ret < 0) return ret;
+            }
+            break;
+        case 3:
+            {   int ret = slice_from_s(6, s_20);
+                if (ret < 0) return ret;
+            }
+            break;
+        case 4:
+            {   int ret = slice_del();
+                if (ret < 0) return ret;
+            }
+            break;
     }
-lab0:
-    I_found_a_match = 1;
     c = lb;
     return 1;
 }
@@ -1210,17 +1208,15 @@ int Xapian::InternalStemTamil::r_remove_question_suffixes() {
     {   int ret = r_has_min_length();
         if (ret <= 0) return ret;
     }
-    I_found_a_match = 0;
     lb = c; c = l;
 
     {   int m1 = l - c; (void)m1;
         ket = c;
         if (!(find_among_b(s_pool, a_14, 3, 0, 0))) goto lab0;
         bra = c;
-        {   int ret = slice_from_s(3, s_53);
+        {   int ret = slice_from_s(3, s_21);
             if (ret < 0) return ret;
         }
-        I_found_a_match = 1;
     lab0:
         c = l - m1;
     }
@@ -1236,7 +1232,6 @@ int Xapian::InternalStemTamil::r_remove_command_suffixes() {
     {   int ret = r_has_min_length();
         if (ret <= 0) return ret;
     }
-    I_found_a_match = 0;
     lb = c; c = l;
 
     ket = c;
@@ -1246,25 +1241,22 @@ int Xapian::InternalStemTamil::r_remove_command_suffixes() {
     {   int ret = slice_del();
         if (ret < 0) return ret;
     }
-    I_found_a_match = 1;
     c = lb;
     return 1;
 }
 
 int Xapian::InternalStemTamil::r_remove_um() {
-    I_found_a_match = 0;
     {   int ret = r_has_min_length();
         if (ret <= 0) return ret;
     }
     lb = c; c = l;
 
     ket = c;
-    if (!(eq_s_b(9, s_54))) return 0;
+    if (!(eq_s_b(9, s_22))) return 0;
     bra = c;
-    {   int ret = slice_from_s(3, s_55);
+    {   int ret = slice_from_s(3, s_23);
         if (ret < 0) return ret;
     }
-    I_found_a_match = 1;
     c = lb;
     {   int c1 = c;
         {   int ret = r_fix_ending();
@@ -1276,102 +1268,39 @@ int Xapian::InternalStemTamil::r_remove_um() {
 }
 
 int Xapian::InternalStemTamil::r_remove_common_word_endings() {
-    I_found_a_match = 0;
+    int among_var;
     {   int ret = r_has_min_length();
         if (ret <= 0) return ret;
     }
     lb = c; c = l;
 
-    {   int m1 = l - c; (void)m1;
-        {   int m_test2 = l - c;
-            ket = c;
-            {   int m3 = l - c; (void)m3;
-                if (!(eq_s_b(12, s_56))) goto lab3;
-                goto lab2;
-            lab3:
-                c = l - m3;
-                if (!(eq_s_b(15, s_57))) goto lab4;
-                goto lab2;
-            lab4:
-                c = l - m3;
-                if (!(eq_s_b(12, s_58))) goto lab5;
-                goto lab2;
-            lab5:
-                c = l - m3;
-                if (!(eq_s_b(15, s_59))) goto lab6;
-                goto lab2;
-            lab6:
-                c = l - m3;
-                if (!(eq_s_b(9, s_60))) goto lab7;
-                goto lab2;
-            lab7:
-                c = l - m3;
-                if (!(eq_s_b(12, s_61))) goto lab8;
-                goto lab2;
-            lab8:
-                c = l - m3;
-                if (!(eq_s_b(15, s_62))) goto lab9;
-                goto lab2;
-            lab9:
-                c = l - m3;
-                if (!(eq_s_b(12, s_63))) goto lab10;
-                goto lab2;
-            lab10:
-                c = l - m3;
-                if (!(eq_s_b(12, s_64))) goto lab11;
-                goto lab2;
-            lab11:
-                c = l - m3;
-                if (!(eq_s_b(9, s_65))) goto lab12;
-                goto lab2;
-            lab12:
-                c = l - m3;
-                if (!(eq_s_b(15, s_66))) goto lab13;
-                goto lab2;
-            lab13:
-                c = l - m3;
-                if (!(eq_s_b(9, s_67))) goto lab14;
-                {   int m_test4 = l - c;
-                    {   int m5 = l - c; (void)m5;
-                        if (!(find_among_b(s_pool, a_16, 8, 0, 0))) goto lab15;
-                        goto lab14;
-                    lab15:
-                        c = l - m5;
-                    }
-                    c = l - m_test4;
-                }
-                goto lab2;
-            lab14:
-                c = l - m3;
-                if (!(eq_s_b(6, s_68))) goto lab16;
-                goto lab2;
-            lab16:
-                c = l - m3;
-                if (!(eq_s_b(9, s_69))) goto lab1;
-            }
-        lab2:
-            bra = c;
-            {   int ret = slice_from_s(3, s_70);
+    ket = c;
+    among_var = find_among_b(s_pool, a_17, 26, 0, 0);
+    if (!(among_var)) return 0;
+    bra = c;
+    switch (among_var) {
+        case 1:
+            {   int ret = slice_from_s(3, s_24);
                 if (ret < 0) return ret;
             }
-            I_found_a_match = 1;
-            c = l - m_test2;
-        }
-        goto lab0;
-    lab1:
-        c = l - m1;
-        {   int m_test6 = l - c;
-            ket = c;
-            if (!(find_among_b(s_pool, a_17, 13, 0, 0))) return 0;
-            bra = c;
+            break;
+        case 2:
+            {   int m1 = l - c; (void)m1;
+                if (!(find_among_b(s_pool, a_16, 8, 0, 0))) goto lab0;
+                return 0;
+            lab0:
+                c = l - m1;
+            }
+            {   int ret = slice_from_s(3, s_25);
+                if (ret < 0) return ret;
+            }
+            break;
+        case 3:
             {   int ret = slice_del();
                 if (ret < 0) return ret;
             }
-            I_found_a_match = 1;
-            c = l - m_test6;
-        }
+            break;
     }
-lab0:
     c = lb;
     
     {   int ret = r_fix_endings();
@@ -1381,7 +1310,7 @@ lab0:
 }
 
 int Xapian::InternalStemTamil::r_remove_vetrumai_urupukal() {
-    I_found_a_match = 0;
+    int among_var;
     I_found_vetrumai_urupu = 0;
     {   int ret = r_has_min_length();
         if (ret <= 0) return ret;
@@ -1391,212 +1320,109 @@ int Xapian::InternalStemTamil::r_remove_vetrumai_urupukal() {
     {   int m1 = l - c; (void)m1;
         {   int m_test2 = l - c;
             ket = c;
-            if (!(eq_s_b(6, s_71))) goto lab1;
+            if (c - 2 <= lb || p[c - 1] >> 5 != 4 || !((-2147475197 >> (p[c - 1] & 0x1f)) & 1)) goto lab1;
+            among_var = find_among_b(s_pool, a_20, 22, 0, 0);
+            if (!(among_var)) goto lab1;
             bra = c;
-            {   int ret = slice_del();
-                if (ret < 0) return ret;
+            switch (among_var) {
+                case 1:
+                    {   int ret = slice_del();
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 2:
+                    {   int ret = slice_from_s(3, s_26);
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 3:
+                    {   int m3 = l - c; (void)m3;
+                        if (!(eq_s_b(3, s_27))) goto lab2;
+                        goto lab1;
+                    lab2:
+                        c = l - m3;
+                    }
+                    {   int ret = slice_from_s(3, s_28);
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 4:
+                    if (!(len_utf8(p) >= 7)) goto lab1;
+                    {   int ret = slice_from_s(3, s_29);
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 5:
+                    {   int m4 = l - c; (void)m4;
+                        if (!(find_among_b(s_pool, a_18, 8, 0, 0))) goto lab3;
+                        goto lab1;
+                    lab3:
+                        c = l - m4;
+                    }
+                    {   int ret = slice_from_s(3, s_30);
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 6:
+                    {   int m5 = l - c; (void)m5;
+                        if (!(find_among_b(s_pool, a_19, 8, 0, 0))) goto lab4;
+                        goto lab1;
+                    lab4:
+                        c = l - m5;
+                    }
+                    {   int ret = slice_del();
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 7:
+                    {   int ret = slice_from_s(3, s_31);
+                        if (ret < 0) return ret;
+                    }
+                    break;
             }
             c = l - m_test2;
         }
         goto lab0;
     lab1:
         c = l - m1;
-        {   int m_test3 = l - c;
+        {   int m_test6 = l - c;
             ket = c;
-            {   int m4 = l - c; (void)m4;
-                {   int m5 = l - c; (void)m5;
-                    if (!(eq_s_b(9, s_72))) goto lab6;
-                    goto lab5;
-                lab6:
-                    c = l - m5;
-                    if (!(eq_s_b(3, s_73))) goto lab4;
+            if (!(eq_s_b(3, s_32))) return 0;
+            {   int m7 = l - c; (void)m7;
+                {   int m8 = l - c; (void)m8;
+                    if (!(find_among_b(s_pool, a_21, 6, 0, 0))) goto lab7;
+                    goto lab6;
+                lab7:
+                    c = l - m8;
                 }
-            lab5:
-                {   int m_test6 = l - c;
-                    {   int m7 = l - c; (void)m7;
-                        if (!(find_among_b(s_pool, a_18, 6, 0, 0))) goto lab7;
-                        goto lab4;
-                    lab7:
-                        c = l - m7;
-                    }
-                    c = l - m_test6;
-                }
-                goto lab3;
-            lab4:
-                c = l - m4;
-                if (!(eq_s_b(3, s_74))) goto lab2;
-                {   int m_test8 = l - c;
-                    if (!(find_among_b(s_pool, a_19, 6, 0, 0))) goto lab2;
-                    if (!(eq_s_b(3, s_75))) goto lab2;
-                    c = l - m_test8;
+                goto lab5;
+            lab6:
+                c = l - m7;
+                {   int m_test9 = l - c;
+                    if (!(find_among_b(s_pool, a_22, 6, 0, 0))) return 0;
+                    if (!(eq_s_b(3, s_33))) return 0;
+                    c = l - m_test9;
                 }
             }
-        lab3:
+        lab5:
             bra = c;
-            {   int ret = slice_from_s(3, s_76);
+            {   int ret = slice_from_s(3, s_34);
                 if (ret < 0) return ret;
             }
-            c = l - m_test3;
-        }
-        goto lab0;
-    lab2:
-        c = l - m1;
-        {   int m_test9 = l - c;
-            ket = c;
-            {   int m10 = l - c; (void)m10;
-                if (!(eq_s_b(9, s_77))) goto lab10;
-                goto lab9;
-            lab10:
-                c = l - m10;
-                if (!(eq_s_b(9, s_78))) goto lab11;
-                goto lab9;
-            lab11:
-                c = l - m10;
-                if (!(eq_s_b(9, s_79))) goto lab12;
-                goto lab9;
-            lab12:
-                c = l - m10;
-                if (!(eq_s_b(9, s_80))) goto lab13;
-                goto lab9;
-            lab13:
-                c = l - m10;
-                if (!(eq_s_b(9, s_81))) goto lab14;
-                {   int m_test11 = l - c;
-                    {   int m12 = l - c; (void)m12;
-                        if (!(eq_s_b(3, s_82))) goto lab15;
-                        goto lab14;
-                    lab15:
-                        c = l - m12;
-                    }
-                    c = l - m_test11;
-                }
-                goto lab9;
-            lab14:
-                c = l - m10;
-                if (!(eq_s_b(15, s_83))) goto lab16;
-                goto lab9;
-            lab16:
-                c = l - m10;
-                if (!(eq_s_b(21, s_84))) goto lab17;
-                goto lab9;
-            lab17:
-                c = l - m10;
-                if (!(eq_s_b(9, s_85))) goto lab18;
-                goto lab9;
-            lab18:
-                c = l - m10;
-                if (!(len_utf8(p) >= 7)) goto lab19;
-                if (!(eq_s_b(12, s_86))) goto lab19;
-                goto lab9;
-            lab19:
-                c = l - m10;
-                if (!(eq_s_b(9, s_87))) goto lab20;
-                goto lab9;
-            lab20:
-                c = l - m10;
-                if (!(eq_s_b(9, s_88))) goto lab21;
-                goto lab9;
-            lab21:
-                c = l - m10;
-                if (!(eq_s_b(12, s_89))) goto lab22;
-                goto lab9;
-            lab22:
-                c = l - m10;
-                if (!(eq_s_b(6, s_90))) goto lab23;
-                {   int m_test13 = l - c;
-                    {   int m14 = l - c; (void)m14;
-                        if (!(find_among_b(s_pool, a_20, 8, 0, 0))) goto lab24;
-                        goto lab23;
-                    lab24:
-                        c = l - m14;
-                    }
-                    c = l - m_test13;
-                }
-                goto lab9;
-            lab23:
-                c = l - m10;
-                if (!(eq_s_b(9, s_91))) goto lab8;
-            }
-        lab9:
-            bra = c;
-            {   int ret = slice_from_s(3, s_92);
-                if (ret < 0) return ret;
-            }
-            c = l - m_test9;
-        }
-        goto lab0;
-    lab8:
-        c = l - m1;
-        {   int m_test15 = l - c;
-            ket = c;
-            {   int m16 = l - c; (void)m16;
-                if (!(eq_s_b(9, s_93))) goto lab27;
-                goto lab26;
-            lab27:
-                c = l - m16;
-                if (!(eq_s_b(12, s_94))) goto lab28;
-                goto lab26;
-            lab28:
-                c = l - m16;
-                if (!(eq_s_b(12, s_95))) goto lab29;
-                goto lab26;
-            lab29:
-                c = l - m16;
-                if (!(eq_s_b(12, s_96))) goto lab30;
-                goto lab26;
-            lab30:
-                c = l - m16;
-                if (!(eq_s_b(12, s_97))) goto lab31;
-                goto lab26;
-            lab31:
-                c = l - m16;
-                if (!(eq_s_b(12, s_98))) goto lab32;
-                goto lab26;
-            lab32:
-                c = l - m16;
-                if (!(eq_s_b(6, s_99))) goto lab25;
-                {   int m_test17 = l - c;
-                    {   int m18 = l - c; (void)m18;
-                        if (!(find_among_b(s_pool, a_21, 8, 0, 0))) goto lab33;
-                        goto lab25;
-                    lab33:
-                        c = l - m18;
-                    }
-                    c = l - m_test17;
-                }
-            }
-        lab26:
-            bra = c;
-            {   int ret = slice_del();
-                if (ret < 0) return ret;
-            }
-            c = l - m_test15;
-        }
-        goto lab0;
-    lab25:
-        c = l - m1;
-        {   int m_test19 = l - c;
-            ket = c;
-            if (!(eq_s_b(3, s_100))) return 0;
-            bra = c;
-            {   int ret = slice_from_s(3, s_101);
-                if (ret < 0) return ret;
-            }
-            c = l - m_test19;
+            c = l - m_test6;
         }
     }
 lab0:
-    I_found_a_match = 1;
     I_found_vetrumai_urupu = 1;
-    {   int m20 = l - c; (void)m20;
+    {   int m10 = l - c; (void)m10;
         ket = c;
-        if (!(eq_s_b(9, s_102))) goto lab34;
+        if (!(eq_s_b(9, s_35))) goto lab8;
         bra = c;
-        {   int ret = slice_from_s(3, s_103);
+        {   int ret = slice_from_s(3, s_36);
             if (ret < 0) return ret;
         }
-    lab34:
-        c = l - m20;
+    lab8:
+        c = l - m10;
     }
     c = lb;
     
@@ -1626,6 +1452,7 @@ int Xapian::InternalStemTamil::r_remove_tense_suffixes() {
 }
 
 int Xapian::InternalStemTamil::r_remove_tense_suffix() {
+    int among_var;
     I_found_a_match = 0;
     {   int ret = r_has_min_length();
         if (ret <= 0) return ret;
@@ -1633,298 +1460,83 @@ int Xapian::InternalStemTamil::r_remove_tense_suffix() {
     lb = c; c = l;
 
     {   int m1 = l - c; (void)m1;
-        {   int m2 = l - c; (void)m2;
-            {   int m_test3 = l - c;
-                ket = c;
-                if (c - 8 <= lb || (p[c - 1] != 129 && p[c - 1] != 141)) goto lab2;
-                if (!(find_among_b(s_pool, a_22, 2, 0, 0))) goto lab2;
-                bra = c;
-                {   int ret = slice_del();
-                    if (ret < 0) return ret;
-                }
-                I_found_a_match = 1;
-                c = l - m_test3;
-            }
-            goto lab1;
-        lab2:
-            c = l - m2;
-            {   int m_test4 = l - c;
-                ket = c;
-                {   int m5 = l - c; (void)m5;
-                    if (!(eq_s_b(12, s_104))) goto lab5;
-                    goto lab4;
-                lab5:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_105))) goto lab6;
-                    goto lab4;
-                lab6:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_106))) goto lab7;
-                    goto lab4;
-                lab7:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_107))) goto lab8;
-                    goto lab4;
-                lab8:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_108))) goto lab9;
-                    goto lab4;
-                lab9:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_109))) goto lab10;
-                    goto lab4;
-                lab10:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_110))) goto lab11;
+        {   int m_test2 = l - c;
+            ket = c;
+            among_var = find_among_b(s_pool, a_25, 46, 0, 0);
+            if (!(among_var)) goto lab0;
+            bra = c;
+            switch (among_var) {
+                case 1:
+                    {   int ret = slice_del();
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 2:
+                    {   int m3 = l - c; (void)m3;
+                        if (c - 2 <= lb || p[c - 1] >> 5 != 4 || !((1951712 >> (p[c - 1] & 0x1f)) & 1)) goto lab1;
+                        if (!(find_among_b(s_pool, a_23, 12, 0, 0))) goto lab1;
+                        goto lab0;
+                    lab1:
+                        c = l - m3;
+                    }
+                    {   int ret = slice_del();
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 3:
+                    {   int m4 = l - c; (void)m4;
+                        if (!(find_among_b(s_pool, a_24, 8, 0, 0))) goto lab2;
+                        goto lab0;
+                    lab2:
+                        c = l - m4;
+                    }
+                    {   int ret = slice_del();
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 4:
+                    {   int m5 = l - c; (void)m5;
+                        if (!(eq_s_b(3, s_37))) goto lab3;
+                        goto lab0;
+                    lab3:
+                        c = l - m5;
+                    }
+                    {   int ret = slice_from_s(3, s_38);
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 5:
+                    {   int ret = slice_from_s(3, s_39);
+                        if (ret < 0) return ret;
+                    }
+                    break;
+                case 6:
                     {   int m_test6 = l - c;
-                        {   int m7 = l - c; (void)m7;
-                            if (c - 2 <= lb || p[c - 1] >> 5 != 4 || !((1951712 >> (p[c - 1] & 0x1f)) & 1)) goto lab12;
-                            if (!(find_among_b(s_pool, a_23, 12, 0, 0))) goto lab12;
-                            goto lab11;
-                        lab12:
-                            c = l - m7;
-                        }
+                        if (!(eq_s_b(3, s_40))) goto lab0;
                         c = l - m_test6;
                     }
-                    goto lab4;
-                lab11:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_111))) goto lab13;
-                    goto lab4;
-                lab13:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_112))) goto lab14;
-                    goto lab4;
-                lab14:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_113))) goto lab15;
-                    goto lab4;
-                lab15:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_114))) goto lab16;
-                    goto lab4;
-                lab16:
-                    c = l - m5;
-                    if (!(eq_s_b(3, s_115))) goto lab17;
-                    goto lab4;
-                lab17:
-                    c = l - m5;
-                    if (!(eq_s_b(3, s_116))) goto lab18;
-                    goto lab4;
-                lab18:
-                    c = l - m5;
-                    if (!(eq_s_b(3, s_117))) goto lab19;
-                    goto lab4;
-                lab19:
-                    c = l - m5;
-                    if (!(eq_s_b(3, s_118))) goto lab20;
-                    goto lab4;
-                lab20:
-                    c = l - m5;
-                    if (!(eq_s_b(3, s_119))) goto lab21;
-                    goto lab4;
-                lab21:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_120))) goto lab22;
-                    goto lab4;
-                lab22:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_121))) goto lab23;
-                    goto lab4;
-                lab23:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_122))) goto lab24;
-                    goto lab4;
-                lab24:
-                    c = l - m5;
-                    if (!(eq_s_b(6, s_123))) goto lab25;
-                    {   int m_test8 = l - c;
-                        {   int m9 = l - c; (void)m9;
-                            if (!(find_among_b(s_pool, a_24, 8, 0, 0))) goto lab26;
-                            goto lab25;
-                        lab26:
-                            c = l - m9;
-                        }
-                        c = l - m_test8;
+                    {   int ret = slice_del();
+                        if (ret < 0) return ret;
                     }
-                    goto lab4;
-                lab25:
-                    c = l - m5;
-                    if (!(eq_s_b(15, s_124))) goto lab27;
-                    goto lab4;
-                lab27:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_125))) goto lab28;
-                    goto lab4;
-                lab28:
-                    c = l - m5;
-                    if (!(eq_s_b(9, s_126))) goto lab29;
-                    goto lab4;
-                lab29:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_127))) goto lab30;
-                    goto lab4;
-                lab30:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_128))) goto lab31;
-                    goto lab4;
-                lab31:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_129))) goto lab32;
-                    goto lab4;
-                lab32:
-                    c = l - m5;
-                    if (!(eq_s_b(12, s_130))) goto lab33;
-                    goto lab4;
-                lab33:
-                    c = l - m5;
-                    if (!(eq_s_b(6, s_131))) goto lab34;
-                    goto lab4;
-                lab34:
-                    c = l - m5;
-                    if (!(eq_s_b(6, s_132))) goto lab3;
-                }
-            lab4:
-                bra = c;
-                {   int ret = slice_del();
-                    if (ret < 0) return ret;
-                }
-                I_found_a_match = 1;
-                c = l - m_test4;
+                    break;
             }
-            goto lab1;
-        lab3:
-            c = l - m2;
-            {   int m_test10 = l - c;
-                ket = c;
-                {   int m11 = l - c; (void)m11;
-                    if (!(eq_s_b(9, s_133))) goto lab37;
-                    {   int m_test12 = l - c;
-                        {   int m13 = l - c; (void)m13;
-                            if (!(eq_s_b(3, s_134))) goto lab38;
-                            goto lab37;
-                        lab38:
-                            c = l - m13;
-                        }
-                        c = l - m_test12;
-                    }
-                    goto lab36;
-                lab37:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_135))) goto lab39;
-                    goto lab36;
-                lab39:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_136))) goto lab40;
-                    goto lab36;
-                lab40:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_137))) goto lab41;
-                    goto lab36;
-                lab41:
-                    c = l - m11;
-                    if (!(eq_s_b(3, s_138))) goto lab42;
-                    goto lab36;
-                lab42:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_139))) goto lab43;
-                    goto lab36;
-                lab43:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_140))) goto lab44;
-                    goto lab36;
-                lab44:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_141))) goto lab45;
-                    goto lab36;
-                lab45:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_142))) goto lab46;
-                    goto lab36;
-                lab46:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_143))) goto lab47;
-                    goto lab36;
-                lab47:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_144))) goto lab48;
-                    goto lab36;
-                lab48:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_145))) goto lab49;
-                    goto lab36;
-                lab49:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_146))) goto lab50;
-                    goto lab36;
-                lab50:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_147))) goto lab51;
-                    goto lab36;
-                lab51:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_148))) goto lab52;
-                    goto lab36;
-                lab52:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_149))) goto lab53;
-                    goto lab36;
-                lab53:
-                    c = l - m11;
-                    if (!(eq_s_b(9, s_150))) goto lab54;
-                    goto lab36;
-                lab54:
-                    c = l - m11;
-                    if (!(eq_s_b(12, s_151))) goto lab35;
-                }
-            lab36:
-                bra = c;
-                {   int ret = slice_from_s(3, s_152);
-                    if (ret < 0) return ret;
-                }
-                I_found_a_match = 1;
-                c = l - m_test10;
-            }
-            goto lab1;
-        lab35:
-            c = l - m2;
-            {   int m_test14 = l - c;
-                ket = c;
-                {   int m15 = l - c; (void)m15;
-                    if (!(eq_s_b(6, s_153))) goto lab56;
-                    goto lab55;
-                lab56:
-                    c = l - m15;
-                    if (!(eq_s_b(6, s_154))) goto lab0;
-                }
-            lab55:
-                {   int m_test16 = l - c;
-                    if (!(eq_s_b(3, s_155))) goto lab0;
-                    c = l - m_test16;
-                }
-                bra = c;
-                {   int ret = slice_del();
-                    if (ret < 0) return ret;
-                }
-                I_found_a_match = 1;
-                c = l - m_test14;
-            }
+            I_found_a_match = 1;
+            c = l - m_test2;
         }
-    lab1:
     lab0:
         c = l - m1;
     }
-    {   int m17 = l - c; (void)m17;
+    {   int m7 = l - c; (void)m7;
         ket = c;
-        if (c - 8 <= lb || (p[c - 1] != 141 && p[c - 1] != 177)) goto lab57;
-        if (!(find_among_b(s_pool, a_25, 6, 0, 0))) goto lab57;
+        if (c - 8 <= lb || (p[c - 1] != 141 && p[c - 1] != 177)) goto lab4;
+        if (!(find_among_b(s_pool, a_26, 6, 0, 0))) goto lab4;
         bra = c;
         {   int ret = slice_del();
             if (ret < 0) return ret;
         }
         I_found_a_match = 1;
-    lab57:
-        c = l - m17;
+    lab4:
+        c = l - m7;
     }
     c = lb;
     

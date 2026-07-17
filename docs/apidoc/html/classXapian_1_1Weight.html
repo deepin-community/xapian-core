@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">xapian-core
-   &#160;<span id="projectnumber">1.4.25</span>
+   &#160;<span id="projectnumber">1.4.29</span>
    </div>
   </td>
  </tr>
@@ -218,13 +218,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a88dd563e37f13c30075159ad58682f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">The within-query-frequency of this term. <br /></td></tr>
 <tr class="separator:a88dd563e37f13c30075159ad58682f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad26c71f5932cf020463a6566df03baa9" id="r_ad26c71f5932cf020463a6566df03baa9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceXapian.html#a4464380f6fa0055b5f26b8d03ae170e2">Xapian::termcount</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXapian_1_1Weight.html#ad26c71f5932cf020463a6566df03baa9">get_doclength_upper_bound</a> () const</td></tr>
-<tr class="memdesc:ad26c71f5932cf020463a6566df03baa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">An upper bound on the maximum length of any document in the database.  <br /></td></tr>
+<tr class="memdesc:ad26c71f5932cf020463a6566df03baa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">An upper bound on the maximum length of any document in the shard.  <br /></td></tr>
 <tr class="separator:ad26c71f5932cf020463a6566df03baa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a206b260ee9e90ebc5cc8de6f8fd6e2c5" id="r_a206b260ee9e90ebc5cc8de6f8fd6e2c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceXapian.html#a4464380f6fa0055b5f26b8d03ae170e2">Xapian::termcount</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXapian_1_1Weight.html#a206b260ee9e90ebc5cc8de6f8fd6e2c5">get_doclength_lower_bound</a> () const</td></tr>
-<tr class="memdesc:a206b260ee9e90ebc5cc8de6f8fd6e2c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A lower bound on the minimum length of any document in the database.  <br /></td></tr>
+<tr class="memdesc:a206b260ee9e90ebc5cc8de6f8fd6e2c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A lower bound on the minimum length of any document in the shard.  <br /></td></tr>
 <tr class="separator:a206b260ee9e90ebc5cc8de6f8fd6e2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff00a44dc04eae5864de75f319889433" id="r_aff00a44dc04eae5864de75f319889433"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceXapian.html#a4464380f6fa0055b5f26b8d03ae170e2">Xapian::termcount</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXapian_1_1Weight.html#aff00a44dc04eae5864de75f319889433">get_wdf_upper_bound</a> () const</td></tr>
-<tr class="memdesc:aff00a44dc04eae5864de75f319889433"><td class="mdescLeft">&#160;</td><td class="mdescRight">An upper bound on the wdf of this term.  <br /></td></tr>
+<tr class="memdesc:aff00a44dc04eae5864de75f319889433"><td class="mdescLeft">&#160;</td><td class="mdescRight">An upper bound on the wdf of this term in the shard.  <br /></td></tr>
 <tr class="separator:aff00a44dc04eae5864de75f319889433"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e532ba58b2617e23f440a4a168a67a9" id="r_a5e532ba58b2617e23f440a4a168a67a9"><td class="memItemLeft" align="right" valign="top"><a id="a5e532ba58b2617e23f440a4a168a67a9" name="a5e532ba58b2617e23f440a4a168a67a9"></a>
 <a class="el" href="namespaceXapian.html#ae3e1d1dd5c1307181b0bad1a689a5872">Xapian::totallength</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_total_length</b> () const</td></tr>
@@ -275,18 +275,21 @@ Protected Member Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479a92ac55fbe32f39c3b4cdcab135ac0722" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479a92ac55fbe32f39c3b4cdcab135ac0722"></a>DOC_LENGTH&#160;</td><td class="fielddoc"><p>Length of the current document (sum wdf). </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479ac9f88f7ca707347bcce2c1ad0abdf531" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479ac9f88f7ca707347bcce2c1ad0abdf531"></a>DOC_LENGTH_MIN&#160;</td><td class="fielddoc"><p>Lower bound on (non-zero) document lengths. </p>
+<p>This bound is for the current shard and is suitable for using to calculate upper bounds to return from <a class="el" href="classXapian_1_1Weight.html#a791cd50a4ab7f2c4f1d9786433033d79" title="Return an upper bound on what get_sumpart() can return for any document.">get_maxpart()</a> and <a class="el" href="classXapian_1_1Weight.html#a019d010275b6e8130a4c5c746fdf32a1" title="Return an upper bound on what get_sumextra() can return for any document.">get_maxextra()</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479a8f07b317ab1fca84d17cab78aa412e37" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479a8f07b317ab1fca84d17cab78aa412e37"></a>DOC_LENGTH_MAX&#160;</td><td class="fielddoc"><p>Upper bound on document lengths. </p>
+<p>This bound is for the current shard and is suitable for using to calculate upper bounds to return from <a class="el" href="classXapian_1_1Weight.html#a791cd50a4ab7f2c4f1d9786433033d79" title="Return an upper bound on what get_sumpart() can return for any document.">get_maxpart()</a> and <a class="el" href="classXapian_1_1Weight.html#a019d010275b6e8130a4c5c746fdf32a1" title="Return an upper bound on what get_sumextra() can return for any document.">get_maxextra()</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479abe608cc5dc83deef0f35c13a69aa15dc" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479abe608cc5dc83deef0f35c13a69aa15dc"></a>WDF_MAX&#160;</td><td class="fielddoc"><p>Upper bound on wdf. </p>
+<p>This bound is for the current shard and is suitable for using to calculate upper bounds to return from <a class="el" href="classXapian_1_1Weight.html#a791cd50a4ab7f2c4f1d9786433033d79" title="Return an upper bound on what get_sumpart() can return for any document.">get_maxpart()</a> and <a class="el" href="classXapian_1_1Weight.html#a019d010275b6e8130a4c5c746fdf32a1" title="Return an upper bound on what get_sumextra() can return for any document.">get_maxextra()</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479ad923b48160007ce82f9db96f4f44c700" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479ad923b48160007ce82f9db96f4f44c700"></a>COLLECTION_FREQ&#160;</td><td class="fielddoc"><p>Sum of wdf over the whole collection for the current term. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479a429d945066f46ee1449e1be35f897bf2" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479a429d945066f46ee1449e1be35f897bf2"></a>UNIQUE_TERMS&#160;</td><td class="fielddoc"><p>Number of unique terms in the current document. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ae3c11f1d2d96a18e0eb9b9b31c5c5479a5c50665a837865406b7aff847d0a07d7" name="ae3c11f1d2d96a18e0eb9b9b31c5c5479a5c50665a837865406b7aff847d0a07d7"></a>TOTAL_LENGTH&#160;</td><td class="fielddoc"><p>Sum of lengths of all documents in the collection. </p>
-<pre class="fragment">    This gives the total number of term occurrences.
-</pre> </td></tr>
+<p>This gives the total number of term occurrences. </p>
+</td></tr>
 </table>
 
 </div>
@@ -395,7 +398,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A lower bound on the minimum length of any document in the database. </p>
+<p>A lower bound on the minimum length of any document in the shard. </p>
 <p>This bound does not include any zero-length documents.</p>
 <p>This should only be used by <a class="el" href="classXapian_1_1Weight.html#a791cd50a4ab7f2c4f1d9786433033d79" title="Return an upper bound on what get_sumpart() can return for any document.">get_maxpart()</a> and <a class="el" href="classXapian_1_1Weight.html#a019d010275b6e8130a4c5c746fdf32a1" title="Return an upper bound on what get_sumextra() can return for any document.">get_maxextra()</a>. </p>
 
@@ -424,7 +427,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>An upper bound on the maximum length of any document in the database. </p>
+<p>An upper bound on the maximum length of any document in the shard. </p>
 <p>This should only be used by <a class="el" href="classXapian_1_1Weight.html#a791cd50a4ab7f2c4f1d9786433033d79" title="Return an upper bound on what get_sumpart() can return for any document.">get_maxpart()</a> and <a class="el" href="classXapian_1_1Weight.html#a019d010275b6e8130a4c5c746fdf32a1" title="Return an upper bound on what get_sumextra() can return for any document.">get_maxextra()</a>. </p>
 
 </div>
@@ -615,7 +618,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>An upper bound on the wdf of this term. </p>
+<p>An upper bound on the wdf of this term in the shard. </p>
 <p>This should only be used by <a class="el" href="classXapian_1_1Weight.html#a791cd50a4ab7f2c4f1d9786433033d79" title="Return an upper bound on what get_sumpart() can return for any document.">get_maxpart()</a> and <a class="el" href="classXapian_1_1Weight.html#a019d010275b6e8130a4c5c746fdf32a1" title="Return an upper bound on what get_sumextra() can return for any document.">get_maxextra()</a>. </p>
 
 </div>

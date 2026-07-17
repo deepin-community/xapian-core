@@ -31,17 +31,19 @@
 #include "internaltypes.h"
 #include "omassert.h"
 
+#include <algorithm>
 #include <map>
 #include <string>
 
 /// The frequencies for a term.
 struct TermFreqs {
-    Xapian::doccount termfreq;
-    Xapian::doccount reltermfreq;
-    Xapian::termcount collfreq;
-    double max_part;
+    Xapian::doccount termfreq = 0;
+    Xapian::doccount reltermfreq = 0;
+    Xapian::termcount collfreq = 0;
 
-    TermFreqs() : termfreq(0), reltermfreq(0), collfreq(0), max_part(0.0) {}
+    double max_part = 0.0;
+
+    TermFreqs() {}
     TermFreqs(Xapian::doccount termfreq_,
 	      Xapian::doccount reltermfreq_,
 	      Xapian::termcount collfreq_,
@@ -55,7 +57,9 @@ struct TermFreqs {
 	termfreq += other.termfreq;
 	reltermfreq += other.reltermfreq;
 	collfreq += other.collfreq;
-	max_part += other.max_part;
+	// max_part shouldn't be set yet.
+	Assert(max_part == 0.0);
+	Assert(other.max_part == 0.0);
     }
 
     /// Return a std::string describing this object.
@@ -215,11 +219,13 @@ class Weight::Internal {
 
     /// Set max_part for a term.
     void set_max_part(const std::string & term, double max_part) {
-	have_max_part = true;
 	Assert(!term.empty());
 	auto i = termfreqs.find(term);
-	if (i != termfreqs.end())
-	    i->second.max_part += max_part;
+	if (i != termfreqs.end()) {
+	    have_max_part = true;
+	    double& val = i->second.max_part;
+	    val = std::max(val, max_part);
+	}
     }
 
     Xapian::doclength get_average_length() const {

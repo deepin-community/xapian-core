@@ -202,12 +202,10 @@ static const symbol s_pool[] = {
 #define s_10_13 376
 's', 'k', 'i', 'e', 's',
 #define s_10_14 381
-'s', 'k', 'i', 's',
-#define s_10_15 385
 's', 'k', 'y',
-#define s_10_16 388
+#define s_10_15 384
 't', 'y', 'i', 'n', 'g',
-#define s_10_17 393
+#define s_10_16 389
 'u', 'g', 'l', 'y',
 };
 
@@ -354,26 +352,25 @@ static const struct among a_9[8] =
 };
 
 
-static const struct among a_10[18] =
+static const struct among a_10[17] =
 {
 /*  0 */ { 5, s_10_0, -1, -1},
 /*  1 */ { 5, s_10_1, -1, -1},
 /*  2 */ { 4, s_10_2, -1, -1},
 /*  3 */ { 6, s_10_3, -1, -1},
-/*  4 */ { 5, s_10_4, -1, 3},
-/*  5 */ { 5, s_10_5, -1, 9},
-/*  6 */ { 6, s_10_6, -1, 7},
+/*  4 */ { 5, s_10_4, -1, 2},
+/*  5 */ { 5, s_10_5, -1, 8},
+/*  6 */ { 6, s_10_6, -1, 6},
 /*  7 */ { 4, s_10_7, -1, -1},
-/*  8 */ { 4, s_10_8, -1, 6},
-/*  9 */ { 5, s_10_9, -1, 4},
+/*  8 */ { 4, s_10_8, -1, 5},
+/*  9 */ { 5, s_10_9, -1, 3},
 /* 10 */ { 4, s_10_10, -1, -1},
-/* 11 */ { 4, s_10_11, -1, 10},
-/* 12 */ { 6, s_10_12, -1, 11},
-/* 13 */ { 5, s_10_13, -1, 2},
-/* 14 */ { 4, s_10_14, -1, 1},
-/* 15 */ { 3, s_10_15, -1, -1},
-/* 16 */ { 5, s_10_16, -1, 5},
-/* 17 */ { 4, s_10_17, -1, 8}
+/* 11 */ { 4, s_10_11, -1, 9},
+/* 12 */ { 6, s_10_12, -1, 10},
+/* 13 */ { 5, s_10_13, -1, 1},
+/* 14 */ { 3, s_10_14, -1, -1},
+/* 15 */ { 5, s_10_15, -1, 4},
+/* 16 */ { 4, s_10_16, -1, 7}
 };
 
 static const unsigned char g_v[] = { 17, 65, 16, 1 };
@@ -409,18 +406,17 @@ static const symbol s_23[] = { 't', 'i', 'o', 'n' };
 static const symbol s_24[] = { 'a', 't', 'e' };
 static const symbol s_25[] = { 'a', 'l' };
 static const symbol s_26[] = { 'i', 'c' };
-static const symbol s_27[] = { 's', 'k', 'i' };
-static const symbol s_28[] = { 's', 'k', 'y' };
-static const symbol s_29[] = { 'd', 'i', 'e' };
-static const symbol s_30[] = { 'l', 'i', 'e' };
-static const symbol s_31[] = { 't', 'i', 'e' };
-static const symbol s_32[] = { 'i', 'd', 'l' };
-static const symbol s_33[] = { 'g', 'e', 'n', 't', 'l' };
-static const symbol s_34[] = { 'u', 'g', 'l', 'i' };
-static const symbol s_35[] = { 'e', 'a', 'r', 'l', 'i' };
-static const symbol s_36[] = { 'o', 'n', 'l', 'i' };
-static const symbol s_37[] = { 's', 'i', 'n', 'g', 'l' };
-static const symbol s_38[] = { 'y' };
+static const symbol s_27[] = { 's', 'k', 'y' };
+static const symbol s_28[] = { 'd', 'i', 'e' };
+static const symbol s_29[] = { 'l', 'i', 'e' };
+static const symbol s_30[] = { 't', 'i', 'e' };
+static const symbol s_31[] = { 'i', 'd', 'l' };
+static const symbol s_32[] = { 'g', 'e', 'n', 't', 'l' };
+static const symbol s_33[] = { 'u', 'g', 'l', 'i' };
+static const symbol s_34[] = { 'e', 'a', 'r', 'l', 'i' };
+static const symbol s_35[] = { 'o', 'n', 'l', 'i' };
+static const symbol s_36[] = { 's', 'i', 'n', 'g', 'l' };
+static const symbol s_37[] = { 'y' };
 
 int Xapian::InternalStemEnglish::r_prelude() {
     I_Y_found = 0;
@@ -939,7 +935,7 @@ int Xapian::InternalStemEnglish::r_exception1() {
     int among_var;
     bra = c;
     if (c + 2 >= l || p[c + 2] >> 5 != 3 || !((42750482 >> (p[c + 2] & 0x1f)) & 1)) return 0;
-    among_var = find_among(s_pool, a_10, 18, 0, 0);
+    among_var = find_among(s_pool, a_10, 17, 0, 0);
     if (!(among_var)) return 0;
     ket = c;
     if (c < l) return 0;
@@ -970,32 +966,27 @@ int Xapian::InternalStemEnglish::r_exception1() {
             }
             break;
         case 6:
-            {   int ret = slice_from_s(3, s_32);
+            {   int ret = slice_from_s(5, s_32);
                 if (ret < 0) return ret;
             }
             break;
         case 7:
-            {   int ret = slice_from_s(5, s_33);
+            {   int ret = slice_from_s(4, s_33);
                 if (ret < 0) return ret;
             }
             break;
         case 8:
-            {   int ret = slice_from_s(4, s_34);
+            {   int ret = slice_from_s(5, s_34);
                 if (ret < 0) return ret;
             }
             break;
         case 9:
-            {   int ret = slice_from_s(5, s_35);
+            {   int ret = slice_from_s(4, s_35);
                 if (ret < 0) return ret;
             }
             break;
         case 10:
-            {   int ret = slice_from_s(4, s_36);
-                if (ret < 0) return ret;
-            }
-            break;
-        case 11:
-            {   int ret = slice_from_s(5, s_37);
+            {   int ret = slice_from_s(5, s_36);
                 if (ret < 0) return ret;
             }
             break;
@@ -1022,7 +1013,7 @@ int Xapian::InternalStemEnglish::r_postlude() {
                 c = ret;
             }
         }
-        {   int ret = slice_from_s(1, s_38);
+        {   int ret = slice_from_s(1, s_37);
             if (ret < 0) return ret;
         }
         continue;

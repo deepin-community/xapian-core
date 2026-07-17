@@ -7,7 +7,6 @@ extern void test_stubdb4();
 extern void test_stubdb5();
 extern void test_stubdb6();
 extern void test_stubdb8();
-extern void test_stubdb9();
 extern void test_matchdecider1();
 extern void test_matchdecider2();
 extern void test_matchdecider3();

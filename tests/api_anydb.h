@@ -73,7 +73,4 @@ extern void test_alldocspl1();
 extern void test_alldocspl2();
 extern void test_scaleweight1();
 extern void test_scaleweight2();
-extern void test_bm25weight1();
-extern void test_tradweight1();
-extern void test_tradweight4();
 extern void test_uuid1();

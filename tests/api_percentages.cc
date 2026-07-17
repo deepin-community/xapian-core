@@ -81,8 +81,7 @@ class MyPostingSource : public Xapian::PostingSource {
   public:
     MyPostingSource() : started(false) { }
 
-    PostingSource * clone() const
-    {
+    PostingSource* clone() const override {
 	return new MyPostingSource(weights, get_maxweight());
     }
 
@@ -91,15 +90,21 @@ class MyPostingSource : public Xapian::PostingSource {
 	if (wt > get_maxweight()) set_maxweight(wt);
     }
 
-    void init(const Xapian::Database &) { started = false; }
+    void init(const Xapian::Database&) override { started = false; }
 
-    double get_weight() const { return i->second; }
+    double get_weight() const override { return i->second; }
 
-    Xapian::doccount get_termfreq_min() const { return weights.size(); }
-    Xapian::doccount get_termfreq_est() const { return weights.size(); }
-    Xapian::doccount get_termfreq_max() const { return weights.size(); }
+    Xapian::doccount get_termfreq_min() const override {
+	return weights.size();
+    }
+    Xapian::doccount get_termfreq_est() const override {
+	return weights.size();
+    }
+    Xapian::doccount get_termfreq_max() const override {
+	return weights.size();
+    }
 
-    void next(double /*wt*/) {
+    void next(double /*wt*/) override {
 	if (!started) {
 	    i = weights.begin();
 	    started = true;
@@ -108,13 +113,13 @@ class MyPostingSource : public Xapian::PostingSource {
 	}
     }
 
-    bool at_end() const {
+    bool at_end() const override {
 	return (i == weights.end());
     }
 
-    Xapian::docid get_docid() const { return i->first; }
+    Xapian::docid get_docid() const override { return i->first; }
 
-    string get_description() const {
+    string get_description() const override {
 	return "MyPostingSource";
     }
 };
@@ -240,6 +245,13 @@ DEFINE_TESTCASE(topercent5, backend) {
     // the top hit got 4% in this testcase.  In 1.2.x it gets 50%, which is
     // better, but >50% would be more natural.
     TEST_REL(mset[0].get_percent(), >=, 50);
+
+    // Repeat tests with TradWeight.
+    enquire.set_weighting_scheme(Xapian::TradWeight());
+    mset = enquire.get_mset(0, 10);
+    TEST(!mset.empty());
+    TEST(mset[0].get_percent() < 100);
+    TEST_REL(mset[0].get_percent(), >=, 50);
 }
 
 /// Test that OP_FILTER doesn't affect percentages.
@@ -295,28 +307,28 @@ class ZWeight : public Xapian::Weight {
   public:
     ZWeight() { }
 
-    void init(double) { }
+    void init(double) override { }
 
-    Weight * clone() const {
+    Weight* clone() const override {
 	return new ZWeight();
     }
 
     double get_sumpart(Xapian::termcount,
 		       Xapian::termcount,
-		       Xapian::termcount) const {
+		       Xapian::termcount) const override {
 	return 0.0;
     }
 
-    double get_maxpart() const {
+    double get_maxpart() const override {
 	return 0.0;
     }
 
     double get_sumextra(Xapian::termcount doclen,
-			Xapian::termcount) const {
+			Xapian::termcount) const override {
 	return 1.0 / doclen;
     }
 
-    double get_maxextra() const {
+    double get_maxextra() const override {
 	return 1.0;
     }
 };

@@ -3,7 +3,7 @@
  */
 /* Copyright 1999,2000,2001 BrightStation PLC
  * Copyright 2002 Ananova Ltd
- * Copyright 2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2015,2016,2017,2020 Olly Betts
+ * Copyright 2002-2024 Olly Betts
  * Copyright 2006,2008 Lemur Consulting Ltd
  * Copyright 2011 Action Without Borders
  *
@@ -352,7 +352,7 @@ DEFINE_TESTCASE(expandweights5, backend) {
     TEST_EQUAL_DOUBLE(eset[2].get_weight(), 5.58090119783738);
 }
 
-// test that "trad" can be set as an expansion scheme.
+// test that "prob" and "trad" can be set as the expansion scheme.
 DEFINE_TESTCASE(expandweights6, backend) {
     Xapian::Enquire enquire(get_database("apitest_simpledata"));
     enquire.set_query(Xapian::Query("this"));
@@ -364,8 +364,18 @@ DEFINE_TESTCASE(expandweights6, backend) {
     myrset.add_document(*i);
     myrset.add_document(*(++i));
 
-    enquire.set_expansion_scheme("trad");
+    enquire.set_expansion_scheme("prob");
     Xapian::ESet eset = enquire.get_eset(3, myrset, enquire.USE_EXACT_TERMFREQ);
+
+    TEST_EQUAL(eset.size(), 3);
+    TEST_REL(eset.get_ebound(), >=, eset.size());
+    TEST_EQUAL_DOUBLE(eset[0].get_weight(), 6.08904001099445);
+    TEST_EQUAL_DOUBLE(eset[1].get_weight(), 6.08904001099445);
+    TEST_EQUAL_DOUBLE(eset[2].get_weight(), 4.73383620844021);
+
+    // Older scheme name "trad" (alias for "prob").
+    enquire.set_expansion_scheme("trad");
+    eset = enquire.get_eset(3, myrset, enquire.USE_EXACT_TERMFREQ);
 
     TEST_EQUAL(eset.size(), 3);
     TEST_REL(eset.get_ebound(), >=, eset.size());
@@ -532,7 +542,7 @@ DEFINE_TESTCASE(topercent2, backend) {
 
 class EvenParityExpandFunctor : public Xapian::ExpandDecider {
   public:
-    bool operator()(const string & tname) const {
+    bool operator()(const string& tname) const override {
 	unsigned long sum = 0;
 	for (unsigned ch : tname) {
 	    sum += ch;
@@ -1089,22 +1099,29 @@ DEFINE_TESTCASE(rset1, backend) {
     TEST_MSET_SIZE(mymset2, 3);
 }
 
-// test that rsets do more sensible things
+/// Test that an RSet affects MSet result order.
 DEFINE_TESTCASE(rset2, backend) {
     Xapian::Database mydb(get_database("apitest_rset"));
     Xapian::Enquire enquire(mydb);
     Xapian::Query myquery = query(Xapian::Query::OP_OR, "cuddly", "people");
     enquire.set_query(myquery);
 
-    Xapian::MSet mymset1 = enquire.get_mset(0, 10);
+    // Test with the default BM25Weight, then with TradWeight.
+    for (int i = 0; i < 2; ++i) {
+	Xapian::MSet mymset1 = enquire.get_mset(0, 10);
 
-    Xapian::RSet myrset;
-    myrset.add_document(2);
+	Xapian::RSet myrset;
+	myrset.add_document(2);
 
-    Xapian::MSet mymset2 = enquire.get_mset(0, 10, &myrset);
+	Xapian::MSet mymset2 = enquire.get_mset(0, 10, &myrset);
 
-    mset_expect_order(mymset1, 1, 2);
-    mset_expect_order(mymset2, 2, 1);
+	mset_expect_order(mymset1, 1, 2);
+	// Document 2 should have higher weight than document 1 despite the wdf
+	// of "people" being 1 because "people" indexes a document in the RSet
+	// whereas "cuddly" (wdf=2) does not.
+	mset_expect_order(mymset2, 2, 1);
+	enquire.set_weighting_scheme(Xapian::TradWeight());
+    }
 }
 
 // test that rsets behave correctly with multiDBs
@@ -1451,33 +1468,40 @@ DEFINE_TESTCASE(qterminfo1, backend) {
     enquire1.set_query(myquery);
     enquire2.set_query(myquery);
 
-    // retrieve the results
-    Xapian::MSet mymset1a = enquire1.get_mset(0, 0);
-    Xapian::MSet mymset2a = enquire2.get_mset(0, 0);
+    for (int i = 1; i <= 2; ++i) {
+	// Retrieve the results.
+	Xapian::MSet mymset1a = enquire1.get_mset(0, 0);
+	Xapian::MSet mymset2a = enquire2.get_mset(0, 0);
 
-    TEST_EQUAL(mymset1a.get_termfreq(term1),
-	       mymset2a.get_termfreq(term1));
-    TEST_EQUAL(mymset1a.get_termfreq(term2),
-	       mymset2a.get_termfreq(term2));
-    TEST_EQUAL(mymset1a.get_termfreq(term3),
-	       mymset2a.get_termfreq(term3));
+	TEST_EQUAL(mymset1a.get_termfreq(term1),
+		   mymset2a.get_termfreq(term1));
+	TEST_EQUAL(mymset1a.get_termfreq(term2),
+		   mymset2a.get_termfreq(term2));
+	TEST_EQUAL(mymset1a.get_termfreq(term3),
+		   mymset2a.get_termfreq(term3));
 
-    TEST_EQUAL(mymset1a.get_termfreq(term1), 3);
-    TEST_EQUAL(mymset1a.get_termfreq(term2), 1);
-    TEST_EQUAL(mymset1a.get_termfreq(term3), 0);
+	TEST_EQUAL(mymset1a.get_termfreq(term1), 3);
+	TEST_EQUAL(mymset1a.get_termfreq(term2), 1);
+	TEST_EQUAL(mymset1a.get_termfreq(term3), 0);
 
-    TEST_NOT_EQUAL(mymset1a.get_termweight(term1), 0);
-    TEST_NOT_EQUAL(mymset1a.get_termweight(term2), 0);
-    // non-existent terms should have 0 weight.
-    TEST_EQUAL(mymset1a.get_termweight(term3), 0);
+	TEST_NOT_EQUAL(mymset1a.get_termweight(term1), 0);
+	TEST_NOT_EQUAL(mymset1a.get_termweight(term2), 0);
+	// Non-existent terms should have zero weight.
+	TEST_EQUAL(mymset1a.get_termweight(term3), 0);
 
-    TEST_EQUAL(mymset1a.get_termfreq(stemmer("banana")), 1);
-    TEST_EXCEPTION(Xapian::InvalidArgumentError,
-		   mymset1a.get_termweight(stemmer("banana")));
+	TEST_EQUAL(mymset1a.get_termfreq(stemmer("banana")), 1);
+	TEST_EXCEPTION(Xapian::InvalidArgumentError,
+		       mymset1a.get_termweight(stemmer("banana")));
 
-    TEST_EQUAL(mymset1a.get_termfreq("sponge"), 0);
-    TEST_EXCEPTION(Xapian::InvalidArgumentError,
-		   mymset1a.get_termweight("sponge"));
+	TEST_EQUAL(mymset1a.get_termfreq("sponge"), 0);
+	TEST_EXCEPTION(Xapian::InvalidArgumentError,
+		       mymset1a.get_termweight("sponge"));
+
+	// Repeat tests with TradWeight.  (Regression test to ensure
+	// non-existent terms get zero weight with TradWeight.)
+	enquire1.set_weighting_scheme(Xapian::TradWeight());
+	enquire2.set_weighting_scheme(Xapian::TradWeight());
+    }
 }
 
 /// Regression test for bug #37.
@@ -2250,60 +2274,6 @@ DEFINE_TESTCASE(scaleweight2, backend) {
     }
 
     TEST_EQUAL(ids1, ids5);
-}
-
-// Regression test for bug fixed in 1.0.5 - this test would failed under
-// valgrind because it used an uninitialised value.
-DEFINE_TESTCASE(bm25weight1, backend) {
-    Xapian::Enquire enquire(get_database("apitest_simpledata"));
-    enquire.set_weighting_scheme(Xapian::BM25Weight(1, 25, 1, 0.01, 0.5));
-    enquire.set_query(Xapian::Query("word"));
-
-    Xapian::MSet mset = enquire.get_mset(0, 25);
-}
-
-// Feature test for TradWeight.
-DEFINE_TESTCASE(tradweight1, backend) {
-    Xapian::Enquire enquire(get_database("apitest_simpledata"));
-    enquire.set_weighting_scheme(Xapian::TradWeight());
-    enquire.set_query(Xapian::Query("word"));
-
-    Xapian::MSet mset = enquire.get_mset(0, 25);
-    TEST_EQUAL(mset.size(), 2);
-
-    enquire.set_weighting_scheme(Xapian::TradWeight(0));
-    enquire.set_query(Xapian::Query("this"));
-
-    mset = enquire.get_mset(0, 25);
-    TEST_EQUAL(mset.size(), 6);
-
-    // Check that TradWeight(0) means wdf and doc length really don't affect
-    // the weights as stated in the documentation.
-    TEST_EQUAL(mset[0].get_weight(), mset[5].get_weight());
-}
-
-// Test TradWeight when weighting documents using an RSet.
-// Simply changed the weighting scheme used by rset2 testcase.
-DEFINE_TESTCASE(tradweight4, backend) {
-    Xapian::Database mydb(get_database("apitest_rset"));
-    Xapian::Enquire enquire(mydb);
-    Xapian::Query myquery = query(Xapian::Query::OP_OR, "cuddly", "people");
-
-    enquire.set_query(myquery);
-    enquire.set_weighting_scheme(Xapian::TradWeight());
-
-    Xapian::MSet mymset1 = enquire.get_mset(0, 10);
-
-    Xapian::RSet myrset;
-    myrset.add_document(2);
-
-    Xapian::MSet mymset2 = enquire.get_mset(0, 10, &myrset);
-
-    mset_expect_order(mymset1, 1, 2);
-    // Document 2 should have higher weight than document 1 despite the wdf of
-    // "people" being 1 because "people" indexes a document in the RSet whereas
-    // "cuddly" (wdf=2) does not.
-    mset_expect_order(mymset2, 2, 1);
 }
 
 // Feature test for Database::get_uuid().

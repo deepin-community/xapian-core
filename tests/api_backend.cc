@@ -420,7 +420,7 @@ class CheckMatchDecider : public Xapian::MatchDecider {
   public:
     CheckMatchDecider() : called(false) { }
 
-    bool operator()(const Xapian::Document &) const {
+    bool operator()(const Xapian::Document &) const override {
 	called = true;
 	return true;
     }
@@ -932,41 +932,6 @@ DEFINE_TESTCASE(msetfirst2, backend) {
     enquire.set_query(Xapian::Query::MatchNothing);
     mset = enquire.get_mset(1, 1);
     TEST_EQUAL(mset.get_firstitem(), 1);
-}
-
-DEFINE_TESTCASE(bm25weight2, backend) {
-    Xapian::Database db(get_database("etext"));
-    Xapian::Enquire enquire(db);
-    enquire.set_query(Xapian::Query("the"));
-    enquire.set_weighting_scheme(Xapian::BM25Weight(0, 0, 0, 0, 1));
-    Xapian::MSet mset = enquire.get_mset(0, 100);
-    TEST_REL(mset.size(),>=,2);
-    double weight0 = mset[0].get_weight();
-    for (Xapian::doccount i = 1; i != mset.size(); ++i) {
-	TEST_EQUAL(weight0, mset[i].get_weight());
-    }
-}
-
-DEFINE_TESTCASE(unigramlmweight2, backend) {
-    Xapian::Database db(get_database("etext"));
-    Xapian::Enquire enquire(db);
-    enquire.set_query(Xapian::Query("the"));
-    enquire.set_weighting_scheme(Xapian::LMWeight());
-    Xapian::MSet mset = enquire.get_mset(0, 100);
-    TEST_REL(mset.size(),>=,2);
-}
-
-DEFINE_TESTCASE(tradweight2, backend) {
-    Xapian::Database db(get_database("etext"));
-    Xapian::Enquire enquire(db);
-    enquire.set_query(Xapian::Query("the"));
-    enquire.set_weighting_scheme(Xapian::TradWeight(0));
-    Xapian::MSet mset = enquire.get_mset(0, 100);
-    TEST_REL(mset.size(),>=,2);
-    double weight0 = mset[0].get_weight();
-    for (Xapian::doccount i = 1; i != mset.size(); ++i) {
-	TEST_EQUAL(weight0, mset[i].get_weight());
-    }
 }
 
 // Regression test for bug fix in 1.2.9.
@@ -1791,8 +1756,18 @@ DEFINE_TESTCASE(unsupportedcheck1, path) {
 	<< ' ' << get_database_path("apitest_simpledata") << '\n';
     out.close();
 
-    TEST_EXCEPTION(Xapian::UnimplementedError,
-		   Xapian::Database::check(stubpath));
+    try {
+	Xapian::Database::check(stubpath);
+	FAIL_TEST("Managed to check remote stub");
+#ifdef XAPIAN_HAS_REMOTE_BACKEND
+    } catch (const Xapian::UnimplementedError& e) {
+	// Check the message is appropriate.
+	TEST_STRINGS_EQUAL(e.get_msg(),
+			   "Remote database checking not implemented");
+#else
+    } catch (const Xapian::FeatureUnavailableError& e) {
+#endif
+    }
 }
 
 // Test exception for check() on inmemory via stub.

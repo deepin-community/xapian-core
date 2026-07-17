@@ -375,14 +375,22 @@ static const symbol s_6[] = { 'p', 'o' };
 int Xapian::InternalStemFinnish::r_mark_regions() {
     I_p1 = l;
     I_p2 = l;
-    if (out_grouping_U(g_V1, 97, 246, 1) < 0) return 0;
+    {   
+        int ret = out_grouping_U(g_V1, 97, 246, 1);
+        if (ret < 0) return 0;
+        c += ret;
+    }
     {   
         int ret = in_grouping_U(g_V1, 97, 246, 1);
         if (ret < 0) return 0;
         c += ret;
     }
     I_p1 = c;
-    if (out_grouping_U(g_V1, 97, 246, 1) < 0) return 0;
+    {   
+        int ret = out_grouping_U(g_V1, 97, 246, 1);
+        if (ret < 0) return 0;
+        c += ret;
+    }
     {   
         int ret = in_grouping_U(g_V1, 97, 246, 1);
         if (ret < 0) return 0;

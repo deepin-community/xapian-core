@@ -752,11 +752,6 @@ static const symbol s_8[] = { 't' };
 static const symbol s_9[] = { 'd' };
 static const symbol s_10[] = { 'g' };
 
-int Xapian::InternalStemLithuanian::r_R1() {
-    if (!(I_p1 <= c)) return 0;
-    return 1;
-}
-
 int Xapian::InternalStemLithuanian::r_step1() {
 
     {   int mlimit1;
@@ -766,9 +761,6 @@ int Xapian::InternalStemLithuanian::r_step1() {
         if (!(find_among_b(s_pool, a_0, 204, 0, 0))) { lb = mlimit1; return 0; }
         bra = c;
         lb = mlimit1;
-    }
-    {   int ret = r_R1();
-        if (ret <= 0) return ret;
     }
     {   int ret = slice_del();
         if (ret < 0) return ret;

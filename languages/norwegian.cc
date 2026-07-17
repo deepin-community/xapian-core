@@ -143,7 +143,11 @@ int Xapian::InternalStemNorwegian::r_mark_regions() {
         I_x = c;
         c = c_test1;
     }
-    if (out_grouping_U(g_v, 97, 248, 1) < 0) return 0;
+    {   
+        int ret = out_grouping_U(g_v, 97, 248, 1);
+        if (ret < 0) return 0;
+        c += ret;
+    }
     {   
         int ret = in_grouping_U(g_v, 97, 248, 1);
         if (ret < 0) return 0;

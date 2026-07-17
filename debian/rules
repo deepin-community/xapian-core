@@ -49,6 +49,14 @@ libxapian_soversion:=-$(DEV_SERIES)-$(libxapian_soversion)
 VERSION_SUFFIX:=-$(DEV_SERIES)
 endif
 
+# Ensure LFS is enabled.  Upstream's build system should do this, but this
+# fails with some autoconf versions which fail to probe LFS support with a C++
+# compiler (#1086249).
+#
+# Enable 64-bit time_t on i386 as well (sizeof(time_t) doesn't affect the ABI
+# but time_t is used inside the library).
+export DEB_BUILD_MAINT_OPTIONS = abi=+lfs,+time64
+
 export DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
 # For i386 and *-i386.
@@ -122,7 +130,7 @@ debian/libxapian-dev.install: debian/rules debian/libxapianVERSION-dev.install
 %:
 	dh $@
 
-override_dh_auto_configure: debian/control debian/libxapian$(libxapian_soversion).shlibs
+override_dh_auto_configure: debian/libxapian$(libxapian_soversion).shlibs
 	dh_testdir
 
 	# Configure in a subdirectory, for neatness.

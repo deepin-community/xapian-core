@@ -376,103 +376,105 @@ static const symbol s_pool[] = {
 0xD9, 0x83, 0xD8, 0xA7, 0xD9, 0x84,
 #define s_6_3 508
 0xD9, 0x84, 0xD9, 0x84,
-#define s_7_0 (s_7_1 + 2)
+#define s_7_0 s_7_1
 #define s_7_1 512
-0xD8, 0xA8, 0xD8, 0xA8,
+0xD8, 0xA8, 0xD8, 0xA7,
 #define s_7_2 516
+0xD8, 0xA8, 0xD8, 0xA8,
+#define s_7_3 520
 0xD9, 0x83, 0xD9, 0x83,
-#define s_8_0 520
+#define s_8_0 524
 0xD8, 0xB3, 0xD8, 0xA3,
-#define s_8_1 524
+#define s_8_1 528
 0xD8, 0xB3, 0xD8, 0xAA,
-#define s_8_2 528
+#define s_8_2 532
 0xD8, 0xB3, 0xD9, 0x86,
-#define s_8_3 532
+#define s_8_3 536
 0xD8, 0xB3, 0xD9, 0x8A,
-#define s_9_0 536
+#define s_9_0 540
 0xD8, 0xAA, 0xD8, 0xB3, 0xD8, 0xAA,
-#define s_9_1 542
+#define s_9_1 546
 0xD9, 0x86, 0xD8, 0xB3, 0xD8, 0xAA,
-#define s_9_2 548
+#define s_9_2 552
 0xD9, 0x8A, 0xD8, 0xB3, 0xD8, 0xAA,
 #define s_10_0 s_10_1
 #define s_10_1 s_10_6
 #define s_10_2 s_10_7
-#define s_10_3 554
+#define s_10_3 558
 0xD9, 0x87, 0xD9, 0x86,
 #define s_10_4 s_10_2
-#define s_10_5 558
+#define s_10_5 562
 0xD9, 0x8A,
-#define s_10_6 560
+#define s_10_6 564
 0xD9, 0x83, 0xD9, 0x85, 0xD8, 0xA7,
-#define s_10_7 566
+#define s_10_7 570
 0xD9, 0x87, 0xD9, 0x85, 0xD8, 0xA7,
-#define s_10_8 572
+#define s_10_8 576
 0xD9, 0x86, 0xD8, 0xA7,
-#define s_10_9 576
+#define s_10_9 580
 0xD9, 0x87, 0xD8, 0xA7,
-#define s_11_0 580
+#define s_11_0 584
 0xD9, 0x86,
-#define s_12_0 582
+#define s_12_0 586
 0xD9, 0x88,
-#define s_12_1 584
+#define s_12_1 588
 0xD9, 0x8A,
-#define s_12_2 586
+#define s_12_2 590
 0xD8, 0xA7,
-#define s_13_0 588
+#define s_13_0 592
 0xD8, 0xA7, 0xD8, 0xAA,
-#define s_14_0 592
+#define s_14_0 596
 0xD8, 0xAA,
-#define s_15_0 594
+#define s_15_0 598
 0xD8, 0xA9,
-#define s_16_0 596
+#define s_16_0 600
 0xD9, 0x8A,
 #define s_17_0 s_17_1
 #define s_17_1 s_17_6
 #define s_17_2 s_17_9
-#define s_17_3 598
+#define s_17_3 602
 0xD9, 0x83, 0xD9, 0x86,
-#define s_17_4 602
+#define s_17_4 606
 0xD9, 0x87, 0xD9, 0x86,
 #define s_17_5 s_17_2
-#define s_17_6 606
+#define s_17_6 610
 0xD9, 0x83, 0xD9, 0x85, 0xD9, 0x88,
-#define s_17_7 612
+#define s_17_7 616
 0xD9, 0x86, 0xD9, 0x8A,
-#define s_17_8 616
+#define s_17_8 620
 0xD9, 0x83, 0xD9, 0x85, 0xD8, 0xA7,
-#define s_17_9 622
+#define s_17_9 626
 0xD9, 0x87, 0xD9, 0x85, 0xD8, 0xA7,
-#define s_17_10 628
+#define s_17_10 632
 0xD9, 0x86, 0xD8, 0xA7,
-#define s_17_11 632
+#define s_17_11 636
 0xD9, 0x87, 0xD8, 0xA7,
 #define s_18_0 (s_18_1 + 2)
-#define s_18_1 636
+#define s_18_1 640
 0xD9, 0x88, 0xD9, 0x86,
-#define s_18_2 640
+#define s_18_2 644
 0xD9, 0x8A, 0xD9, 0x86,
-#define s_18_3 644
+#define s_18_3 648
 0xD8, 0xA7, 0xD9, 0x86,
-#define s_18_4 648
+#define s_18_4 652
 0xD8, 0xAA, 0xD9, 0x86,
 #define s_18_5 s_18_2
 #define s_18_6 s_18_3
-#define s_18_7 652
+#define s_18_7 656
 0xD8, 0xAA, 0xD9, 0x85, 0xD8, 0xA7,
-#define s_18_8 658
+#define s_18_8 662
 0xD9, 0x86, 0xD8, 0xA7,
-#define s_18_9 662
+#define s_18_9 666
 0xD8, 0xAA, 0xD8, 0xA7,
 #define s_18_10 s_18_4
-#define s_19_0 666
+#define s_19_0 670
 0xD8, 0xAA, 0xD9, 0x85,
-#define s_19_1 670
+#define s_19_1 674
 0xD9, 0x88, 0xD8, 0xA7,
 #define s_20_0 (s_20_1 + 4)
-#define s_20_1 674
+#define s_20_1 678
 0xD8, 0xAA, 0xD9, 0x85, 0xD9, 0x88,
-#define s_21_0 680
+#define s_21_0 684
 0xD9, 0x89,
 };
 
@@ -698,11 +700,12 @@ static const struct among a_6[4] =
 };
 
 
-static const struct among a_7[3] =
+static const struct among a_7[4] =
 {
 /*  0 */ { 2, s_7_0, -1, 1},
-/*  1 */ { 4, s_7_1, 0, 2},
-/*  2 */ { 4, s_7_2, -1, 3}
+/*  1 */ { 4, s_7_1, 0, -1},
+/*  2 */ { 4, s_7_2, 0, 2},
+/*  3 */ { 4, s_7_3, -1, 3}
 };
 
 
@@ -886,25 +889,25 @@ static const symbol s_54[] = { 0xD8, 0xA3 };
 static const symbol s_55[] = { 0xD8, 0xA2 };
 static const symbol s_56[] = { 0xD8, 0xA7 };
 static const symbol s_57[] = { 0xD8, 0xA5 };
-static const symbol s_58[] = { 0xD9, 0x81, 0xD8, 0xA7 };
-static const symbol s_59[] = { 0xD9, 0x88, 0xD8, 0xA7 };
-static const symbol s_60[] = { 0xD8, 0xA8, 0xD8, 0xA7 };
-static const symbol s_61[] = { 0xD8, 0xA8 };
-static const symbol s_62[] = { 0xD9, 0x83 };
-static const symbol s_63[] = { 0xD9, 0x8A };
-static const symbol s_64[] = { 0xD8, 0xAA };
-static const symbol s_65[] = { 0xD9, 0x86 };
-static const symbol s_66[] = { 0xD8, 0xA3 };
-static const symbol s_67[] = { 0xD8, 0xA7, 0xD8, 0xB3, 0xD8, 0xAA };
-static const symbol s_68[] = { 0xD9, 0x8A };
+static const symbol s_58[] = { 0xD8, 0xA7 };
+static const symbol s_59[] = { 0xD8, 0xA8 };
+static const symbol s_60[] = { 0xD9, 0x83 };
+static const symbol s_61[] = { 0xD9, 0x8A };
+static const symbol s_62[] = { 0xD8, 0xAA };
+static const symbol s_63[] = { 0xD9, 0x86 };
+static const symbol s_64[] = { 0xD8, 0xA3 };
+static const symbol s_65[] = { 0xD8, 0xA7, 0xD8, 0xB3, 0xD8, 0xAA };
+static const symbol s_66[] = { 0xD9, 0x8A };
 
 int Xapian::InternalStemArabic::r_Normalize_pre() {
     int among_var;
-    {   int i; for (i = len_utf8(p); i > 0; i--)
-        {               {   int c1 = c;
+    {   int c1 = c;
+        while(1) {
+            int c2 = c;
+            {   int c3 = c;
                 bra = c;
                 among_var = find_among(s_pool, a_0, 161, 0, 0);
-                if (!(among_var)) goto lab1;
+                if (!(among_var)) goto lab3;
                 ket = c;
                 switch (among_var) {
                     case 1:
@@ -1163,17 +1166,21 @@ int Xapian::InternalStemArabic::r_Normalize_pre() {
                         }
                         break;
                 }
-                goto lab0;
-            lab1:
-                c = c1;
+                goto lab2;
+            lab3:
+                c = c3;
                 {   int ret = skip_utf8(p, c, 0, l, 1);
-                    if (ret < 0) return 0;
+                    if (ret < 0) goto lab1;
                     c = ret;
                 }
             }
-        lab0:
-            ;
+        lab2:
+            continue;
+        lab1:
+            c = c2;
+            break;
         }
+        c = c1;
     }
     return 1;
 }
@@ -1300,23 +1307,17 @@ int Xapian::InternalStemArabic::r_Prefix_Step1() {
 }
 
 int Xapian::InternalStemArabic::r_Prefix_Step2() {
-    {   int c1 = c;
-        if (!(eq_s(4, s_58))) goto lab0;
-        return 0;
-    lab0:
-        c = c1;
-    }
-    {   int c2 = c;
-        if (!(eq_s(4, s_59))) goto lab1;
-        return 0;
-    lab1:
-        c = c2;
-    }
     bra = c;
     if (c + 1 >= l || (p[c + 1] != 129 && p[c + 1] != 136)) return 0;
     if (!(find_among(s_pool, a_5, 2, 0, 0))) return 0;
     ket = c;
     if (!(len_utf8(p) > 3)) return 0;
+    {   int c1 = c;
+        if (!(eq_s(2, s_58))) goto lab0;
+        return 0;
+    lab0:
+        c = c1;
+    }
     {   int ret = slice_del();
         if (ret < 0) return ret;
     }
@@ -1349,15 +1350,9 @@ int Xapian::InternalStemArabic::r_Prefix_Step3a_Noun() {
 
 int Xapian::InternalStemArabic::r_Prefix_Step3b_Noun() {
     int among_var;
-    {   int c1 = c;
-        if (!(eq_s(4, s_60))) goto lab0;
-        return 0;
-    lab0:
-        c = c1;
-    }
     bra = c;
     if (c + 1 >= l || (p[c + 1] != 168 && p[c + 1] != 131)) return 0;
-    among_var = find_among(s_pool, a_7, 3, 0, 0);
+    among_var = find_among(s_pool, a_7, 4, 0, 0);
     if (!(among_var)) return 0;
     ket = c;
     switch (among_var) {
@@ -1369,13 +1364,13 @@ int Xapian::InternalStemArabic::r_Prefix_Step3b_Noun() {
             break;
         case 2:
             if (!(len_utf8(p) > 3)) return 0;
-            {   int ret = slice_from_s(2, s_61);
+            {   int ret = slice_from_s(2, s_59);
                 if (ret < 0) return ret;
             }
             break;
         case 3:
             if (!(len_utf8(p) > 3)) return 0;
-            {   int ret = slice_from_s(2, s_62);
+            {   int ret = slice_from_s(2, s_60);
                 if (ret < 0) return ret;
             }
             break;
@@ -1392,25 +1387,25 @@ int Xapian::InternalStemArabic::r_Prefix_Step3_Verb() {
     switch (among_var) {
         case 1:
             if (!(len_utf8(p) > 4)) return 0;
-            {   int ret = slice_from_s(2, s_63);
+            {   int ret = slice_from_s(2, s_61);
                 if (ret < 0) return ret;
             }
             break;
         case 2:
             if (!(len_utf8(p) > 4)) return 0;
-            {   int ret = slice_from_s(2, s_64);
+            {   int ret = slice_from_s(2, s_62);
                 if (ret < 0) return ret;
             }
             break;
         case 3:
             if (!(len_utf8(p) > 4)) return 0;
-            {   int ret = slice_from_s(2, s_65);
+            {   int ret = slice_from_s(2, s_63);
                 if (ret < 0) return ret;
             }
             break;
         case 4:
             if (!(len_utf8(p) > 4)) return 0;
-            {   int ret = slice_from_s(2, s_66);
+            {   int ret = slice_from_s(2, s_64);
                 if (ret < 0) return ret;
             }
             break;
@@ -1426,7 +1421,7 @@ int Xapian::InternalStemArabic::r_Prefix_Step4_Verb() {
     if (!(len_utf8(p) > 4)) return 0;
     I_is_verb = 1;
     I_is_noun = 0;
-    {   int ret = slice_from_s(6, s_67);
+    {   int ret = slice_from_s(6, s_65);
         if (ret < 0) return ret;
     }
     return 1;
@@ -1637,7 +1632,7 @@ int Xapian::InternalStemArabic::r_Suffix_All_alef_maqsura() {
     if (c - 1 <= lb || p[c - 1] != 137) return 0;
     if (!(find_among_b(s_pool, a_21, 1, 0, 0))) return 0;
     bra = c;
-    {   int ret = slice_from_s(2, s_68);
+    {   int ret = slice_from_s(2, s_66);
         if (ret < 0) return ret;
     }
     return 1;
@@ -1653,21 +1648,19 @@ int Xapian::InternalStemArabic::stem() {
         }
         c = c1;
     }
-    {   int c2 = c;
-        {   int ret = r_Normalize_pre();
-            if (ret < 0) return ret;
-        }
-        c = c2;
+    
+    {   int ret = r_Normalize_pre();
+        if (ret < 0) return ret;
     }
     lb = c; c = l;
 
-    {   int m3 = l - c; (void)m3;
-        {   int m4 = l - c; (void)m4;
+    {   int m2 = l - c; (void)m2;
+        {   int m3 = l - c; (void)m3;
             if (!(I_is_verb)) goto lab2;
-            {   int m5 = l - c; (void)m5;
+            {   int m4 = l - c; (void)m4;
                 {   int i = 1;
                     while(1) {
-                        int m6 = l - c; (void)m6;
+                        int m5 = l - c; (void)m5;
                         {   int ret = r_Suffix_Verb_Step1();
                             if (ret == 0) goto lab5;
                             if (ret < 0) return ret;
@@ -1675,26 +1668,26 @@ int Xapian::InternalStemArabic::stem() {
                         i--;
                         continue;
                     lab5:
-                        c = l - m6;
+                        c = l - m5;
                         break;
                     }
                     if (i > 0) goto lab4;
                 }
-                {   int m7 = l - c; (void)m7;
+                {   int m6 = l - c; (void)m6;
                     {   int ret = r_Suffix_Verb_Step2a();
                         if (ret == 0) goto lab7;
                         if (ret < 0) return ret;
                     }
                     goto lab6;
                 lab7:
-                    c = l - m7;
+                    c = l - m6;
                     {   int ret = r_Suffix_Verb_Step2c();
                         if (ret == 0) goto lab8;
                         if (ret < 0) return ret;
                     }
                     goto lab6;
                 lab8:
-                    c = l - m7;
+                    c = l - m6;
                     {   int ret = skip_utf8(p, c, lb, 0, -1);
                         if (ret < 0) goto lab4;
                         c = ret;
@@ -1703,14 +1696,14 @@ int Xapian::InternalStemArabic::stem() {
             lab6:
                 goto lab3;
             lab4:
-                c = l - m5;
+                c = l - m4;
                 {   int ret = r_Suffix_Verb_Step2b();
                     if (ret == 0) goto lab9;
                     if (ret < 0) return ret;
                 }
                 goto lab3;
             lab9:
-                c = l - m5;
+                c = l - m4;
                 {   int ret = r_Suffix_Verb_Step2a();
                     if (ret == 0) goto lab2;
                     if (ret < 0) return ret;
@@ -1719,17 +1712,17 @@ int Xapian::InternalStemArabic::stem() {
         lab3:
             goto lab1;
         lab2:
-            c = l - m4;
+            c = l - m3;
             if (!(I_is_noun)) goto lab10;
-            {   int m8 = l - c; (void)m8;
-                {   int m9 = l - c; (void)m9;
+            {   int m7 = l - c; (void)m7;
+                {   int m8 = l - c; (void)m8;
                     {   int ret = r_Suffix_Noun_Step2c2();
                         if (ret == 0) goto lab13;
                         if (ret < 0) return ret;
                     }
                     goto lab12;
                 lab13:
-                    c = l - m9;
+                    c = l - m8;
                     
                     if (!(I_is_defined)) goto lab15;
                     goto lab14;
@@ -1738,28 +1731,28 @@ int Xapian::InternalStemArabic::stem() {
                         if (ret == 0) goto lab14;
                         if (ret < 0) return ret;
                     }
-                    {   int m10 = l - c; (void)m10;
+                    {   int m9 = l - c; (void)m9;
                         {   int ret = r_Suffix_Noun_Step2a();
                             if (ret == 0) goto lab17;
                             if (ret < 0) return ret;
                         }
                         goto lab16;
                     lab17:
-                        c = l - m10;
+                        c = l - m9;
                         {   int ret = r_Suffix_Noun_Step2b();
                             if (ret == 0) goto lab18;
                             if (ret < 0) return ret;
                         }
                         goto lab16;
                     lab18:
-                        c = l - m10;
+                        c = l - m9;
                         {   int ret = r_Suffix_Noun_Step2c1();
                             if (ret == 0) goto lab19;
                             if (ret < 0) return ret;
                         }
                         goto lab16;
                     lab19:
-                        c = l - m10;
+                        c = l - m9;
                         {   int ret = skip_utf8(p, c, lb, 0, -1);
                             if (ret < 0) goto lab14;
                             c = ret;
@@ -1768,26 +1761,26 @@ int Xapian::InternalStemArabic::stem() {
                 lab16:
                     goto lab12;
                 lab14:
-                    c = l - m9;
+                    c = l - m8;
                     {   int ret = r_Suffix_Noun_Step1b();
                         if (ret == 0) goto lab20;
                         if (ret < 0) return ret;
                     }
-                    {   int m11 = l - c; (void)m11;
+                    {   int m10 = l - c; (void)m10;
                         {   int ret = r_Suffix_Noun_Step2a();
                             if (ret == 0) goto lab22;
                             if (ret < 0) return ret;
                         }
                         goto lab21;
                     lab22:
-                        c = l - m11;
+                        c = l - m10;
                         {   int ret = r_Suffix_Noun_Step2b();
                             if (ret == 0) goto lab23;
                             if (ret < 0) return ret;
                         }
                         goto lab21;
                     lab23:
-                        c = l - m11;
+                        c = l - m10;
                         {   int ret = r_Suffix_Noun_Step2c1();
                             if (ret == 0) goto lab20;
                             if (ret < 0) return ret;
@@ -1796,7 +1789,7 @@ int Xapian::InternalStemArabic::stem() {
                 lab21:
                     goto lab12;
                 lab20:
-                    c = l - m9;
+                    c = l - m8;
                     
                     if (!(I_is_defined)) goto lab25;
                     goto lab24;
@@ -1807,9 +1800,9 @@ int Xapian::InternalStemArabic::stem() {
                     }
                     goto lab12;
                 lab24:
-                    c = l - m9;
+                    c = l - m8;
                     {   int ret = r_Suffix_Noun_Step2b();
-                        if (ret == 0) { c = l - m8; goto lab11; }
+                        if (ret == 0) { c = l - m7; goto lab11; }
                         if (ret < 0) return ret;
                     }
                 }
@@ -1823,7 +1816,7 @@ int Xapian::InternalStemArabic::stem() {
             }
             goto lab1;
         lab10:
-            c = l - m4;
+            c = l - m3;
             {   int ret = r_Suffix_All_alef_maqsura();
                 if (ret == 0) goto lab0;
                 if (ret < 0) return ret;
@@ -1831,34 +1824,34 @@ int Xapian::InternalStemArabic::stem() {
         }
     lab1:
     lab0:
-        c = l - m3;
+        c = l - m2;
     }
     c = lb;
-    {   int c12 = c;
-        {   int c13 = c;
+    {   int c11 = c;
+        {   int c12 = c;
             {   int ret = r_Prefix_Step1();
-                if (ret == 0) { c = c13; goto lab27; }
+                if (ret == 0) { c = c12; goto lab27; }
                 if (ret < 0) return ret;
             }
         lab27:
             ;
         }
-        {   int c14 = c;
+        {   int c13 = c;
             {   int ret = r_Prefix_Step2();
-                if (ret == 0) { c = c14; goto lab28; }
+                if (ret == 0) { c = c13; goto lab28; }
                 if (ret < 0) return ret;
             }
         lab28:
             ;
         }
-        {   int c15 = c;
+        {   int c14 = c;
             {   int ret = r_Prefix_Step3a_Noun();
                 if (ret == 0) goto lab30;
                 if (ret < 0) return ret;
             }
             goto lab29;
         lab30:
-            c = c15;
+            c = c14;
             if (!(I_is_noun)) goto lab31;
             {   int ret = r_Prefix_Step3b_Noun();
                 if (ret == 0) goto lab31;
@@ -1866,11 +1859,11 @@ int Xapian::InternalStemArabic::stem() {
             }
             goto lab29;
         lab31:
-            c = c15;
+            c = c14;
             if (!(I_is_verb)) goto lab26;
-            {   int c16 = c;
+            {   int c15 = c;
                 {   int ret = r_Prefix_Step3_Verb();
-                    if (ret == 0) { c = c16; goto lab32; }
+                    if (ret == 0) { c = c15; goto lab32; }
                     if (ret < 0) return ret;
                 }
             lab32:
@@ -1883,7 +1876,7 @@ int Xapian::InternalStemArabic::stem() {
         }
     lab29:
     lab26:
-        c = c12;
+        c = c11;
     }
     
     {   int ret = r_Normalize_post();

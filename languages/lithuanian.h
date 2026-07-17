@@ -11,7 +11,6 @@ class InternalStemLithuanian : public SnowballStemImplementation {
     int r_fix_gd();
     int r_fix_chdz();
     int r_step1();
-    int r_R1();
     int r_step2();
 
   public:

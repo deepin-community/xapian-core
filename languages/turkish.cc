@@ -1948,97 +1948,77 @@ int Xapian::InternalStemTurkish::r_post_process_last_consonants() {
 }
 
 int Xapian::InternalStemTurkish::r_append_U_to_stems_ending_with_d_or_g() {
-    {   int m_test1 = l - c;
-        {   int m2 = l - c; (void)m2;
-            if (c <= lb || p[c - 1] != 'd') goto lab1;
-            c--;
-            goto lab0;
-        lab1:
-            c = l - m2;
-            if (c <= lb || p[c - 1] != 'g') return 0;
-            c--;
-        }
-    lab0:
-        c = l - m_test1;
+    ket = c;
+    bra = c;
+    {   int m1 = l - c; (void)m1;
+        if (c <= lb || p[c - 1] != 'd') goto lab1;
+        c--;
+        goto lab0;
+    lab1:
+        c = l - m1;
+        if (c <= lb || p[c - 1] != 'g') return 0;
+        c--;
     }
-    {   int m3 = l - c; (void)m3;
-        {   int m_test4 = l - c;
-            if (out_grouping_b_U(g_vowel, 97, 305, 1) < 0) goto lab3;
-            {   int m5 = l - c; (void)m5;
-                if (c <= lb || p[c - 1] != 'a') goto lab5;
-                c--;
-                goto lab4;
-            lab5:
-                c = l - m5;
-                if (!(eq_s_b(2, s_9))) goto lab3;
-            }
-        lab4:
-            c = l - m_test4;
+lab0:
+    if (out_grouping_b_U(g_vowel, 97, 305, 1) < 0) return 0;
+    {   int m2 = l - c; (void)m2;
+        {   int m3 = l - c; (void)m3;
+            if (c <= lb || p[c - 1] != 'a') goto lab5;
+            c--;
+            goto lab4;
+        lab5:
+            c = l - m3;
+            if (!(eq_s_b(2, s_9))) goto lab3;
         }
-        {   int saved_c = c;
-            insert_s(c, c, 2, s_10);
-            c = saved_c;
+    lab4:
+        {   int ret = slice_from_s(2, s_10);
+            if (ret < 0) return ret;
         }
         goto lab2;
     lab3:
-        c = l - m3;
-        {   int m_test6 = l - c;
-            if (out_grouping_b_U(g_vowel, 97, 305, 1) < 0) goto lab6;
-            {   int m7 = l - c; (void)m7;
-                if (c <= lb || p[c - 1] != 'e') goto lab8;
-                c--;
-                goto lab7;
-            lab8:
-                c = l - m7;
-                if (c <= lb || p[c - 1] != 'i') goto lab6;
-                c--;
-            }
-        lab7:
-            c = l - m_test6;
+        c = l - m2;
+        {   int m4 = l - c; (void)m4;
+            if (c <= lb || p[c - 1] != 'e') goto lab8;
+            c--;
+            goto lab7;
+        lab8:
+            c = l - m4;
+            if (c <= lb || p[c - 1] != 'i') goto lab6;
+            c--;
         }
-        {   int saved_c = c;
-            insert_s(c, c, 1, s_11);
-            c = saved_c;
+    lab7:
+        {   int ret = slice_from_s(1, s_11);
+            if (ret < 0) return ret;
         }
         goto lab2;
     lab6:
-        c = l - m3;
-        {   int m_test8 = l - c;
-            if (out_grouping_b_U(g_vowel, 97, 305, 1) < 0) goto lab9;
-            {   int m9 = l - c; (void)m9;
-                if (c <= lb || p[c - 1] != 'o') goto lab11;
-                c--;
-                goto lab10;
-            lab11:
-                c = l - m9;
-                if (c <= lb || p[c - 1] != 'u') goto lab9;
-                c--;
-            }
-        lab10:
-            c = l - m_test8;
+        c = l - m2;
+        {   int m5 = l - c; (void)m5;
+            if (c <= lb || p[c - 1] != 'o') goto lab11;
+            c--;
+            goto lab10;
+        lab11:
+            c = l - m5;
+            if (c <= lb || p[c - 1] != 'u') goto lab9;
+            c--;
         }
-        {   int saved_c = c;
-            insert_s(c, c, 1, s_12);
-            c = saved_c;
+    lab10:
+        {   int ret = slice_from_s(1, s_12);
+            if (ret < 0) return ret;
         }
         goto lab2;
     lab9:
-        c = l - m3;
-        {   int m_test10 = l - c;
-            if (out_grouping_b_U(g_vowel, 97, 305, 1) < 0) return 0;
-            {   int m11 = l - c; (void)m11;
-                if (!(eq_s_b(2, s_13))) goto lab13;
-                goto lab12;
-            lab13:
-                c = l - m11;
-                if (!(eq_s_b(2, s_14))) return 0;
-            }
-        lab12:
-            c = l - m_test10;
+        c = l - m2;
+        {   int m6 = l - c; (void)m6;
+            if (!(eq_s_b(2, s_13))) goto lab13;
+            goto lab12;
+        lab13:
+            c = l - m6;
+            if (!(eq_s_b(2, s_14))) return 0;
         }
-        {   int saved_c = c;
-            insert_s(c, c, 2, s_15);
-            c = saved_c;
+    lab12:
+        {   int ret = slice_from_s(2, s_15);
+            if (ret < 0) return ret;
         }
     }
 lab2:
@@ -2058,21 +2038,13 @@ int Xapian::InternalStemTurkish::r_is_reserved_word() {
 
 int Xapian::InternalStemTurkish::r_more_than_one_syllable_word() {
     {   int c_test1 = c;
-        {   int i = 2;
-            while(1) {
-                int c2 = c;
-                {   
+        {   int i; for (i = 2; i > 0; i--)
+            {                   {   
                     int ret = out_grouping_U(g_vowel, 97, 305, 1);
-                    if (ret < 0) goto lab0;
+                    if (ret < 0) return 0;
                     c += ret;
                 }
-                i--;
-                continue;
-            lab0:
-                c = c2;
-                break;
             }
-            if (i > 0) return 0;
         }
         c = c_test1;
     }

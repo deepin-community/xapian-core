@@ -213,22 +213,29 @@ int Xapian::InternalStemDutch::r_prelude() {
     }
     while(1) {
         int c4 = c;
-        while(1) {
-            int c5 = c;
-            if (in_grouping_U(g_v, 97, 232, 0)) goto lab3;
+        {   
+            int ret = out_grouping_U(g_v, 97, 232, 1);
+            if (ret < 0) goto lab2;
+            c += ret;
+        }
+        {   int c5 = c;
             bra = c;
             {   int c6 = c;
                 if (c == l || p[c] != 'i') goto lab5;
                 c++;
                 ket = c;
-                if (in_grouping_U(g_v, 97, 232, 0)) goto lab5;
-                {   int ret = slice_from_s(1, s_6);
-                    if (ret < 0) return ret;
+                {   int c7 = c;
+                    if (in_grouping_U(g_v, 97, 232, 0)) goto lab6;
+                    {   int ret = slice_from_s(1, s_6);
+                        if (ret < 0) return ret;
+                    }
+                lab6:
+                    c = c7;
                 }
                 goto lab4;
             lab5:
                 c = c6;
-                if (c == l || p[c] != 'y') goto lab3;
+                if (c == l || p[c] != 'y') { c = c5; goto lab3; }
                 c++;
                 ket = c;
                 {   int ret = slice_from_s(1, s_7);
@@ -236,14 +243,8 @@ int Xapian::InternalStemDutch::r_prelude() {
                 }
             }
         lab4:
-            c = c5;
-            break;
         lab3:
-            c = c5;
-            {   int ret = skip_utf8(p, c, 0, l, 1);
-                if (ret < 0) goto lab2;
-                c = ret;
-            }
+            ;
         }
         continue;
     lab2:
